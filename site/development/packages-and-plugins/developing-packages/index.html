@@ -1,0 +1,3293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Developing packages & plugins | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="How to write packages and plugins for Flutter.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Developing packages & plugins">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/packages-and-plugins/developing-packages">
+    <meta property="og:description" content="How to write packages and plugins for Flutter.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    
+  
+  
+  
+  <div
+    id="site-toc--side"
+    class="site-toc site-toc--side fixed-col col-xl-2 order-3 "
+    data-fixed-column
+  >
+    <header class="site-toc__title">
+      Contents
+      </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#package-introduction">Package introduction</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#types">Package types</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#dart">Developing Dart packages</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-the-package">Step 1: Create the package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2-implement-the-package">Step 2: Implement the package</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#plugin">Developing plugin packages</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#federated-plugins">Federated plugins</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#endorsed-federated-plugin">Endorsed federated plugin</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#non-endorsed-federated-plugin">Non-endorsed federated plugin</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#plugin-platforms">Specifying a plugin’s supported platforms</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#federated-platform-packages">Federated platform packages</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#endorsed-implementations">Endorsed implementations</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-the-package-1">Step 1: Create the package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#edit-plugin-package">Step 2: Implement the package</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2a-define-the-package-api-dart">Step 2a: Define the package API (.dart)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2b-add-android-platform-code-ktjava">Step 2b: Add Android platform code (.kt/.java)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2c-add-ios-platform-code-swifthm">Step 2c: Add iOS platform code (.swift/.h+.m)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2d-add-linux-platform-code-hcc">Step 2d: Add Linux platform code (.h+.cc)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2e-add-macos-platform-code-swift">Step 2e: Add macOS platform code (.swift)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2f-add-windows-platform-code-hcpp">Step 2f: Add Windows platform code (.h+.cpp)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2g-connect-the-api-and-the-platform-code">Step 2g: Connect the API and the platform code</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#add-support-for-platforms-in-an-existing-plugin-project">Add support for platforms in an existing plugin project</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#dart-platform-implementations">Dart platform implementations</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#dart-only-platform-implementations">Dart-only platform implementations</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#hybrid-platform-implementations">Hybrid platform implementations</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#testing-your-plugin">Testing your plugin</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#plugin-ffi">Developing FFI plugin packages</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-the-package-2">Step 1: Create the package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2-building-and-bundling-native-code">Step 2: Building and bundling native code</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-3-binding-to-native-code">Step 3: Binding to native code</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-4-invoking-native-code">Step 4: Invoking native code</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#adding-documentation">Adding documentation</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#api-documentation">API documentation</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#adding-licenses-to-the-license-file">Adding licenses to the LICENSE file</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#publish">Publishing your package</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#dependencies">Handling package interdependencies</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#android">Android</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#ios">iOS</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#web">Web</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/packages-and-plugins/developing-packages.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Developing packages & plugins'&page-url=http://0.0.0.0:4002/development/packages-and-plugins/developing-packages/&page-source=https://github.com/flutter/website/tree/main/src/development/packages-and-plugins/developing-packages.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Developing packages & plugins</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/packages-and-plugins" property="item" typeof="WebPage"><span property="name">Packages & plugins</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/packages-and-plugins/developing-packages" property="item" typeof="WebPage"><span property="name">Developing</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div
+    id="site-toc--inline"
+    class="site-toc site-toc--inline "
+  >
+    <header class="site-toc__title">
+      Contents
+    </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#package-introduction">Package introduction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#types">Package types</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dart">Developing Dart packages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-create-the-package">Step 1: Create the package</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-implement-the-package">Step 2: Implement the package</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#plugin">Developing plugin packages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#federated-plugins">Federated plugins</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#endorsed-federated-plugin">Endorsed federated plugin</a></li>
+<li class="toc-entry toc-h4"><a href="#non-endorsed-federated-plugin">Non-endorsed federated plugin</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#plugin-platforms">Specifying a plugin’s supported platforms</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#federated-platform-packages">Federated platform packages</a></li>
+<li class="toc-entry toc-h4"><a href="#endorsed-implementations">Endorsed implementations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#step-1-create-the-package-1">Step 1: Create the package</a></li>
+<li class="toc-entry toc-h3"><a href="#edit-plugin-package">Step 2: Implement the package</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#step-2a-define-the-package-api-dart">Step 2a: Define the package API (.dart)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2b-add-android-platform-code-ktjava">Step 2b: Add Android platform code (.kt/.java)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2c-add-ios-platform-code-swifthm">Step 2c: Add iOS platform code (.swift/.h+.m)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2d-add-linux-platform-code-hcc">Step 2d: Add Linux platform code (.h+.cc)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2e-add-macos-platform-code-swift">Step 2e: Add macOS platform code (.swift)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2f-add-windows-platform-code-hcpp">Step 2f: Add Windows platform code (.h+.cpp)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2g-connect-the-api-and-the-platform-code">Step 2g: Connect the API and the platform code</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#add-support-for-platforms-in-an-existing-plugin-project">Add support for platforms in an existing plugin project</a></li>
+<li class="toc-entry toc-h3"><a href="#dart-platform-implementations">Dart platform implementations</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#dart-only-platform-implementations">Dart-only platform implementations</a></li>
+<li class="toc-entry toc-h4"><a href="#hybrid-platform-implementations">Hybrid platform implementations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#testing-your-plugin">Testing your plugin</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#plugin-ffi">Developing FFI plugin packages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-create-the-package-2">Step 1: Create the package</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-building-and-bundling-native-code">Step 2: Building and bundling native code</a></li>
+<li class="toc-entry toc-h3"><a href="#step-3-binding-to-native-code">Step 3: Binding to native code</a></li>
+<li class="toc-entry toc-h3"><a href="#step-4-invoking-native-code">Step 4: Invoking native code</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#adding-documentation">Adding documentation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#api-documentation">API documentation</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-licenses-to-the-license-file">Adding licenses to the LICENSE file</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#publish">Publishing your package</a></li>
+<li class="toc-entry toc-h2"><a href="#dependencies">Handling package interdependencies</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#android">Android</a></li>
+<li class="toc-entry toc-h3"><a href="#ios">iOS</a></li>
+<li class="toc-entry toc-h3"><a href="#web">Web</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<h2 id="package-introduction">
+<a class="anchor" href="#package-introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package introduction</h2>
+
+<p>Packages enable the creation of modular code that can be shared easily.
+A minimal package consists of the following:</p>
+
+<dl>
+  <dt><strong><code class="language-plaintext highlighter-rouge">pubspec.yaml</code></strong></dt>
+  <dd>A metadata file that declares the package name,
+version, author, and so on.</dd>
+  <dt><strong><code class="language-plaintext highlighter-rouge">lib</code></strong></dt>
+  <dd>The <code class="language-plaintext highlighter-rouge">lib</code> directory contains the public code in
+the package, minimally a single <code class="language-plaintext highlighter-rouge">&lt;package-name&gt;.dart</code> file.</dd>
+</dl>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  For a list of dos and don’ts when writing an effective plugin,
+  see the Medium article by Mehmet Fidanboylu,
+  <a href="https://medium.com/flutter/writing-a-good-flutter-plugin-1a561b986c9c">Writing a good plugin</a>.</p>
+</aside>
+
+<h3 id="types">
+<a class="anchor" href="#types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package types</h3>
+
+<p>Packages can contain more than one kind of content:</p>
+
+<dl>
+  <dt><strong>Dart packages</strong></dt>
+  <dd>General packages written in Dart,
+for example the <a href="https://pub.dev/packages/path"><code class="language-plaintext highlighter-rouge">path</code></a> package.
+Some of these might contain Flutter specific
+functionality and thus have a dependency on the
+Flutter framework, restricting their use to Flutter only,
+for example the <a href="https://pub.dev/packages/fluro"><code class="language-plaintext highlighter-rouge">fluro</code></a> package.</dd>
+  <dt><strong>Plugin packages</strong></dt>
+  <dd>A specialized Dart package that contains an API written in
+Dart code combined with one or more platform-specific
+implementations.
+
+    <p>Plugin packages can be written for Android
+(using Kotlin or Java), iOS (using Swift or Objective-C),
+web, macOS, Windows, or Linux, or any combination
+thereof.</p>
+
+    <p>A concrete example is the <a href="https://pub.dev/packages/url_launcher"><code class="language-plaintext highlighter-rouge">url_launcher</code></a> plugin package.
+To see how to use the <code class="language-plaintext highlighter-rouge">url_launcher</code> package, and how it
+was extended to implement support for web,
+see the Medium article by Harry Terkelsen,
+<a href="https://medium.com/flutter/how-to-write-a-flutter-web-plugin-5e26c689ea1">How to Write a Flutter Web Plugin, Part 1</a>.</p>
+  </dd>
+  <dt><strong>FFI Plugin packages</strong></dt>
+  <dd>A specialized Dart package that contains an API written in
+Dart code combined with one or more platform-specific
+implementations that use Dart FFI(<a href="http://0.0.0.0:4002/development/platform-integration/android/c-interop">Android</a>, <a href="http://0.0.0.0:4002/development/platform-integration/ios/c-interop">iOS</a>, <a href="http://0.0.0.0:4002/development/platform-integration/macos/c-interop">macOS</a>).</dd>
+</dl>
+
+<h2 id="dart">
+<a class="anchor" href="#dart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing Dart packages</h2>
+
+<p>The following instructions explain how to write a Flutter
+package.</p>
+
+<h3 id="step-1-create-the-package">
+<a class="anchor" href="#step-1-create-the-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the package</h3>
+
+<p>To create a starter Flutter package,
+use the <code class="language-plaintext highlighter-rouge">--template=package</code> flag with <code class="language-plaintext highlighter-rouge">flutter create</code>:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--template</span><span class="o">=</span>package hello
+</code></pre></div></div>
+
+<p>This creates a package project in the <code class="language-plaintext highlighter-rouge">hello</code>
+folder with the following content:</p>
+
+<dl>
+  <dt><strong>LICENSE</strong></dt>
+  <dd>A (mostly) empty license text file.</dd>
+  <dt><strong>test/hello_test.dart</strong></dt>
+  <dd>The <a href="http://0.0.0.0:4002/testing#unit-tests">unit tests</a> for the package.</dd>
+  <dt><strong>hello.iml</strong></dt>
+  <dd>A configuration file used by the IntelliJ IDEs.</dd>
+  <dt><strong>.gitignore</strong></dt>
+  <dd>A hidden file that tells Git which files or
+folders to ignore in a project.</dd>
+  <dt><strong>.metadata</strong></dt>
+  <dd>A hidden file used by IDEs to track the properties
+of the Flutter project.</dd>
+  <dt><strong>pubspec.yaml</strong></dt>
+  <dd>A yaml file containing metadata that specifies
+the package’s dependencies. Used by the pub tool.</dd>
+  <dt><strong>README.md</strong></dt>
+  <dd>A starter markdown file that briefly describes
+the package’s purpose.</dd>
+  <dt><strong>lib/hello.dart</strong></dt>
+  <dd>A starter app containing Dart code for the package.</dd>
+  <dt>
+<strong>.idea/modules.xml</strong>, <strong>.idea/workspace.xml</strong>
+</dt>
+  <dd>A hidden folder containing configuration files
+for the IntelliJ IDEs.</dd>
+  <dt><strong>CHANGELOG.md</strong></dt>
+  <dd>A (mostly) empty markdown file for tracking
+version changes to the package.</dd>
+</dl>
+
+<h3 id="step-2-implement-the-package">
+<a class="anchor" href="#step-2-implement-the-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Implement the package</h3>
+
+<p>For pure Dart packages, simply add the functionality
+inside the main <code class="language-plaintext highlighter-rouge">lib/&lt;package name&gt;.dart</code> file,
+or in several files in the <code class="language-plaintext highlighter-rouge">lib</code> directory.</p>
+
+<p>To test the package, add <a href="http://0.0.0.0:4002/testing#unit-tests">unit tests</a>
+in a <code class="language-plaintext highlighter-rouge">test</code> directory.</p>
+
+<p>For additional details on how to organize the
+package contents,
+see the <a href="https://dart.dev/guides/libraries/create-library-packages">Dart library package</a> documentation.</p>
+
+<h2 id="plugin">
+<a class="anchor" href="#plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing plugin packages</h2>
+
+<p>If you want to develop a package that calls into
+platform-specific APIs,
+you need to develop a plugin package.</p>
+
+<p>The API is connected to the platform-specific
+implementation(s) using a <a href="http://0.0.0.0:4002/development/platform-integration/platform-channels">platform channel</a>.</p>
+
+<h3 id="federated-plugins">
+<a class="anchor" href="#federated-plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Federated plugins</h3>
+
+<p>Federated plugins are a way of splitting support for
+different platforms into separate packages.
+So, a federated plugin can use one package for iOS,
+another for Android, another for web,
+and yet another for a car (as an example of an IoT device).
+Among other benefits, this approach allows a domain expert
+to extend an existing plugin to work for the platform they know best.</p>
+
+<p>A federated plugin requires the following packages:</p>
+
+<dl>
+  <dt><strong>app-facing package</strong></dt>
+  <dd>The package that plugin users depend on to use the plugin.
+This package specifies the API used by the Flutter app.</dd>
+  <dt><strong>platform package(s)</strong></dt>
+  <dd>One or more packages that contain the platform-specific
+implementation code. The app-facing package calls into
+these packages—they aren’t included into an app,
+unless they contain platform-specific functionality
+accessible to the end user.</dd>
+  <dt><strong>platform interface package</strong></dt>
+  <dd>The package that glues the app-facing packing
+to the platform package(s). This package declares an
+interface that any platform package must implement to
+support the app-facing package. Having a single package
+that defines this interface ensures that all platform
+packages implement the same functionality in a uniform way.</dd>
+</dl>
+
+<h4 id="endorsed-federated-plugin">
+<a class="anchor" href="#endorsed-federated-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Endorsed federated plugin</h4>
+
+<p>Ideally, when adding a platform implementation to
+a federated plugin, you will coordinate with the package
+author to include your implementation.
+In this way, the original author <em>endorses</em> your
+implementation.</p>
+
+<p>For example, say you write a <code class="language-plaintext highlighter-rouge">foobar_windows</code>
+implementation for the (imaginary) <code class="language-plaintext highlighter-rouge">foobar</code> plugin.
+In an endorsed plugin, the original <code class="language-plaintext highlighter-rouge">foobar</code> author
+adds your Windows implementation as a dependency
+in the pubspec for the app-facing package.
+Then, when a developer includes the <code class="language-plaintext highlighter-rouge">foobar</code> plugin
+in their Flutter app, the Windows implementation,
+as well as the other endorsed implementations,
+are automatically available to the app.</p>
+
+<h4 id="non-endorsed-federated-plugin">
+<a class="anchor" href="#non-endorsed-federated-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Non-endorsed federated plugin</h4>
+
+<p>If you can’t, for whatever reason, get your implementation
+added by the original plugin author, then your plugin
+is <em>not</em> endorsed. A developer can still use your
+implementation, but must manually add the plugin
+to the app’s pubspec file. So, the developer
+must include both the <code class="language-plaintext highlighter-rouge">foobar</code> dependency <em>and</em>
+the <code class="language-plaintext highlighter-rouge">foobar_windows</code> dependency in order to achieve
+full functionality.</p>
+
+<p>For more information on federated plugins,
+why they are useful, and how they are
+implemented, see the Medium article by Harry Terkelsen,
+<a href="https://medium.com/flutter/how-to-write-a-flutter-web-plugin-part-2-afdddb69ece6">How To Write a Flutter Web Plugin, Part 2</a>.</p>
+
+<h3 id="plugin-platforms">
+<a class="anchor" href="#plugin-platforms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Specifying a plugin’s supported platforms</h3>
+
+<p>Plugins can specify the platforms they support by
+adding keys to the <code class="language-plaintext highlighter-rouge">platforms</code> map in the
+<code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file. For example,
+the following pubspec file shows the
+<code class="language-plaintext highlighter-rouge">flutter:</code> map for the <code class="language-plaintext highlighter-rouge">hello</code> plugin,
+which supports only iOS and Android:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">android</span><span class="pi">:</span>
+        <span class="na">package</span><span class="pi">:</span> <span class="s">com.example.hello</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">ios</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+
+<span class="na">environment</span><span class="pi">:</span>
+  <span class="na">sdk</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&gt;=2.1.0</span><span class="nv"> </span><span class="s">&lt;3.0.0"</span>
+  <span class="c1"># Flutter versions prior to 1.12 did not support the</span>
+  <span class="c1"># flutter.plugin.platforms map.</span>
+  <span class="na">flutter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&gt;=1.12.0"</span>
+</code></pre></div></div>
+
+<p>When adding plugin implementations for more platforms,
+the <code class="language-plaintext highlighter-rouge">platforms</code> map should be updated accordingly.
+For example, here’s the map in the pubspec file
+for the <code class="language-plaintext highlighter-rouge">hello</code> plugin,
+when updated to add support for macOS and web:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">android</span><span class="pi">:</span>
+        <span class="na">package</span><span class="pi">:</span> <span class="s">com.example.hello</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">ios</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">macos</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">web</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+        <span class="na">fileName</span><span class="pi">:</span> <span class="s">hello_web.dart</span>
+
+<span class="na">environment</span><span class="pi">:</span>
+  <span class="na">sdk</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&gt;=2.1.0</span><span class="nv"> </span><span class="s">&lt;3.0.0"</span>
+  <span class="c1"># Flutter versions prior to 1.12 did not support the</span>
+  <span class="c1"># flutter.plugin.platforms map.</span>
+  <span class="na">flutter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&gt;=1.12.0"</span>
+</code></pre></div></div>
+
+<h4 id="federated-platform-packages">
+<a class="anchor" href="#federated-platform-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Federated platform packages</h4>
+
+<p>A platform package uses the same format,
+but includes an <code class="language-plaintext highlighter-rouge">implements</code> entry indicating
+which app-facing package it implements. For example,
+a <code class="language-plaintext highlighter-rouge">hello_windows</code> plugin containing the Windows
+implementation for <code class="language-plaintext highlighter-rouge">hello</code>
+would have the following <code class="language-plaintext highlighter-rouge">flutter:</code> map:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">implements</span><span class="pi">:</span> <span class="s">hello</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">windows</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+</code></pre></div></div>
+
+<h4 id="endorsed-implementations">
+<a class="anchor" href="#endorsed-implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Endorsed implementations</h4>
+
+<p>An app facing package can endorse a platform package by adding a
+dependency on it, and including it as a <code class="language-plaintext highlighter-rouge">default_package</code> in the
+<code class="language-plaintext highlighter-rouge">platforms:</code> map. If the <code class="language-plaintext highlighter-rouge">hello</code> plugin above endorsed <code class="language-plaintext highlighter-rouge">hello_windows</code>,
+it would look as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">android</span><span class="pi">:</span>
+        <span class="na">package</span><span class="pi">:</span> <span class="s">com.example.hello</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">ios</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+      <span class="na">windows</span><span class="pi">:</span>
+        <span class="na">default_package</span><span class="pi">:</span> <span class="s">hello_windows</span>
+
+<span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">hello_windows</span><span class="pi">:</span> <span class="s">^1.0.0</span>
+</code></pre></div></div>
+
+<p>Note that as shown here, an app-facing package can have
+some platforms implemented within the package,
+and others in endorsed federated implementations.</p>
+
+<h3 id="step-1-create-the-package-1">
+<a class="anchor" href="#step-1-create-the-package-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the package</h3>
+
+<p>To create a plugin package, use the <code class="language-plaintext highlighter-rouge">--template=plugin</code>
+flag with <code class="language-plaintext highlighter-rouge">flutter create</code>.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">--platforms=</code> option followed by a
+comma-separated list to specify the platforms
+that the plugin supports. Available platforms are:
+<code class="language-plaintext highlighter-rouge">android</code>, <code class="language-plaintext highlighter-rouge">ios</code>, <code class="language-plaintext highlighter-rouge">web</code>, <code class="language-plaintext highlighter-rouge">linux</code>, <code class="language-plaintext highlighter-rouge">macos</code>, and <code class="language-plaintext highlighter-rouge">windows</code>.
+If no platforms are specified, the
+resulting project doesn’t support any platforms.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">--org</code> option to specify your organization,
+using reverse domain name notation. This value is used
+in various package and bundle identifiers in the
+generated plugin code.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">-a</code> option to specify the language for android
+or the <code class="language-plaintext highlighter-rouge">-i</code> option to specify the language for ios.
+Please choose <strong>one</strong> of the following:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--org</span> com.example <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios,linux,macos,windows <span class="nt">-a</span> kotlin hello
+</code></pre></div></div>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--org</span> com.example <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios,linux,macos,windows <span class="nt">-a</span> java hello
+</code></pre></div></div>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--org</span> com.example <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios,linux,macos,windows <span class="nt">-i</span> objc hello
+</code></pre></div></div>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--org</span> com.example <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios,linux,macos,windows <span class="nt">-i</span> swift hello
+</code></pre></div></div>
+
+<p>This creates a plugin project in the <code class="language-plaintext highlighter-rouge">hello</code> folder
+with the following specialized content:</p>
+
+<dl>
+  <dt><strong><code class="language-plaintext highlighter-rouge">lib/hello.dart</code></strong></dt>
+  <dd>The Dart API for the plugin.</dd>
+  <dt><strong><code class="language-plaintext highlighter-rouge">android/src/main/java/com/example/hello/HelloPlugin.kt</code></strong></dt>
+  <dd>The Android platform-specific implementation of the plugin API
+in Kotlin.</dd>
+  <dt><strong><code class="language-plaintext highlighter-rouge">ios/Classes/HelloPlugin.m</code></strong></dt>
+  <dd>The iOS-platform specific implementation of the plugin API
+in Objective-C.</dd>
+  <dt><strong><code class="language-plaintext highlighter-rouge">example/</code></strong></dt>
+  <dd>A Flutter app that depends on the plugin,
+and illustrates how to use it.</dd>
+</dl>
+
+<p>By default, the plugin project uses Swift for iOS code and
+Kotlin for Android code. If you prefer Objective-C or Java,
+you can specify the iOS language using <code class="language-plaintext highlighter-rouge">-i</code> and the
+Android language using <code class="language-plaintext highlighter-rouge">-a</code>. For example:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios <span class="nt">-i</span> objc hello
+</code></pre></div></div>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>android,ios <span class="nt">-a</span> java hello
+</code></pre></div></div>
+
+<h3 id="edit-plugin-package">
+<a class="anchor" href="#edit-plugin-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Implement the package</h3>
+
+<p>As a plugin package contains code for several platforms
+written in several programming languages,
+some specific steps are needed to ensure a smooth experience.</p>
+
+<h4 id="step-2a-define-the-package-api-dart">
+<a class="anchor" href="#step-2a-define-the-package-api-dart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2a: Define the package API (.dart)</h4>
+
+<p>The API of the plugin package is defined in Dart code.
+Open the main <code class="language-plaintext highlighter-rouge">hello/</code> folder in your favorite <a href="http://0.0.0.0:4002/get-started/editor">Flutter editor</a>.
+Locate the file <code class="language-plaintext highlighter-rouge">lib/hello.dart</code>.</p>
+
+<h4 id="step-2b-add-android-platform-code-ktjava">
+<a class="anchor" href="#step-2b-add-android-platform-code-ktjava" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2b: Add Android platform code (.kt/.java)</h4>
+
+<p>We recommend you edit the Android code using Android Studio.</p>
+
+<p>Then use the following steps:</p>
+
+<ol>
+  <li>Launch Android Studio.</li>
+  <li>Select <strong>Open an existing Android Studio Project</strong>
+in the <strong>Welcome to Android Studio</strong> dialog,
+or select <strong>File &gt; Open</strong> from the menu,
+and select the <code class="language-plaintext highlighter-rouge">hello/example/android/build.gradle</code> file.</li>
+  <li>In the <strong>Gradle Sync</strong> dialog, select <strong>OK</strong>.</li>
+  <li>In the <strong>Android Gradle Plugin Update</strong> dialog,
+select <strong>Don’t remind me again for this project</strong>.</li>
+</ol>
+
+<p>The Android platform code of your plugin is located in
+<code class="language-plaintext highlighter-rouge">hello/java/com.example.hello/HelloPlugin</code>.</p>
+
+<p>You can run the example app from Android Studio by
+pressing the run (▶) button.</p>
+
+<h4 id="step-2c-add-ios-platform-code-swifthm">
+<a class="anchor" href="#step-2c-add-ios-platform-code-swifthm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2c: Add iOS platform code (.swift/.h+.m)</h4>
+
+<p>We recommend you edit the iOS code using Xcode.</p>
+
+<p>Before editing the iOS platform code in Xcode,
+first make sure that the code has been built at least once
+(in other words, run the example app from your IDE/editor,
+or in a terminal execute
+<code class="language-plaintext highlighter-rouge">cd hello/example; flutter build ios --no-codesign</code>).</p>
+
+<p>Then use the following steps:</p>
+
+<ol>
+  <li>Launch Xcode.</li>
+  <li>Select <strong>File &gt; Open</strong>, and select the
+<code class="language-plaintext highlighter-rouge">hello/example/ios/Runner.xcworkspace</code> file.</li>
+</ol>
+
+<p>The iOS platform code for your plugin is located in
+<code class="language-plaintext highlighter-rouge">Pods/Development Pods/hello/../../example/ios/.symlinks/plugins/hello/ios/Classes</code>
+in the Project Navigator.</p>
+
+<p>You can run the example app by pressing the run (▶) button.</p>
+
+<h4 id="step-2d-add-linux-platform-code-hcc">
+<a class="anchor" href="#step-2d-add-linux-platform-code-hcc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2d: Add Linux platform code (.h+.cc)</h4>
+
+<p>We recommend you edit the Linux code using an IDE with
+C++ integration. The instructions below are for
+Visual Studio Code with the “C/C++” and “CMake” extensions
+installed, but can be adjusted for other IDEs.</p>
+
+<p>Before editing the Linux platform code in an IDE,
+first make sure that the code has been built at least once
+(in other words, run the example app from your Flutter
+IDE/editor, or in a terminal execute
+<code class="language-plaintext highlighter-rouge">cd hello/example; flutter build linux</code>).</p>
+
+<p>Then use the following steps:</p>
+
+<ol>
+  <li>Launch Visual Studio Code.</li>
+  <li>Open the <code class="language-plaintext highlighter-rouge">hello/example/linux/</code> directory.</li>
+  <li>Choose <strong>Yes</strong> in the prompt asking:
+<code class="language-plaintext highlighter-rouge">Would you like to configure project "linux"?</code>.
+This will allow C++ autocomplete to work.</li>
+</ol>
+
+<p>The Linux platform code for your plugin is located in
+<code class="language-plaintext highlighter-rouge">flutter/ephemeral/.plugin_symlinks/hello/linux/</code>.</p>
+
+<p>You can run the example app using <code class="language-plaintext highlighter-rouge">flutter run</code>.
+<strong>Note:</strong> Creating a runnable Flutter application
+on Linux requires steps that are part of the <code class="language-plaintext highlighter-rouge">flutter</code>
+tool, so even if your editor provides CMake
+integration building and running that way won’t
+work correctly.</p>
+
+<h4 id="step-2e-add-macos-platform-code-swift">
+<a class="anchor" href="#step-2e-add-macos-platform-code-swift" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2e: Add macOS platform code (.swift)</h4>
+
+<p>We recommend you edit the macOS code using Xcode.</p>
+
+<p>Before editing the macOS platform code in Xcode,
+first make sure that the code has been built at least once
+(in other words, run the example app from your IDE/editor,
+or in a terminal execute
+<code class="language-plaintext highlighter-rouge">cd hello/example; flutter build macos</code>).</p>
+
+<p>Then use the following steps:</p>
+
+<ol>
+  <li>Launch Xcode.</li>
+  <li>Select <strong>File &gt; Open</strong>, and select the
+<code class="language-plaintext highlighter-rouge">hello/example/macos/Runner.xcworkspace</code> file.</li>
+</ol>
+
+<p>The macOS platform code for your plugin is located in
+<code class="language-plaintext highlighter-rouge">Pods/Development Pods/hello/../../example/macos/Flutter/ephemeral/.symlinks/plugins/hello/macos/Classes</code>
+in the Project Navigator.</p>
+
+<p>You can run the example app by pressing the run (▶) button.</p>
+
+<h4 id="step-2f-add-windows-platform-code-hcpp">
+<a class="anchor" href="#step-2f-add-windows-platform-code-hcpp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2f: Add Windows platform code (.h+.cpp)</h4>
+
+<p>We recommend you edit the Windows code using Visual Studio.</p>
+
+<p>Before editing the Windows platform code in Visual Studio,
+first make sure that the code has been built at least once
+(in other words, run the example app from your IDE/editor,
+or in a terminal execute
+<code class="language-plaintext highlighter-rouge">cd hello/example; flutter build windows</code>).</p>
+
+<p>Then use the following steps:</p>
+
+<ol>
+  <li>Launch Visual Studio.</li>
+  <li>Select <strong>Open a project or solution</strong>, and select the
+<code class="language-plaintext highlighter-rouge">hello/example/build/windows/hello_example.sln</code> file.</li>
+</ol>
+
+<p>The Windows platform code for your plugin is located in
+<code class="language-plaintext highlighter-rouge">hello_plugin/Source Files</code> and <code class="language-plaintext highlighter-rouge">hello_plugin/Header Files</code> in
+the Solution Explorer.</p>
+
+<p>You can run the example app by right-clicking <code class="language-plaintext highlighter-rouge">hello_example</code> in
+the Solution Explorer and selecting <strong>Set as Startup Project</strong>,
+then pressing the run (▶) button. <strong>Important:</strong> After
+making changes to plugin code, you must select
+<strong>Build &gt; Build Solution</strong> before running again, otherwise
+an outdated copy of the built plugin will be run instead
+of the latest version containing your changes.</p>
+
+<h4 id="step-2g-connect-the-api-and-the-platform-code">
+<a class="anchor" href="#step-2g-connect-the-api-and-the-platform-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2g: Connect the API and the platform code</h4>
+
+<p>Finally, you need to connect the API written in Dart code with
+the platform-specific implementations.
+This is done using a <a href="http://0.0.0.0:4002/development/platform-integration/platform-channels">platform channel</a>,
+or through the interfaces defined in a platform
+interface package.</p>
+
+<h3 id="add-support-for-platforms-in-an-existing-plugin-project">
+<a class="anchor" href="#add-support-for-platforms-in-an-existing-plugin-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add support for platforms in an existing plugin project</h3>
+
+<p>To add support for specific platforms to an
+existing plugin project, run <code class="language-plaintext highlighter-rouge">flutter create</code> with
+the <code class="language-plaintext highlighter-rouge">--template=plugin</code> flag again in the project directory.
+For example, to add web support in an existing plugin, run:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">--platforms</span><span class="o">=</span>web <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>If this command displays a message about updating the
+<code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file, follow the provided instructions.</p>
+
+<h3 id="dart-platform-implementations">
+<a class="anchor" href="#dart-platform-implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dart platform implementations</h3>
+
+<p>In many cases, non-web platform implementations only use the
+platform-specific implementation language, as shown above. However,
+platform implementations can also use platform-specific Dart as well.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  The examples below only apply to non-web platforms. Web
+  plugin implementations are always written in Dart, and use
+  <code class="language-plaintext highlighter-rouge">pluginClass</code> and <code class="language-plaintext highlighter-rouge">fileName</code> for their Dart implementations
+  as shown above.</p>
+</aside>
+
+<h4 id="dart-only-platform-implementations">
+<a class="anchor" href="#dart-only-platform-implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dart-only platform implementations</h4>
+
+<p>In some cases, some platforms can be
+implemented entirely in Dart (for example, using FFI).
+For a Dart-only platform implementation on a platform other than web,
+replace the <code class="language-plaintext highlighter-rouge">pluginClass</code> in pubspec.yaml with a <code class="language-plaintext highlighter-rouge">dartPluginClass</code>.
+Here is the <code class="language-plaintext highlighter-rouge">hello_windows</code> example above modified for a
+Dart-only implementation:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">implements</span><span class="pi">:</span> <span class="s">hello</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">windows</span><span class="pi">:</span>
+        <span class="na">dartPluginClass</span><span class="pi">:</span> <span class="s">HelloPluginWindows</span>
+</code></pre></div></div>
+
+<p>In this version you would have no C++ Windows code, and would instead
+subclass the <code class="language-plaintext highlighter-rouge">hello</code> plugin’s Dart platform interface class with a
+<code class="language-plaintext highlighter-rouge">HelloPluginWindows</code> class that includes a static
+<code class="language-plaintext highlighter-rouge">registerWith()</code> method.  This method is called during startup,
+and can be used to register the Dart implementation:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">HelloPluginWindows</span> <span class="kd">extends</span> <span class="n">HelloPluginPlatform</span> <span class="p">{</span>
+  <span class="c1">/// Registers this class as the default instance of [HelloPluginPlatform].</span>
+  <span class="kd">static</span> <span class="kt">void</span> <span class="n">registerWith</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">HelloPluginPlatform</span><span class="o">.</span><span class="na">instance</span> <span class="o">=</span> <span class="n">HelloPluginWindows</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="hybrid-platform-implementations">
+<a class="anchor" href="#hybrid-platform-implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hybrid platform implementations</h4>
+
+<p>Platform implementations can also use both Dart and a platform-specific
+language. For example, a plugin could use a different platform channel
+for each platform so that the channels can be customized per platform.</p>
+
+<p>A hybrid implementation uses both of the registration systems
+described above. Here is the <code class="language-plaintext highlighter-rouge">hello_windows</code> example above modified for a
+hybrid implementation:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">implements</span><span class="pi">:</span> <span class="s">hello</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">windows</span><span class="pi">:</span>
+        <span class="na">dartPluginClass</span><span class="pi">:</span> <span class="s">HelloPluginWindows</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">HelloPlugin</span>
+</code></pre></div></div>
+
+<p>The Dart <code class="language-plaintext highlighter-rouge">HelloPluginWindows</code> class would use the <code class="language-plaintext highlighter-rouge">registerWith()</code>
+shown above for Dart-only implementations, while the C++ <code class="language-plaintext highlighter-rouge">HelloPlugin</code>
+class would be the same as in a C++-only implementation.</p>
+
+<h3 id="testing-your-plugin">
+<a class="anchor" href="#testing-your-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing your plugin</h3>
+
+<p>We encourage you test your plugin with automated tests
+to ensure that functionality doesn’t regress
+as you make changes to your code.</p>
+
+<p>To learn more about testing your plugins,
+check out <a href="http://0.0.0.0:4002/testing/testing-plugins">Testing plugins</a>.
+If you are writing tests for your Flutter app
+and plugins are causing crashes,
+check out <a href="http://0.0.0.0:4002/development/packages-and-plugins/plugins-in-tests">Flutter in plugin tests</a>.</p>
+
+<h2 id="plugin-ffi">
+<a class="anchor" href="#plugin-ffi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing FFI plugin packages</h2>
+
+<p>If you want to develop a package that calls into native APIs using
+Dart’s FFI, you need to develop an FFI plugin package.</p>
+
+<p>Both FFI plugin packages and (non-FFI) plugin packages support
+bundling native code, but FFI plugin packages do not support
+method channels and do include method channel registration code.
+If you want to implement a plugin that uses both method channels
+and FFI, use a (non-FFI) plugin. You can chose per platform to
+use an FFI or (non-FFI) plugin.</p>
+
+<p>FFI plugin packages were introduced in Flutter 3.0, if you’re
+targeting older Flutter versions, you can use a (non-FFI) plugin.</p>
+
+<h3 id="step-1-create-the-package-2">
+<a class="anchor" href="#step-1-create-the-package-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the package</h3>
+
+<p>To create a starter FFI plugin package,
+use the <code class="language-plaintext highlighter-rouge">--template=plugin_ffi</code> flag with <code class="language-plaintext highlighter-rouge">flutter create</code>:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create <span class="nt">--template</span><span class="o">=</span>plugin_ffi hello
+</code></pre></div></div>
+
+<p>This creates an FFI plugin project in the <code class="language-plaintext highlighter-rouge">hello</code>
+folder with the following specialized content:</p>
+
+<p><strong>lib</strong>: The Dart code that defines the API of the plugin,
+  and which calls into the native code using <code class="language-plaintext highlighter-rouge">dart:ffi</code>.</p>
+
+<p><strong>src</strong>: The native source code, and a <code class="language-plaintext highlighter-rouge">CmakeFile.txt</code>
+  file for building that source code into a dynamic library.</p>
+
+<p><strong>platform folders</strong> (<code class="language-plaintext highlighter-rouge">android</code>, <code class="language-plaintext highlighter-rouge">ios</code>, <code class="language-plaintext highlighter-rouge">windows</code>, etc.): The
+  build files for building and bundling the native code
+  library with the platform application.</p>
+
+<h3 id="step-2-building-and-bundling-native-code">
+<a class="anchor" href="#step-2-building-and-bundling-native-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Building and bundling native code</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">pubspec.yaml</code> specifies FFI plugins as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">some_platform</span><span class="pi">:</span>
+        <span class="na">ffiPlugin</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>This configuration invokes the native build
+for the various target platforms and bundles
+the binaries in Flutter applications using these FFI plugins.</p>
+
+<p>This can be combined with <code class="language-plaintext highlighter-rouge">dartPluginClass</code>,
+such as when FFI is used for the
+implementation of one platform in a federated plugin:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">implements</span><span class="pi">:</span> <span class="s">some_other_plugin</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">some_platform</span><span class="pi">:</span>
+        <span class="na">dartPluginClass</span><span class="pi">:</span> <span class="s">SomeClass</span>
+        <span class="na">ffiPlugin</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>A plugin can have both FFI and method channels:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">plugin</span><span class="pi">:</span>
+    <span class="na">platforms</span><span class="pi">:</span>
+      <span class="na">some_platform</span><span class="pi">:</span>
+        <span class="na">pluginClass</span><span class="pi">:</span> <span class="s">SomeName</span>
+        <span class="na">ffiPlugin</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>The native build systems that are invoked by FFI
+(and method channels) plugins are:</p>
+
+<ul>
+  <li>For Android: Gradle, which invokes the Android NDK for native builds.
+    <ul>
+      <li>See the documentation in <code class="language-plaintext highlighter-rouge">android/build.gradle</code>.</li>
+    </ul>
+  </li>
+  <li>For iOS and macOS: Xcode, via CocoaPods.
+    <ul>
+      <li>See the documentation in <code class="language-plaintext highlighter-rouge">ios/hello.podspec</code>.</li>
+      <li>See the documentation in <code class="language-plaintext highlighter-rouge">macos/hello.podspec</code>.</li>
+    </ul>
+  </li>
+  <li>For Linux and Windows: CMake.
+    <ul>
+      <li>See the documentation in <code class="language-plaintext highlighter-rouge">linux/CMakeLists.txt</code>.</li>
+      <li>See the documentation in <code class="language-plaintext highlighter-rouge">windows/CMakeLists.txt</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="step-3-binding-to-native-code">
+<a class="anchor" href="#step-3-binding-to-native-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Binding to native code</h3>
+
+<p>To use the native code, bindings in Dart are needed.</p>
+
+<p>To avoid writing these by hand, they are generated from the header file
+(<code class="language-plaintext highlighter-rouge">src/hello.h</code>) by <a href="https://pub.dev/packages/ffigen"><code class="language-plaintext highlighter-rouge">package:ffigen</code></a>.
+Regenerate the bindings by running the following:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w">  </span>flutter pub run ffigen <span class="nt">--config</span> ffigen.yaml
+</code></pre></div></div>
+
+<h3 id="step-4-invoking-native-code">
+<a class="anchor" href="#step-4-invoking-native-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: Invoking native code</h3>
+
+<p>Very short-running native functions can be directly
+invoked from any isolate.
+For an example, see <code class="language-plaintext highlighter-rouge">sum</code> in <code class="language-plaintext highlighter-rouge">lib/hello.dart</code>.</p>
+
+<p>Longer-running functions should be invoked on a
+<a href="https://dart.dev/guides/language/concurrency#background-workers">helper isolate</a> to avoid dropping frames in
+Flutter applications.
+For an example, see <code class="language-plaintext highlighter-rouge">sumAsync</code> in <code class="language-plaintext highlighter-rouge">lib/hello.dart</code>.</p>
+
+<h2 id="adding-documentation">
+<a class="anchor" href="#adding-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding documentation</h2>
+
+<p>It is recommended practice to add the following documentation
+to all packages:</p>
+
+<ol>
+  <li>A <code class="language-plaintext highlighter-rouge">README.md</code> file that introduces the package</li>
+  <li>A <code class="language-plaintext highlighter-rouge">CHANGELOG.md</code> file that documents changes in each version</li>
+  <li>A <a href="#adding-licenses-to-the-license-file"><code class="language-plaintext highlighter-rouge">LICENSE</code></a> file containing the terms under which the package
+is licensed</li>
+  <li>API documentation for all public APIs (see below for details)</li>
+</ol>
+
+<h3 id="api-documentation">
+<a class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API documentation</h3>
+
+<p>When you publish a package,
+API documentation is automatically generated and
+published to pub.dev/documentation.
+For example, see the docs for <a href="https://pub.dev/documentation/device_info/latest"><code class="language-plaintext highlighter-rouge">device_info</code></a>.</p>
+
+<p>If you wish to generate API documentation locally on
+your development machine, use the following commands:</p>
+
+<ol>
+<li>
+    <p>Change directory to the location of your package:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="go">cd ~/dev/mypackage
+</span></code></pre></div>    </div>
+  </li>
+
+<li>
+    <p>Tell the documentation tool where the
+    Flutter SDK is located (change the following commands to reflect
+    where you placed it):</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">   export FLUTTER_ROOT=~/dev/flutter  #</span><span class="w"> </span>on macOS or Linux
+<span class="go">
+</span><span class="gp">   set FLUTTER_ROOT=~/dev/flutter     #</span><span class="w"> </span>on Windows
+</code></pre></div>    </div>
+  </li>
+
+<li>
+    <p>Run the <code class="language-plaintext highlighter-rouge">dartdoc</code> tool
+    (included as part of the Flutter SDK), as follows:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">   $</span>FLUTTER_ROOT/bin/cache/dart-sdk/bin/dartdoc   <span class="c"># on macOS or Linux</span>
+<span class="go">
+</span><span class="gp">   %FLUTTER_ROOT%\bin\cache\dart-sdk\bin\dartdoc  #</span><span class="w"> </span>on Windows
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>For tips on how to write API documentation, see
+<a href="https://dart.dev/guides/language/effective-dart/documentation">Effective Dart Documentation</a>.</p>
+
+<h3 id="adding-licenses-to-the-license-file">
+<a class="anchor" href="#adding-licenses-to-the-license-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding licenses to the LICENSE file</h3>
+
+<p>Individual licenses inside each LICENSE file
+should be separated by 80 hyphens
+on their own on a line.</p>
+
+<p>If a LICENSE file contains more than one
+component license, then each component
+license must start with the names of the
+packages to which the component license applies,
+with each package name on its own line,
+and the list of package names separated from
+the actual license text by a blank line.
+(The packages need not match the names of
+the pub package. For example, a package might itself contain
+code from multiple third-party sources,
+and might need to include a license for each one.)</p>
+
+<p>The following example shows a well-organized license file:</p>
+
+<pre><code class="language-none">package_1
+
+&lt;some license text&gt;
+
+--------------------------------------------------------------------------------
+package_2
+
+&lt;some license text&gt;
+</code></pre>
+
+<p>Here is another example of a well-organized license file:</p>
+
+<pre><code class="language-none">package_1
+
+&lt;some license text&gt;
+
+--------------------------------------------------------------------------------
+package_1
+package_2
+
+&lt;some license text&gt;
+</code></pre>
+
+<p>Here is an example of a poorly-organized license file:</p>
+
+<pre><code class="language-none">&lt;some license text&gt;
+
+--------------------------------------------------------------------------------
+&lt;some license text&gt;
+</code></pre>
+
+<p>Another example of a poorly-organized license file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package_1
+
+&lt;some license text&gt;
+--------------------------------------------------------------------------------
+&lt;some license text&gt;
+</code></pre></div></div>
+
+<h2 id="publish">
+<a class="anchor" href="#publish" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publishing your package</h2>
+
+<aside class="alert alert-success" role="alert">
+  <p><i class="far fa-lightbulb"></i> <strong>Tip:</strong>
+  Have you noticed that some of the packages and plugins
+  on pub.dev are designated as <a href="https://pub.dev/flutter/favorites">Flutter Favorites</a>?
+  These are the packages published by verified developers
+  and are identified as the packages and plugins you
+  should first consider using when writing your app.
+  To learn more,
+  see the <a href="http://0.0.0.0:4002/development/packages-and-plugins/favorites">Flutter Favorites program</a>.</p>
+</aside>
+
+<p>Once you have implemented a package, you can publish it on
+<a href="https://pub.dev">pub.dev</a>, so that other developers can easily use it.</p>
+
+<p>Prior to publishing, make sure to review the <code class="language-plaintext highlighter-rouge">pubspec.yaml</code>,
+<code class="language-plaintext highlighter-rouge">README.md</code>, and <code class="language-plaintext highlighter-rouge">CHANGELOG.md</code> files to make sure their
+content is complete and correct. Also, to improve the
+quality and usability of your package (and to make it
+more likely to achieve the status of a Flutter Favorite),
+consider including the following items:</p>
+
+<ul>
+  <li>Diverse code usage examples</li>
+  <li>Screenshots, animated gifs, or videos</li>
+  <li>A link to the corresponding code repository</li>
+</ul>
+
+<p>Next, run the publish command in <code class="language-plaintext highlighter-rouge">dry-run</code> mode
+to see if everything passes analysis:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter pub publish <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<p>The next step is publishing to pub.dev,
+but be sure that you are ready because
+<a href="https://dart.dev/tools/pub/publishing#publishing-is-forever">publishing is forever</a>:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter pub publish
+</code></pre></div></div>
+
+<p>For more details on publishing, see the
+<a href="https://dart.dev/tools/pub/publishing">publishing docs</a> on dart.dev.</p>
+
+<h2 id="dependencies">
+<a class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Handling package interdependencies</h2>
+
+<p>If you are developing a package <code class="language-plaintext highlighter-rouge">hello</code> that depends on
+the Dart API exposed by another package, you need to add
+that package to the <code class="language-plaintext highlighter-rouge">dependencies</code> section of your
+<code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file. The code below makes the Dart API
+of the <code class="language-plaintext highlighter-rouge">url_launcher</code> plugin available to <code class="language-plaintext highlighter-rouge">hello</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">url_launcher</span><span class="pi">:</span> <span class="s">^5.0.0</span>
+</code></pre></div></div>
+
+<p>You can now <code class="language-plaintext highlighter-rouge">import 'package:url_launcher/url_launcher.dart'</code>
+and <code class="language-plaintext highlighter-rouge">launch(someUrl)</code> in the Dart code of <code class="language-plaintext highlighter-rouge">hello</code>.</p>
+
+<p>This is no different from how you include packages in
+Flutter apps or any other Dart project.</p>
+
+<p>But if <code class="language-plaintext highlighter-rouge">hello</code> happens to be a <em>plugin</em> package
+whose platform-specific code needs access
+to the platform-specific APIs exposed by <code class="language-plaintext highlighter-rouge">url_launcher</code>,
+you also need to add suitable dependency declarations
+to your platform-specific build files, as shown below.</p>
+
+<h3 id="android">
+<a class="anchor" href="#android" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android</h3>
+
+<p>The following example sets a dependency for
+<code class="language-plaintext highlighter-rouge">url_launcher</code> in <code class="language-plaintext highlighter-rouge">hello/android/build.gradle</code>:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
+    <span class="c1">// lines skipped</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">compileOnly</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">findProject</span><span class="o">(</span><span class="s2">":url_launcher"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can now <code class="language-plaintext highlighter-rouge">import io.flutter.plugins.urllauncher.UrlLauncherPlugin</code>
+and access the <code class="language-plaintext highlighter-rouge">UrlLauncherPlugin</code>
+class in the source code at <code class="language-plaintext highlighter-rouge">hello/android/src</code>.</p>
+
+<p>For more information on <code class="language-plaintext highlighter-rouge">build.gradle</code> files, see the
+<a href="https://docs.gradle.org/current/userguide/tutorial_using_tasks.html">Gradle Documentation</a> on build scripts.</p>
+
+<h3 id="ios">
+<a class="anchor" href="#ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>iOS</h3>
+
+<p>The following example sets a dependency for
+<code class="language-plaintext highlighter-rouge">url_launcher</code> in <code class="language-plaintext highlighter-rouge">hello/ios/hello.podspec</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+  <span class="c1"># lines skipped</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">dependency</span> <span class="s1">'url_launcher'</span>
+</code></pre></div></div>
+<p>You can now <code class="language-plaintext highlighter-rouge">#import "UrlLauncherPlugin.h"</code> and
+access the <code class="language-plaintext highlighter-rouge">UrlLauncherPlugin</code> class in the source code
+at <code class="language-plaintext highlighter-rouge">hello/ios/Classes</code>.</p>
+
+<p>For additional details on <code class="language-plaintext highlighter-rouge">.podspec</code> files, see the
+<a href="https://guides.cocoapods.org/syntax/podspec.html">CocoaPods Documentation</a> on them.</p>
+
+<h3 id="web">
+<a class="anchor" href="#web" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web</h3>
+
+<p>All web dependencies are handled by the <code class="language-plaintext highlighter-rouge">pubspec.yaml</code>
+file like any other Dart package.</p>
+
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    
+
+  </body>
+</html>

@@ -6,8 +6,8 @@ import pickle
 from langchain import OpenAI
 from langchain.chains import VectorDBQAWithSourcesChain
 
-parser = argparse.ArgumentParser(description='Paepper.com Q&A')
-parser.add_argument('question', type=str, help='Your question for Paepper.com')
+parser = argparse.ArgumentParser(description='FlutterGPT Q&A')
+parser.add_argument('question', type=str, help='Your question for FlutterGPT')
 args = parser.parse_args()
 
 with open("faiss_store.pkl", "rb") as f:
@@ -19,3 +19,4 @@ result = chain({"question": args.question})
 
 print(f"Answer: {result['answer']}")
 print(f"Sources: {result['sources']}")
+

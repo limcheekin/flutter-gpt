@@ -1,0 +1,4221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Understanding constraints | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="Flutter's model for widget constraints, sizing, positioning, and how they interact.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Understanding constraints">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/ui/layout/constraints">
+    <meta property="og:description" content="Flutter's model for widget constraints, sizing, positioning, and how they interact.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    <main class="site-content col-12 col-md-9 offset-md-3 col-xl-10 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/ui/layout/constraints.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Understanding constraints'&page-url=http://0.0.0.0:4002/development/ui/layout/constraints/&page-source=https://github.com/flutter/website/tree/main/src/development/ui/layout/constraints.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Understanding constraints</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/ui" property="item" typeof="WebPage"><span property="name">UI</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/ui/layout" property="item" typeof="WebPage"><span property="name">Layout</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/ui/layout/constraints" property="item" typeof="WebPage"><span property="name">Understanding constraints</span>
+      </a>
+      <meta property="position" content="3" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  To better understand how Flutter implements layout
+  constraints, check out the following 5-minute video:</p>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/jckqXR5CrPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+  <p>Decoding Flutter: Unbounded height and width</p>
+</aside>
+
+<p><img src="/assets/images/docs/ui/layout/article-hero-image.png" class="mw-100" alt="Hero image from the article" /></p>
+
+<p>When someone learning Flutter asks you why some widget
+with <code class="language-plaintext highlighter-rouge">width:100</code> isn’t 100 pixels wide,
+the default answer is to tell them to put that widget
+inside of a <code class="language-plaintext highlighter-rouge">Center</code>, right?</p>
+
+<p><strong>Don’t do that.</strong></p>
+
+<p>If you do, they’ll come back again and again,
+asking why some <code class="language-plaintext highlighter-rouge">FittedBox</code> isn’t working,
+why that <code class="language-plaintext highlighter-rouge">Column</code> is overflowing, or what
+<code class="language-plaintext highlighter-rouge">IntrinsicWidth</code> is supposed to be doing.</p>
+
+<p>Instead, first tell them that Flutter layout is very different
+from HTML layout (which is probably where they’re coming from),
+and then make them memorize the following rule:</p>
+
+<center><font size="+2">
+<b>Constraints go down. Sizes go up. Parent sets position.</b>
+</font></center>
+
+<p>Flutter layout can’t really be understood without knowing
+this rule, so Flutter developers should learn it early on.</p>
+
+<p>In more detail:</p>
+
+<ul>
+  <li>A widget gets its own <strong>constraints</strong> from its <strong>parent</strong>.
+A <em>constraint</em> is just a set of 4 doubles:
+a minimum and maximum width, and a minimum and maximum height.</li>
+  <li>Then the widget goes through its own list of <strong>children</strong>.
+One by one, the widget tells its children what their
+<strong>constraints</strong> are (which can be different for each child),
+and then asks each child what size it wants to be.</li>
+  <li>Then, the widget positions its <strong>children</strong>
+(horizontally in the <code class="language-plaintext highlighter-rouge">x</code> axis, and vertically in the <code class="language-plaintext highlighter-rouge">y</code> axis),
+one by one.</li>
+  <li>And, finally, the widget tells its parent about its own <strong>size</strong>
+(within the original constraints, of course).</li>
+</ul>
+
+<p>For example, if a composed widget contains a column
+with some padding, and wants to lay out its two children
+as follows:</p>
+
+<p><img src="/assets/images/docs/ui/layout/children.png" class="mw-100" alt="Visual layout" /></p>
+
+<p>The negotiation goes something like this:</p>
+
+<p><strong>Widget</strong>: “Hey parent, what are my constraints?”</p>
+
+<p><strong>Parent</strong>: “You must be from <code class="language-plaintext highlighter-rouge">80</code> to <code class="language-plaintext highlighter-rouge">300</code> pixels wide,
+   and <code class="language-plaintext highlighter-rouge">30</code> to <code class="language-plaintext highlighter-rouge">85</code> tall.”</p>
+
+<p><strong>Widget</strong>: “Hmmm, since I want to have <code class="language-plaintext highlighter-rouge">5</code> pixels of padding,
+   then my children can have at most <code class="language-plaintext highlighter-rouge">290</code> pixels of width
+   and <code class="language-plaintext highlighter-rouge">75</code> pixels of height.”</p>
+
+<p><strong>Widget</strong>: “Hey first child, You must be from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">290</code>
+   pixels wide, and <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">75</code> tall.”</p>
+
+<p><strong>First child</strong>: “OK, then I wish to be <code class="language-plaintext highlighter-rouge">290</code> pixels wide,
+   and <code class="language-plaintext highlighter-rouge">20</code> pixels tall.”</p>
+
+<p><strong>Widget</strong>: “Hmmm, since I want to put my second child below the
+   first one, this leaves only <code class="language-plaintext highlighter-rouge">55</code> pixels of height for
+   my second child.”</p>
+
+<p><strong>Widget</strong>: “Hey second child, You must be from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">290</code> wide,
+   and <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">55</code> tall.”</p>
+
+<p><strong>Second child</strong>: “OK, I wish to be <code class="language-plaintext highlighter-rouge">140</code> pixels wide,
+   and <code class="language-plaintext highlighter-rouge">30</code> pixels tall.”</p>
+
+<p><strong>Widget</strong>: “Very well. My first child has position <code class="language-plaintext highlighter-rouge">x: 5</code> and <code class="language-plaintext highlighter-rouge">y: 5</code>,
+   and my second child has <code class="language-plaintext highlighter-rouge">x: 80</code> and <code class="language-plaintext highlighter-rouge">y: 25</code>.”</p>
+
+<p><strong>Widget</strong>: “Hey parent, I’ve decided that my size is going to be <code class="language-plaintext highlighter-rouge">300</code>
+   pixels wide, and <code class="language-plaintext highlighter-rouge">60</code> pixels tall.”</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>As a result of the layout rule mentioned above,
+Flutter’s layout engine has a few important limitations:</p>
+
+<ul>
+  <li>
+    <p>A widget can decide its own size only within the
+constraints given to it by its parent.
+This means a widget usually <strong>can’t have any
+size it wants</strong>.</p>
+  </li>
+  <li>
+    <p>A widget <strong>can’t know and doesn’t decide its own position
+in the screen</strong>, since it’s the widget’s parent who decides
+the position of the widget.</p>
+  </li>
+  <li>
+    <p>Since the parent’s size and position, in its turn,
+also depends on its own parent, it’s impossible to
+precisely define the size and position of any widget
+without taking into consideration the tree as a whole.</p>
+  </li>
+  <li>
+    <p>If a child wants a different size from its parent and 
+the parent doesn’t have enough information to align it,
+then the child’s size might be ignored.
+<strong>Be specific when defining alignment.</strong></p>
+  </li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+
+<p>For an interactive experience, use the following DartPad.
+Use the numbered horizontal scrolling bar to switch between
+29 different examples.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60:ga_id-starting_code prettyprint lang-run">import &#39;package:flutter/material.dart&#39;;
+
+void main() =&gt; runApp(const HomePage());
+
+const red = Colors.red;
+const green = Colors.green;
+const blue = Colors.blue;
+const big = TextStyle(fontSize: 30);
+
+//////////////////////////////////////////////////
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const FlutterLayoutArticle([
+      Example1(),
+      Example2(),
+      Example3(),
+      Example4(),
+      Example5(),
+      Example6(),
+      Example7(),
+      Example8(),
+      Example9(),
+      Example10(),
+      Example11(),
+      Example12(),
+      Example13(),
+      Example14(),
+      Example15(),
+      Example16(),
+      Example17(),
+      Example18(),
+      Example19(),
+      Example20(),
+      Example21(),
+      Example22(),
+      Example23(),
+      Example24(),
+      Example25(),
+      Example26(),
+      Example27(),
+      Example28(),
+      Example29(),
+    ]);
+  }
+}
+
+//////////////////////////////////////////////////
+
+abstract class Example extends StatelessWidget {
+  const Example({super.key});
+
+  String get code;
+
+  String get explanation;
+}
+
+//////////////////////////////////////////////////
+
+class FlutterLayoutArticle extends StatefulWidget {
+  const FlutterLayoutArticle(
+    this.examples, {
+    super.key,
+  });
+
+  final List&lt;Example&gt; examples;
+
+  @override
+  State&lt;FlutterLayoutArticle&gt; createState() =&gt; _FlutterLayoutArticleState();
+}
+
+//////////////////////////////////////////////////
+
+class _FlutterLayoutArticleState extends State&lt;FlutterLayoutArticle&gt; {
+  late int count;
+  late Widget example;
+  late String code;
+  late String explanation;
+
+  @override
+  void initState() {
+    count = 1;
+    code = const Example1().code;
+    explanation = const Example1().explanation;
+
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(FlutterLayoutArticle oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    var example = widget.examples[count - 1];
+    code = example.code;
+    explanation = example.explanation;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: &#39;Flutter Layout Article&#39;,
+      home: SafeArea(
+        child: Material(
+          color: Colors.black,
+          child: FittedBox(
+            child: Container(
+              width: 400,
+              height: 670,
+              color: const Color(0xFFCCCCCC),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: ConstrainedBox(
+                          constraints: const BoxConstraints.tightFor(
+                              width: double.infinity, height: double.infinity),
+                          child: widget.examples[count - 1])),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    color: Colors.black,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (int i = 0; i &lt; widget.examples.length; i++)
+                            Container(
+                              width: 58,
+                              padding:
+                                  const EdgeInsets.only(left: 4.0, right: 4.0),
+                              child: button(i + 1),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 273,
+                    color: Colors.grey[50],
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        key: ValueKey(count),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              Center(child: Text(code)),
+                              const SizedBox(height: 15),
+                              Text(
+                                explanation,
+                                style: TextStyle(
+                                    color: Colors.blue[900],
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget button(int exampleNumber) {
+    return Button(
+      key: ValueKey(&#39;button$exampleNumber&#39;),
+      isSelected: count == exampleNumber,
+      exampleNumber: exampleNumber,
+      onPressed: () {
+        showExample(
+          exampleNumber,
+          widget.examples[exampleNumber - 1].code,
+          widget.examples[exampleNumber - 1].explanation,
+        );
+      },
+    );
+  }
+
+  void showExample(int exampleNumber, String code, String explanation) {
+    setState(() {
+      count = exampleNumber;
+      this.code = code;
+      this.explanation = explanation;
+    });
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Button extends StatelessWidget {
+  final bool isSelected;
+  final int exampleNumber;
+  final VoidCallback onPressed;
+
+  const Button({
+    super.key,
+    required this.isSelected,
+    required this.exampleNumber,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: isSelected ? Colors.grey : Colors.grey[800],
+      ),
+      child: Text(exampleNumber.toString()),
+      onPressed: () {
+        Scrollable.ensureVisible(
+          context,
+          duration: const Duration(milliseconds: 350),
+          curve: Curves.easeOut,
+          alignment: 0.5,
+        );
+        onPressed();
+      },
+    );
+  }
+}
+//////////////////////////////////////////////////
+
+class Example1 extends Example {
+  const Example1({super.key});
+
+  @override
+  final code = &#39;Container(color: red)&#39;;
+
+  @override
+  final explanation = &#39;The screen is the parent of the Container, &#39;
+      &#39;and it forces the Container to be exactly the same size as the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;So the Container fills the screen and paints it red.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: red);
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example2 extends Example {
+  const Example2({super.key});
+
+  @override
+  final code = &#39;Container(width: 100, height: 100, color: red)&#39;;
+  @override
+  final String explanation =
+      &#39;The red Container wants to be 100x100, but it can\&#39;t, &#39;
+      &#39;because the screen forces it to be exactly the same size as the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;So the Container fills the screen.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(width: 100, height: 100, color: red);
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example3 extends Example {
+  const Example3({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: Container(width: 100, height: 100, color: red))&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the Center to be exactly the same size as the screen, &#39;
+      &#39;so the Center fills the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The Center tells the Container that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;Now the Container can indeed be 100x100.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(width: 100, height: 100, color: red),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example4 extends Example {
+  const Example4({super.key});
+
+  @override
+  final code = &#39;Align(\n&#39;
+      &#39;   alignment: Alignment.bottomRight,\n&#39;
+      &#39;   child: Container(width: 100, height: 100, color: red))&#39;;
+  @override
+  final String explanation =
+      &#39;This is different from the previous example in that it uses Align instead of Center.&#39;
+      &#39;\n\n&#39;
+      &#39;Align also tells the Container that it can be any size it wants, but if there is empty space it won\&#39;t center the Container. &#39;
+      &#39;Instead, it aligns the Container to the bottom-right of the available space.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Container(width: 100, height: 100, color: red),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example5 extends Example {
+  const Example5({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: Container(\n&#39;
+      &#39;              color: red,\n&#39;
+      &#39;              width: double.infinity,\n&#39;
+      &#39;              height: double.infinity))&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the Center to be exactly the same size as the screen, &#39;
+      &#39;so the Center fills the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The Center tells the Container that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;The Container wants to be of infinite size, but since it can\&#39;t be bigger than the screen, it just fills the screen.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+          width: double.infinity, height: double.infinity, color: red),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example6 extends Example {
+  const Example6({super.key});
+
+  @override
+  final code = &#39;Center(child: Container(color: red))&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the Center to be exactly the same size as the screen, &#39;
+      &#39;so the Center fills the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The Center tells the Container that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;Since the Container has no child and no fixed size, it decides it wants to be as big as possible, so it fills the whole screen.&#39;
+      &#39;\n\n&#39;
+      &#39;But why does the Container decide that? &#39;
+      &#39;Simply because that\&#39;s a design decision by those who created the Container widget. &#39;
+      &#39;It could have been created differently, and you have to read the Container documentation to understand how it behaves, depending on the circumstances. &#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(color: red),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example7 extends Example {
+  const Example7({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: Container(color: red\n&#39;
+      &#39;      child: Container(color: green, width: 30, height: 30)))&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the Center to be exactly the same size as the screen, &#39;
+      &#39;so the Center fills the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The Center tells the red Container that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;Since the red Container has no size but has a child, it decides it wants to be the same size as its child.&#39;
+      &#39;\n\n&#39;
+      &#39;The red Container tells its child that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The child is a green Container that wants to be 30x30.&#39;
+      &#39;\n\n&#39;
+      &#39;Since the red `Container` has no size but has a child, it decides it wants to be the same size as its child. &#39;
+      &#39;The red color isn\&#39;t visible, since the green Container entirely covers all of the red Container.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: red,
+        child: Container(color: green, width: 30, height: 30),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example8 extends Example {
+  const Example8({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: Container(color: red\n&#39;
+      &#39;      padding: const EdgeInsets.all(20.0),\n&#39;
+      &#39;      child: Container(color: green, width: 30, height: 30)))&#39;;
+  @override
+  final String explanation =
+      &#39;The red Container sizes itself to its children size, but it takes its own padding into consideration. &#39;
+      &#39;So it is also 30x30 plus padding. &#39;
+      &#39;The red color is visible because of the padding, and the green Container has the same size as in the previous example.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        color: red,
+        child: Container(color: green, width: 30, height: 30),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example9 extends Example {
+  const Example9({super.key});
+
+  @override
+  final code = &#39;ConstrainedBox(\n&#39;
+      &#39;   constraints: BoxConstraints(\n&#39;
+      &#39;              minWidth: 70, minHeight: 70,\n&#39;
+      &#39;              maxWidth: 150, maxHeight: 150),\n&#39;
+      &#39;      child: Container(color: red, width: 10, height: 10)))&#39;;
+  @override
+  final String explanation =
+      &#39;You might guess that the Container has to be between 70 and 150 pixels, but you would be wrong. &#39;
+      &#39;The ConstrainedBox only imposes ADDITIONAL constraints from those it receives from its parent.&#39;
+      &#39;\n\n&#39;
+      &#39;Here, the screen forces the ConstrainedBox to be exactly the same size as the screen, &#39;
+      &#39;so it tells its child Container to also assume the size of the screen, &#39;
+      &#39;thus ignoring its \&#39;constraints\&#39; parameter.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: 70,
+        minHeight: 70,
+        maxWidth: 150,
+        maxHeight: 150,
+      ),
+      child: Container(color: red, width: 10, height: 10),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example10 extends Example {
+  const Example10({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: ConstrainedBox(\n&#39;
+      &#39;      constraints: BoxConstraints(\n&#39;
+      &#39;                 minWidth: 70, minHeight: 70,\n&#39;
+      &#39;                 maxWidth: 150, maxHeight: 150),\n&#39;
+      &#39;        child: Container(color: red, width: 10, height: 10))))&#39;;
+  @override
+  final String explanation =
+      &#39;Now, Center allows ConstrainedBox to be any size up to the screen size.&#39;
+      &#39;\n\n&#39;
+      &#39;The ConstrainedBox imposes ADDITIONAL constraints from its \&#39;constraints\&#39; parameter onto its child.&#39;
+      &#39;\n\n&#39;
+      &#39;The Container must be between 70 and 150 pixels. It wants to have 10 pixels, so it will end up having 70 (the MINIMUM).&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 70,
+          minHeight: 70,
+          maxWidth: 150,
+          maxHeight: 150,
+        ),
+        child: Container(color: red, width: 10, height: 10),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example11 extends Example {
+  const Example11({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: ConstrainedBox(\n&#39;
+      &#39;      constraints: BoxConstraints(\n&#39;
+      &#39;                 minWidth: 70, minHeight: 70,\n&#39;
+      &#39;                 maxWidth: 150, maxHeight: 150),\n&#39;
+      &#39;        child: Container(color: red, width: 1000, height: 1000))))&#39;;
+  @override
+  final String explanation =
+      &#39;Center allows ConstrainedBox to be any size up to the screen size.&#39;
+      &#39;The ConstrainedBox imposes ADDITIONAL constraints from its \&#39;constraints\&#39; parameter onto its child&#39;
+      &#39;\n\n&#39;
+      &#39;The Container must be between 70 and 150 pixels. It wants to have 1000 pixels, so it ends up having 150 (the MAXIMUM).&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 70,
+          minHeight: 70,
+          maxWidth: 150,
+          maxHeight: 150,
+        ),
+        child: Container(color: red, width: 1000, height: 1000),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example12 extends Example {
+  const Example12({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: ConstrainedBox(\n&#39;
+      &#39;      constraints: BoxConstraints(\n&#39;
+      &#39;                 minWidth: 70, minHeight: 70,\n&#39;
+      &#39;                 maxWidth: 150, maxHeight: 150),\n&#39;
+      &#39;        child: Container(color: red, width: 100, height: 100))))&#39;;
+  @override
+  final String explanation =
+      &#39;Center allows ConstrainedBox to be any size up to the screen size.&#39;
+      &#39;ConstrainedBox imposes ADDITIONAL constraints from its \&#39;constraints\&#39; parameter onto its child.&#39;
+      &#39;\n\n&#39;
+      &#39;The Container must be between 70 and 150 pixels. It wants to have 100 pixels, and that\&#39;s the size it has, since that\&#39;s between 70 and 150.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 70,
+          minHeight: 70,
+          maxWidth: 150,
+          maxHeight: 150,
+        ),
+        child: Container(color: red, width: 100, height: 100),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example13 extends Example {
+  const Example13({super.key});
+
+  @override
+  final code = &#39;UnconstrainedBox(\n&#39;
+      &#39;   child: Container(color: red, width: 20, height: 50));&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the UnconstrainedBox to be exactly the same size as the screen.&#39;
+      &#39;However, the UnconstrainedBox lets its child Container be any size it wants.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      child: Container(color: red, width: 20, height: 50),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example14 extends Example {
+  const Example14({super.key});
+
+  @override
+  final code = &#39;UnconstrainedBox(\n&#39;
+      &#39;   child: Container(color: red, width: 4000, height: 50));&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the UnconstrainedBox to be exactly the same size as the screen, &#39;
+      &#39;and UnconstrainedBox lets its child Container be any size it wants.&#39;
+      &#39;\n\n&#39;
+      &#39;Unfortunately, in this case the Container has 4000 pixels of width and is too big to fit in the UnconstrainedBox, &#39;
+      &#39;so the UnconstrainedBox displays the much dreaded &quot;overflow warning&quot;.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      child: Container(color: red, width: 4000, height: 50),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example15 extends Example {
+  const Example15({super.key});
+
+  @override
+  final code = &#39;OverflowBox(\n&#39;
+      &#39;   minWidth: 0.0,&#39;
+      &#39;   minHeight: 0.0,&#39;
+      &#39;   maxWidth: double.infinity,&#39;
+      &#39;   maxHeight: double.infinity,&#39;
+      &#39;   child: Container(color: red, width: 4000, height: 50));&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the OverflowBox to be exactly the same size as the screen, &#39;
+      &#39;and OverflowBox lets its child Container be any size it wants.&#39;
+      &#39;\n\n&#39;
+      &#39;OverflowBox is similar to UnconstrainedBox, and the difference is that it won\&#39;t display any warnings if the child doesn\&#39;t fit the space.&#39;
+      &#39;\n\n&#39;
+      &#39;In this case the Container is 4000 pixels wide, and is too big to fit in the OverflowBox, &#39;
+      &#39;but the OverflowBox simply shows as much as it can, with no warnings given.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return OverflowBox(
+      minWidth: 0.0,
+      minHeight: 0.0,
+      maxWidth: double.infinity,
+      maxHeight: double.infinity,
+      child: Container(color: red, width: 4000, height: 50),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example16 extends Example {
+  const Example16({super.key});
+
+  @override
+  final code = &#39;UnconstrainedBox(\n&#39;
+      &#39;   child: Container(color: Colors.red, width: double.infinity, height: 100));&#39;;
+  @override
+  final String explanation =
+      &#39;This won\&#39;t render anything, and you\&#39;ll see an error in the console.&#39;
+      &#39;\n\n&#39;
+      &#39;The UnconstrainedBox lets its child be any size it wants, &#39;
+      &#39;however its child is a Container with infinite size.&#39;
+      &#39;\n\n&#39;
+      &#39;Flutter can\&#39;t render infinite sizes, so it throws an error with the following message: &#39;
+      &#39;&quot;BoxConstraints forces an infinite width.&quot;&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      child: Container(color: Colors.red, width: double.infinity, height: 100),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example17 extends Example {
+  const Example17({super.key});
+
+  @override
+  final code = &#39;UnconstrainedBox(\n&#39;
+      &#39;   child: LimitedBox(maxWidth: 100,\n&#39;
+      &#39;      child: Container(color: Colors.red,\n&#39;
+      &#39;                       width: double.infinity, height: 100));&#39;;
+  @override
+  final String explanation = &#39;Here you won\&#39;t get an error anymore, &#39;
+      &#39;because when the LimitedBox is given an infinite size by the UnconstrainedBox, &#39;
+      &#39;it passes a maximum width of 100 down to its child.&#39;
+      &#39;\n\n&#39;
+      &#39;If you swap the UnconstrainedBox for a Center widget, &#39;
+      &#39;the LimitedBox won\&#39;t apply its limit anymore (since its limit is only applied when it gets infinite constraints), &#39;
+      &#39;and the width of the Container is allowed to grow past 100.&#39;
+      &#39;\n\n&#39;
+      &#39;This explains the difference between a LimitedBox and a ConstrainedBox.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      child: LimitedBox(
+        maxWidth: 100,
+        child: Container(
+          color: Colors.red,
+          width: double.infinity,
+          height: 100,
+        ),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example18 extends Example {
+  const Example18({super.key});
+
+  @override
+  final code = &#39;FittedBox(\n&#39;
+      &#39;   child: Text(\&#39;Some Example Text.\&#39;));&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the FittedBox to be exactly the same size as the screen.&#39;
+      &#39;The Text has some natural width (also called its intrinsic width) that depends on the amount of text, its font size, and so on.&#39;
+      &#39;\n\n&#39;
+      &#39;The FittedBox lets the Text be any size it wants, &#39;
+      &#39;but after the Text tells its size to the FittedBox, &#39;
+      &#39;the FittedBox scales the Text until it fills all of the available width.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return const FittedBox(
+      child: Text(&#39;Some Example Text.&#39;),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example19 extends Example {
+  const Example19({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: FittedBox(\n&#39;
+      &#39;      child: Text(\&#39;Some Example Text.\&#39;)));&#39;;
+  @override
+  final String explanation =
+      &#39;But what happens if you put the FittedBox inside of a Center widget? &#39;
+      &#39;The Center lets the FittedBox be any size it wants, up to the screen size.&#39;
+      &#39;\n\n&#39;
+      &#39;The FittedBox then sizes itself to the Text, and lets the Text be any size it wants.&#39;
+      &#39;\n\n&#39;
+      &#39;Since both FittedBox and the Text have the same size, no scaling happens.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: FittedBox(
+        child: Text(&#39;Some Example Text.&#39;),
+      ),
+    );
+  }
+}
+
+////////////////////////////////////////////////////
+
+class Example20 extends Example {
+  const Example20({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: FittedBox(\n&#39;
+      &#39;      child: Text(\&#39;…\&#39;)));&#39;;
+  @override
+  final String explanation =
+      &#39;However, what happens if FittedBox is inside of a Center widget, but the Text is too large to fit the screen?&#39;
+      &#39;\n\n&#39;
+      &#39;FittedBox tries to size itself to the Text, but it can\&#39;t be bigger than the screen. &#39;
+      &#39;It then assumes the screen size, and resizes Text so that it fits the screen, too.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: FittedBox(
+        child: Text(
+            &#39;This is some very very very large text that is too big to fit a regular screen in a single line.&#39;),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example21 extends Example {
+  const Example21({super.key});
+
+  @override
+  final code = &#39;Center(\n&#39;
+      &#39;   child: Text(\&#39;…\&#39;));&#39;;
+  @override
+  final String explanation = &#39;If, however, you remove the FittedBox, &#39;
+      &#39;the Text gets its maximum width from the screen, &#39;
+      &#39;and breaks the line so that it fits the screen.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+          &#39;This is some very very very large text that is too big to fit a regular screen in a single line.&#39;),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example22 extends Example {
+  const Example22({super.key});
+
+  @override
+  final code = &#39;FittedBox(\n&#39;
+      &#39;   child: Container(\n&#39;
+      &#39;      height: 20.0, width: double.infinity));&#39;;
+  @override
+  final String explanation =
+      &#39;FittedBox can only scale a widget that is BOUNDED (has non-infinite width and height).&#39;
+      &#39;Otherwise, it won\&#39;t render anything, and you\&#39;ll see an error in the console.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      child: Container(
+        height: 20.0,
+        width: double.infinity,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example23 extends Example {
+  const Example23({super.key});
+
+  @override
+  final code = &#39;Row(children:[\n&#39;
+      &#39;   Container(color: red, child: Text(\&#39;Hello!\&#39;))\n&#39;
+      &#39;   Container(color: green, child: Text(\&#39;Goodbye!\&#39;))]&#39;;
+  @override
+  final String explanation =
+      &#39;The screen forces the Row to be exactly the same size as the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;Just like an UnconstrainedBox, the Row won\&#39;t impose any constraints onto its children, &#39;
+      &#39;and instead lets them be any size they want.&#39;
+      &#39;\n\n&#39;
+      &#39;The Row then puts them side-by-side, and any extra space remains empty.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(color: red, child: const Text(&#39;Hello!&#39;, style: big)),
+        Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+      ],
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example24 extends Example {
+  const Example24({super.key});
+
+  @override
+  final code = &#39;Row(children:[\n&#39;
+      &#39;   Container(color: red, child: Text(\&#39;…\&#39;))\n&#39;
+      &#39;   Container(color: green, child: Text(\&#39;Goodbye!\&#39;))]&#39;;
+  @override
+  final String explanation =
+      &#39;Since the Row won\&#39;t impose any constraints onto its children, &#39;
+      &#39;it\&#39;s quite possible that the children might be too big to fit the available width of the Row.&#39;
+      &#39;In this case, just like an UnconstrainedBox, the Row displays the &quot;overflow warning&quot;.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          color: red,
+          child: const Text(
+            &#39;This is a very long text that &#39;
+            &#39;won\&#39;t fit the line.&#39;,
+            style: big,
+          ),
+        ),
+        Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+      ],
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example25 extends Example {
+  const Example25({super.key});
+
+  @override
+  final code = &#39;Row(children:[\n&#39;
+      &#39;   Expanded(\n&#39;
+      &#39;       child: Container(color: red, child: Text(\&#39;…\&#39;)))\n&#39;
+      &#39;   Container(color: green, child: Text(\&#39;Goodbye!\&#39;))]&#39;;
+  @override
+  final String explanation =
+      &#39;When a Row\&#39;s child is wrapped in an Expanded widget, the Row won\&#39;t let this child define its own width anymore.&#39;
+      &#39;\n\n&#39;
+      &#39;Instead, it defines the Expanded width according to the other children, and only then the Expanded widget forces the original child to have the Expanded\&#39;s width.&#39;
+      &#39;\n\n&#39;
+      &#39;In other words, once you use Expanded, the original child\&#39;s width becomes irrelevant, and is ignored.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Center(
+            child: Container(
+              color: red,
+              child: const Text(
+                &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+                style: big,
+              ),
+            ),
+          ),
+        ),
+        Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+      ],
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example26 extends Example {
+  const Example26({super.key});
+
+  @override
+  final code = &#39;Row(children:[\n&#39;
+      &#39;   Expanded(\n&#39;
+      &#39;       child: Container(color: red, child: Text(\&#39;…\&#39;)))\n&#39;
+      &#39;   Expanded(\n&#39;
+      &#39;       child: Container(color: green, child: Text(\&#39;Goodbye!\&#39;))]&#39;;
+  @override
+  final String explanation =
+      &#39;If all of Row\&#39;s children are wrapped in Expanded widgets, each Expanded has a size proportional to its flex parameter, &#39;
+      &#39;and only then each Expanded widget forces its child to have the Expanded\&#39;s width.&#39;
+      &#39;\n\n&#39;
+      &#39;In other words, Expanded ignores the preffered width of its children.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            color: red,
+            child: const Text(
+              &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+              style: big,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: green,
+            child: const Text(
+              &#39;Goodbye!&#39;,
+              style: big,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example27 extends Example {
+  const Example27({super.key});
+
+  @override
+  final code = &#39;Row(children:[\n&#39;
+      &#39;   Flexible(\n&#39;
+      &#39;       child: Container(color: red, child: Text(\&#39;…\&#39;)))\n&#39;
+      &#39;   Flexible(\n&#39;
+      &#39;       child: Container(color: green, child: Text(\&#39;Goodbye!\&#39;))]&#39;;
+  @override
+  final String explanation =
+      &#39;The only difference if you use Flexible instead of Expanded, &#39;
+      &#39;is that Flexible lets its child be SMALLER than the Flexible width, &#39;
+      &#39;while Expanded forces its child to have the same width of the Expanded.&#39;
+      &#39;\n\n&#39;
+      &#39;But both Expanded and Flexible ignore their children\&#39;s width when sizing themselves.&#39;
+      &#39;\n\n&#39;
+      &#39;This means that it\&#39;s IMPOSSIBLE to expand Row children proportionally to their sizes. &#39;
+      &#39;The Row either uses the exact child\&#39;s width, or ignores it completely when you use Expanded or Flexible.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
+            color: red,
+            child: const Text(
+              &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+              style: big,
+            ),
+          ),
+        ),
+        Flexible(
+          child: Container(
+            color: green,
+            child: const Text(
+              &#39;Goodbye!&#39;,
+              style: big,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example28 extends Example {
+  const Example28({super.key});
+
+  @override
+  final code = &#39;Scaffold(\n&#39;
+      &#39;   body: Container(color: blue,\n&#39;
+      &#39;   child: Column(\n&#39;
+      &#39;      children: [\n&#39;
+      &#39;         Text(\&#39;Hello!\&#39;),\n&#39;
+      &#39;         Text(\&#39;Goodbye!\&#39;)])))&#39;;
+
+  @override
+  final String explanation =
+      &#39;The screen forces the Scaffold to be exactly the same size as the screen, &#39;
+      &#39;so the Scaffold fills the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;The Scaffold tells the Container that it can be any size it wants, but not bigger than the screen.&#39;
+      &#39;\n\n&#39;
+      &#39;When a widget tells its child that it can be smaller than a certain size, &#39;
+      &#39;we say the widget supplies &quot;loose&quot; constraints to its child. More on that later.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: blue,
+        child: Column(
+          children: const [
+            Text(&#39;Hello!&#39;),
+            Text(&#39;Goodbye!&#39;),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////
+
+class Example29 extends Example {
+  const Example29({super.key});
+
+  @override
+  final code = &#39;Scaffold(\n&#39;
+      &#39;   body: Container(color: blue,\n&#39;
+      &#39;   child: SizedBox.expand(\n&#39;
+      &#39;      child: Column(\n&#39;
+      &#39;         children: [\n&#39;
+      &#39;            Text(\&#39;Hello!\&#39;),\n&#39;
+      &#39;            Text(\&#39;Goodbye!\&#39;)]))))&#39;;
+
+  @override
+  final String explanation =
+      &#39;If you want the Scaffold\&#39;s child to be exactly the same size as the Scaffold itself, &#39;
+      &#39;you can wrap its child with SizedBox.expand.&#39;
+      &#39;\n\n&#39;
+      &#39;When a widget tells its child that it must be of a certain size, &#39;
+      &#39;we say the widget supplies &quot;tight&quot; constraints to its child. More on that later.&#39;;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SizedBox.expand(
+        child: Container(
+          color: blue,
+          child: Column(
+            children: const [
+              Text(&#39;Hello!&#39;),
+              Text(&#39;Goodbye!&#39;),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////</code></pre></div>
+</div>
+
+<p>If you prefer, you can grab the code from
+<a href="https://github.com/marcglasberg/flutter_layout_article">this GitHub repo</a>.</p>
+
+<p>The examples are explained in the following sections.</p>
+
+<h3 id="example-1">Example 1</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-1.png" class="mw-100" alt="Example 1 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Container(color: red)</code></pre></div>
+</div>
+
+<p>The screen is the parent of the <code class="language-plaintext highlighter-rouge">Container</code>, and it
+forces the <code class="language-plaintext highlighter-rouge">Container</code> to be exactly the same size as the screen.</p>
+
+<p>So the <code class="language-plaintext highlighter-rouge">Container</code> fills the screen and paints it red.</p>
+
+<h3 id="example-2">Example 2</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-2.png" class="mw-100" alt="Example 2 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Container(width: 100, height: 100, color: red)</code></pre></div>
+</div>
+
+<p>The red <code class="language-plaintext highlighter-rouge">Container</code> wants to be 100 × 100,
+but it can’t, because the screen forces it to be
+exactly the same size as the screen.</p>
+
+<p>So the <code class="language-plaintext highlighter-rouge">Container</code> fills the screen.</p>
+
+<h3 id="example-3">Example 3</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-3.png" class="mw-100" alt="Example 3 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: Container(width: 100, height: 100, color: red),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Center</code> to be exactly the same size
+as the screen, so the <code class="language-plaintext highlighter-rouge">Center</code> fills the screen.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Center</code> tells the <code class="language-plaintext highlighter-rouge">Container</code> that it can be any size it
+wants, but not bigger than the screen. Now the <code class="language-plaintext highlighter-rouge">Container</code>
+can indeed be 100 × 100.</p>
+
+<h3 id="example-4">Example 4</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-4.png" class="mw-100" alt="Example 4 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Align(
+  alignment: Alignment.bottomRight,
+  child: Container(width: 100, height: 100, color: red),
+)</code></pre></div>
+</div>
+
+<p>This is different from the previous example in that it uses
+<code class="language-plaintext highlighter-rouge">Align</code> instead of <code class="language-plaintext highlighter-rouge">Center</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Align</code> also tells the <code class="language-plaintext highlighter-rouge">Container</code> that it can be any size it
+wants, but if there is empty space it won’t center the <code class="language-plaintext highlighter-rouge">Container</code>.
+Instead, it aligns the container to the bottom-right of the
+available space.</p>
+
+<h3 id="example-5">Example 5</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-5.png" class="mw-100" alt="Example 5 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: Container(
+      width: double.infinity, height: double.infinity, color: red),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Center</code> to be exactly the
+same size as the screen, so the <code class="language-plaintext highlighter-rouge">Center</code> fills the screen.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Center</code> tells the <code class="language-plaintext highlighter-rouge">Container</code> that it can be any size it wants,
+but not bigger than the screen. The <code class="language-plaintext highlighter-rouge">Container</code> wants to be
+of infinite size, but since it can’t be bigger than the screen,
+it just fills the screen.</p>
+
+<h3 id="example-6">Example 6</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-6.png" class="mw-100" alt="Example 6 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: Container(color: red),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Center</code> to be exactly the
+same size as the screen, so the <code class="language-plaintext highlighter-rouge">Center</code> fills the screen.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Center</code> tells the <code class="language-plaintext highlighter-rouge">Container</code> that it can be any
+size it wants, but not bigger than the screen.
+Since the <code class="language-plaintext highlighter-rouge">Container</code> has no child and no fixed size,
+it decides it wants to be as big as possible,
+so it fills the whole screen.</p>
+
+<p>But why does the <code class="language-plaintext highlighter-rouge">Container</code> decide that?
+Simply because that’s a design decision by those who
+created the <code class="language-plaintext highlighter-rouge">Container</code> widget. It could have been
+created differently, and you have to read the
+<a href="https://api.flutter.dev/flutter/widgets/Container-class.html"><code class="language-plaintext highlighter-rouge">Container</code> documentation</a> to understand how it
+behaves, depending on the circumstances.</p>
+
+<h3 id="example-7">Example 7</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-7.png" class="mw-100" alt="Example 7 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: Container(
+    color: red,
+    child: Container(color: green, width: 30, height: 30),
+  ),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Center</code> to be exactly the same
+size as the screen, so the <code class="language-plaintext highlighter-rouge">Center</code> fills the screen.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Center</code> tells the red <code class="language-plaintext highlighter-rouge">Container</code> that it can be any size
+it wants, but not bigger than the screen. Since the red
+<code class="language-plaintext highlighter-rouge">Container</code> has no size but has a child,
+it decides it wants to be the same size as its child.</p>
+
+<p>The red <code class="language-plaintext highlighter-rouge">Container</code> tells its child that it can be any size
+it wants, but not bigger than the screen.</p>
+
+<p>The child is a green <code class="language-plaintext highlighter-rouge">Container</code> that wants to
+be 30 × 30. Given that the red <code class="language-plaintext highlighter-rouge">Container</code> sizes itself to
+the size of its child, it is also 30 × 30.
+The red color isn’t visible because the green <code class="language-plaintext highlighter-rouge">Container</code>
+entirely covers the red <code class="language-plaintext highlighter-rouge">Container</code>.</p>
+
+<h3 id="example-8">Example 8</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-8.png" class="mw-100" alt="Example 8 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: Container(
+    padding: const EdgeInsets.all(20.0),
+    color: red,
+    child: Container(color: green, width: 30, height: 30),
+  ),
+)</code></pre></div>
+</div>
+
+<p>The red <code class="language-plaintext highlighter-rouge">Container</code> sizes itself to its children’s size,
+but it takes its own padding into consideration.
+So it is also 30 × 30 plus padding.
+The red color is visible because of the padding,
+and the green <code class="language-plaintext highlighter-rouge">Container</code> has the same size as
+in the previous example.</p>
+
+<h3 id="example-9">Example 9</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-9.png" class="mw-100" alt="Example 9 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">ConstrainedBox(
+  constraints: const BoxConstraints(
+    minWidth: 70,
+    minHeight: 70,
+    maxWidth: 150,
+    maxHeight: 150,
+  ),
+  child: Container(color: red, width: 10, height: 10),
+)</code></pre></div>
+</div>
+
+<p>You might guess that the <code class="language-plaintext highlighter-rouge">Container</code> has to be
+between 70 and 150 pixels, but you would be wrong.
+The <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> only imposes <strong>additional</strong> constraints
+from those it receives from its parent.</p>
+
+<p>Here, the screen forces the <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> to be exactly
+the same size as the screen, so it tells its child <code class="language-plaintext highlighter-rouge">Container</code>
+to also assume the size of the screen, thus ignoring its
+<code class="language-plaintext highlighter-rouge">constraints</code> parameter.</p>
+
+<h3 id="example-10">Example 10</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-10.png" class="mw-100" alt="Example 10 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: ConstrainedBox(
+    constraints: const BoxConstraints(
+      minWidth: 70,
+      minHeight: 70,
+      maxWidth: 150,
+      maxHeight: 150,
+    ),
+    child: Container(color: red, width: 10, height: 10),
+  ),
+)</code></pre></div>
+</div>
+
+<p>Now, <code class="language-plaintext highlighter-rouge">Center</code> allows <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> to be any size up to
+the screen size. The <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> imposes <strong>additional</strong>
+constraints from its <code class="language-plaintext highlighter-rouge">constraints</code> parameter onto its child.</p>
+
+<p>The Container must be between 70 and 150 pixels.
+It wants to have 10 pixels,
+so it ends up having 70 (the minimum).</p>
+
+<h3 id="example-11">Example 11</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-11.png" class="mw-100" alt="Example 11 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: ConstrainedBox(
+    constraints: const BoxConstraints(
+      minWidth: 70,
+      minHeight: 70,
+      maxWidth: 150,
+      maxHeight: 150,
+    ),
+    child: Container(color: red, width: 1000, height: 1000),
+  ),
+)</code></pre></div>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">Center</code> allows <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> to be any size up to the
+screen size. The <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> imposes <strong>additional</strong>
+constraints from its <code class="language-plaintext highlighter-rouge">constraints</code> parameter onto its child.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Container</code> must be between 70 and 150 pixels.
+It wants to have 1000 pixels,
+so it ends up having 150 (the maximum).</p>
+
+<h3 id="example-12">Example 12</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-12.png" class="mw-100" alt="Example 12 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Center(
+  child: ConstrainedBox(
+    constraints: const BoxConstraints(
+      minWidth: 70,
+      minHeight: 70,
+      maxWidth: 150,
+      maxHeight: 150,
+    ),
+    child: Container(color: red, width: 100, height: 100),
+  ),
+)</code></pre></div>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">Center</code> allows <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> to be any size up to the
+screen size. The <code class="language-plaintext highlighter-rouge">ConstrainedBox</code> imposes <strong>additional</strong>
+constraints from its <code class="language-plaintext highlighter-rouge">constraints</code> parameter onto its child.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Container</code> must be between 70 and 150 pixels.
+It wants to have 100 pixels, and that’s the size it has,
+since that’s between 70 and 150.</p>
+
+<h3 id="example-13">Example 13</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-13.png" class="mw-100" alt="Example 13 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">UnconstrainedBox(
+  child: Container(color: red, width: 20, height: 50),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code> to be exactly
+the same size as the screen. However, the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>
+lets its child <code class="language-plaintext highlighter-rouge">Container</code> be any size it wants.</p>
+
+<h3 id="example-14">Example 14</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-14.png" class="mw-100" alt="Example 14 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">UnconstrainedBox(
+  child: Container(color: red, width: 4000, height: 50),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code> to be exactly
+the same size as the screen, and <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>
+lets its child <code class="language-plaintext highlighter-rouge">Container</code> be any size it wants.</p>
+
+<p>Unfortunately, in this case the <code class="language-plaintext highlighter-rouge">Container</code> is
+4000 pixels wide and is too big to fit in
+the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>, so the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code> displays
+the much dreaded “overflow warning”.</p>
+
+<h3 id="example-15">Example 15</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-15.png" class="mw-100" alt="Example 15 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">OverflowBox(
+  minWidth: 0.0,
+  minHeight: 0.0,
+  maxWidth: double.infinity,
+  maxHeight: double.infinity,
+  child: Container(color: red, width: 4000, height: 50),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">OverflowBox</code> to be exactly the same
+size as the screen, and <code class="language-plaintext highlighter-rouge">OverflowBox</code> lets its child <code class="language-plaintext highlighter-rouge">Container</code>
+be any size it wants.</p>
+
+<p><code class="language-plaintext highlighter-rouge">OverflowBox</code> is similar to <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>;
+the difference is that it won’t display any warnings
+if the child doesn’t fit the space.</p>
+
+<p>In this case, the <code class="language-plaintext highlighter-rouge">Container</code> has 4000 pixels of width,
+and is too big to fit in the <code class="language-plaintext highlighter-rouge">OverflowBox</code>,
+but the <code class="language-plaintext highlighter-rouge">OverflowBox</code> simply shows as much as it can,
+with no warnings given.</p>
+
+<h3 id="example-16">Example 16</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-16.png" class="mw-100" alt="Example 16 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">UnconstrainedBox(
+  child: Container(color: Colors.red, width: double.infinity, height: 100),
+)</code></pre></div>
+</div>
+
+<p>This won’t render anything, and you’ll see an error in the console.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code> lets its child be any size it wants,
+however its child is a <code class="language-plaintext highlighter-rouge">Container</code> with infinite size.</p>
+
+<p>Flutter can’t render infinite sizes, so it throws an error with
+the following message: <code class="language-plaintext highlighter-rouge">BoxConstraints forces an infinite width.</code></p>
+
+<h3 id="example-17">Example 17</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-17.png" class="mw-100" alt="Example 17 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">UnconstrainedBox(
+  child: LimitedBox(
+    maxWidth: 100,
+    child: Container(
+      color: Colors.red,
+      width: double.infinity,
+      height: 100,
+    ),
+  ),
+)</code></pre></div>
+</div>
+
+<p>Here you won’t get an error anymore,
+because when the <code class="language-plaintext highlighter-rouge">LimitedBox</code> is given an
+infinite size by the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>;
+it passes a maximum width of 100 down to its child.</p>
+
+<p>If you swap the <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code> for a <code class="language-plaintext highlighter-rouge">Center</code> widget,
+the <code class="language-plaintext highlighter-rouge">LimitedBox</code> won’t apply its limit anymore
+(since its limit is only applied when it gets infinite
+constraints), and the width of the <code class="language-plaintext highlighter-rouge">Container</code>
+is allowed to grow past 100.</p>
+
+<p>This explains the difference between a <code class="language-plaintext highlighter-rouge">LimitedBox</code>
+and a <code class="language-plaintext highlighter-rouge">ConstrainedBox</code>.</p>
+
+<h3 id="example-18">Example 18</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-18.png" class="mw-100" alt="Example 18 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const FittedBox(
+  child: Text(&#39;Some Example Text.&#39;),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">FittedBox</code> to be exactly the same
+size as the screen. The <code class="language-plaintext highlighter-rouge">Text</code> has some natural width
+(also called its intrinsic width) that depends on the
+amount of text, its font size, and so on.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">FittedBox</code> lets the <code class="language-plaintext highlighter-rouge">Text</code> be any size it wants,
+but after the <code class="language-plaintext highlighter-rouge">Text</code> tells its size to the <code class="language-plaintext highlighter-rouge">FittedBox</code>,
+the <code class="language-plaintext highlighter-rouge">FittedBox</code> scales the Text until it fills all of
+the available width.</p>
+
+<h3 id="example-19">Example 19</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-19.png" class="mw-100" alt="Example 19 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const Center(
+  child: FittedBox(
+    child: Text(&#39;Some Example Text.&#39;),
+  ),
+)</code></pre></div>
+</div>
+
+<p>But what happens if you put the <code class="language-plaintext highlighter-rouge">FittedBox</code> inside of a
+<code class="language-plaintext highlighter-rouge">Center</code> widget? The <code class="language-plaintext highlighter-rouge">Center</code> lets the <code class="language-plaintext highlighter-rouge">FittedBox</code>
+be any size it wants, up to the screen size.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">FittedBox</code> then sizes itself to the <code class="language-plaintext highlighter-rouge">Text</code>,
+and lets the <code class="language-plaintext highlighter-rouge">Text</code> be any size it wants.
+Since both <code class="language-plaintext highlighter-rouge">FittedBox</code> and the <code class="language-plaintext highlighter-rouge">Text</code> have the same size,
+no scaling happens.</p>
+
+<h3 id="example-20">Example 20</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-20.png" class="mw-100" alt="Example 20 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const Center(
+  child: FittedBox(
+    child: Text(
+        &#39;This is some very very very large text that is too big to fit a regular screen in a single line.&#39;),
+  ),
+)</code></pre></div>
+</div>
+
+<p>However, what happens if <code class="language-plaintext highlighter-rouge">FittedBox</code> is inside of a <code class="language-plaintext highlighter-rouge">Center</code>
+widget, but the <code class="language-plaintext highlighter-rouge">Text</code> is too large to fit the screen?</p>
+
+<p><code class="language-plaintext highlighter-rouge">FittedBox</code> tries to size itself to the <code class="language-plaintext highlighter-rouge">Text</code>,
+but it can’t be bigger than the screen.
+It then assumes the screen size,
+and resizes <code class="language-plaintext highlighter-rouge">Text</code> so that it fits the screen, too.</p>
+
+<h3 id="example-21">Example 21</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-21.png" class="mw-100" alt="Example 21 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const Center(
+  child: Text(
+      &#39;This is some very very very large text that is too big to fit a regular screen in a single line.&#39;),
+)</code></pre></div>
+</div>
+
+<p>If, however, you remove the <code class="language-plaintext highlighter-rouge">FittedBox</code>, the <code class="language-plaintext highlighter-rouge">Text</code>
+gets its maximum width from the screen,
+and breaks the line so that it fits the screen.</p>
+
+<h3 id="example-22">Example 22</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-22.png" class="mw-100" alt="Example 22 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">FittedBox(
+  child: Container(
+    height: 20.0,
+    width: double.infinity,
+    color: Colors.red,
+  ),
+)</code></pre></div>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">FittedBox</code> can only scale a widget that is bounded
+(has non-infinite width and height). Otherwise,
+it won’t render anything,
+and you’ll see an error in the console.</p>
+
+<h3 id="example-23">Example 23</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-23.png" class="mw-100" alt="Example 23 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Row(
+  children: [
+    Container(color: red, child: const Text(&#39;Hello!&#39;, style: big)),
+    Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+  ],
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Row</code> to be exactly the same size
+as the screen.</p>
+
+<p>Just like an <code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>, the <code class="language-plaintext highlighter-rouge">Row</code> won’t
+impose any constraints onto its children,
+and instead lets them be any size they want.
+The <code class="language-plaintext highlighter-rouge">Row</code> then puts them side-by-side,
+and any extra space remains empty.</p>
+
+<h3 id="example-24">Example 24</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-24.png" class="mw-100" alt="Example 24 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Row(
+  children: [
+    Container(
+      color: red,
+      child: const Text(
+        &#39;This is a very long text that &#39;
+        &#39;won\&#39;t fit the line.&#39;,
+        style: big,
+      ),
+    ),
+    Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+  ],
+)</code></pre></div>
+</div>
+
+<p>Since <code class="language-plaintext highlighter-rouge">Row</code> won’t impose any constraints onto its children,
+it’s quite possible that the children might be too big to fit
+the available width of the <code class="language-plaintext highlighter-rouge">Row</code>. In this case, just like an
+<code class="language-plaintext highlighter-rouge">UnconstrainedBox</code>, the <code class="language-plaintext highlighter-rouge">Row</code> displays the “overflow warning”.</p>
+
+<h3 id="example-25">Example 25</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-25.png" class="mw-100" alt="Example 25 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Row(
+  children: [
+    Expanded(
+      child: Center(
+        child: Container(
+          color: red,
+          child: const Text(
+            &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+            style: big,
+          ),
+        ),
+      ),
+    ),
+    Container(color: green, child: const Text(&#39;Goodbye!&#39;, style: big)),
+  ],
+)</code></pre></div>
+</div>
+
+<p>When a <code class="language-plaintext highlighter-rouge">Row</code>’s child is wrapped in an <code class="language-plaintext highlighter-rouge">Expanded</code> widget,
+the <code class="language-plaintext highlighter-rouge">Row</code> won’t let this child define its own width anymore.</p>
+
+<p>Instead, it defines the <code class="language-plaintext highlighter-rouge">Expanded</code> width according to the
+other children, and only then the <code class="language-plaintext highlighter-rouge">Expanded</code> widget forces
+the original child to have the <code class="language-plaintext highlighter-rouge">Expanded</code>’s width.</p>
+
+<p>In other words, once you use <code class="language-plaintext highlighter-rouge">Expanded</code>,
+the original child’s width becomes irrelevant, and is ignored.</p>
+
+<h3 id="example-26">Example 26</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-26.png" class="mw-100" alt="Example 26 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Row(
+  children: [
+    Expanded(
+      child: Container(
+        color: red,
+        child: const Text(
+          &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+          style: big,
+        ),
+      ),
+    ),
+    Expanded(
+      child: Container(
+        color: green,
+        child: const Text(
+          &#39;Goodbye!&#39;,
+          style: big,
+        ),
+      ),
+    ),
+  ],
+)</code></pre></div>
+</div>
+
+<p>If all of <code class="language-plaintext highlighter-rouge">Row</code>’s children are wrapped in <code class="language-plaintext highlighter-rouge">Expanded</code> widgets,
+each <code class="language-plaintext highlighter-rouge">Expanded</code> has a size proportional to its flex parameter,
+and only then each <code class="language-plaintext highlighter-rouge">Expanded</code> widget forces its child to have
+the <code class="language-plaintext highlighter-rouge">Expanded</code>’s width.</p>
+
+<p>In other words, <code class="language-plaintext highlighter-rouge">Expanded</code> ignores the preferred width of
+its children.</p>
+
+<h3 id="example-27">Example 27</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-27.png" class="mw-100" alt="Example 27 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Row(
+  children: [
+    Flexible(
+      child: Container(
+        color: red,
+        child: const Text(
+          &#39;This is a very long text that won\&#39;t fit the line.&#39;,
+          style: big,
+        ),
+      ),
+    ),
+    Flexible(
+      child: Container(
+        color: green,
+        child: const Text(
+          &#39;Goodbye!&#39;,
+          style: big,
+        ),
+      ),
+    ),
+  ],
+)</code></pre></div>
+</div>
+
+<p>The only difference if you use <code class="language-plaintext highlighter-rouge">Flexible</code> instead of <code class="language-plaintext highlighter-rouge">Expanded</code>,
+is that <code class="language-plaintext highlighter-rouge">Flexible</code> lets its child have the same or smaller
+width than the <code class="language-plaintext highlighter-rouge">Flexible</code> itself, while <code class="language-plaintext highlighter-rouge">Expanded</code> forces
+its child to have the exact same width of the <code class="language-plaintext highlighter-rouge">Expanded</code>.
+But both <code class="language-plaintext highlighter-rouge">Expanded</code> and <code class="language-plaintext highlighter-rouge">Flexible</code> ignore their children’s width
+when sizing themselves.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  This means that it’s impossible to expand <code class="language-plaintext highlighter-rouge">Row</code> children
+  proportionally to their sizes. The <code class="language-plaintext highlighter-rouge">Row</code> either uses
+  the exact child’s width, or ignores it completely
+  when you use <code class="language-plaintext highlighter-rouge">Expanded</code> or <code class="language-plaintext highlighter-rouge">Flexible</code>.</p>
+</aside>
+
+<h3 id="example-28">Example 28</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-28.png" class="mw-100" alt="Example 28 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Scaffold(
+  body: Container(
+    color: blue,
+    child: Column(
+      children: const [
+        Text(&#39;Hello!&#39;),
+        Text(&#39;Goodbye!&#39;),
+      ],
+    ),
+  ),
+)</code></pre></div>
+</div>
+
+<p>The screen forces the <code class="language-plaintext highlighter-rouge">Scaffold</code> to be exactly the same size
+as the screen, so the <code class="language-plaintext highlighter-rouge">Scaffold</code> fills the screen.
+The <code class="language-plaintext highlighter-rouge">Scaffold</code> tells the <code class="language-plaintext highlighter-rouge">Container</code> that it can be any size it wants,
+but not bigger than the screen.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  When a widget tells its child that it can be smaller than a
+  certain size, we say the widget supplies <em>loose</em> constraints
+  to its child. More on that later.</p>
+</aside>
+
+<h3 id="example-29">Example 29</h3>
+
+<p><img src="/assets/images/docs/ui/layout/layout-29.png" class="mw-100" alt="Example 29 layout" /></p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Scaffold(
+  body: SizedBox.expand(
+    child: Container(
+      color: blue,
+      child: Column(
+        children: const [
+          Text(&#39;Hello!&#39;),
+          Text(&#39;Goodbye!&#39;),
+        ],
+      ),
+    ),
+  ),
+)</code></pre></div>
+</div>
+
+<p>If you want the <code class="language-plaintext highlighter-rouge">Scaffold</code>’s child to be exactly the same size
+as the <code class="language-plaintext highlighter-rouge">Scaffold</code> itself, you can wrap its child with
+<code class="language-plaintext highlighter-rouge">SizedBox.expand</code>.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  When a widget tells its child that it must be of
+  a certain size, we say the widget supplies <em>tight</em>
+  constraints to its child.</p>
+</aside>
+
+<h2 id="tight-vs-loose-constraints">Tight vs. loose constraints</h2>
+
+<p>It’s very common to hear that some constraint is
+“tight” or “loose”, so it’s worth knowing what that means.</p>
+
+<p>A <em>tight</em> constraint offers a single possibility,
+an exact size. In other words, a tight constraint
+has its maximum width equal to its minimum width;
+and has its maximum height equal to its minimum height.</p>
+
+<p>If you go to Flutter’s <code class="language-plaintext highlighter-rouge">box.dart</code> file and search for
+the <code class="language-plaintext highlighter-rouge">BoxConstraints</code> constructors, you’ll find the
+following:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BoxConstraints</span><span class="o">.</span><span class="na">tight</span><span class="p">(</span><span class="n">Size</span> <span class="n">size</span><span class="p">)</span>
+   <span class="o">:</span> <span class="n">minWidth</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">width</span><span class="p">,</span>
+     <span class="n">maxWidth</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">width</span><span class="p">,</span>
+     <span class="n">minHeight</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">height</span><span class="p">,</span>
+     <span class="n">maxHeight</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">height</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If you revisit <a href="#example-2">Example 2</a> above,
+it tells us that the screen forces the red
+<code class="language-plaintext highlighter-rouge">Container</code> to be exactly the same size as the screen.
+The screen does that, of course, by passing tight
+constraints to the <code class="language-plaintext highlighter-rouge">Container</code>.</p>
+
+<p>A <em>loose</em> constraint, on the other hand,
+sets the <strong>maximum</strong> width and height, but lets the widget
+be as small as it wants. In other words,
+a loose constraint has a <strong>minimum</strong> width and height
+both equal to <strong>zero</strong>:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BoxConstraints</span><span class="o">.</span><span class="na">loose</span><span class="p">(</span><span class="n">Size</span> <span class="n">size</span><span class="p">)</span>
+   <span class="o">:</span> <span class="n">minWidth</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+     <span class="n">maxWidth</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">width</span><span class="p">,</span>
+     <span class="n">minHeight</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+     <span class="n">maxHeight</span> <span class="o">=</span> <span class="n">size</span><span class="o">.</span><span class="na">height</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If you revisit <a href="#example-3">Example 3</a>, it tells us that the
+<code class="language-plaintext highlighter-rouge">Center</code> lets the red <code class="language-plaintext highlighter-rouge">Container</code> be smaller,
+but not bigger than the screen. The <code class="language-plaintext highlighter-rouge">Center</code> does that,
+of course, by passing loose constraints to the <code class="language-plaintext highlighter-rouge">Container</code>.
+Ultimately, the <code class="language-plaintext highlighter-rouge">Center</code>’s very purpose is to transform
+the tight constraints it got from its parent
+(the screen) to loose constraints for its child
+(the <code class="language-plaintext highlighter-rouge">Container</code>).</p>
+
+<h2 id="learning-the-layout-rules-for-specific-widgets">Learning the layout rules for specific widgets</h2>
+
+<p>Knowing the general layout rule is necessary, but it’s not enough.</p>
+
+<p>Each widget has a lot of freedom when applying the general rule,
+so there is no way of knowing what it will do by just reading
+the widget’s name.</p>
+
+<p>If you try to guess, you’ll probably guess wrong.
+You can’t know exactly how a widget behaves unless
+you’ve read its documentation, or studied its source-code.</p>
+
+<p>The layout source-code is usually complex,
+so it’s probably better to just read the documentation.
+However, if you decide to study the layout source-code,
+you can easily find it by using the navigating capabilities
+of your IDE.</p>
+
+<p>Here is an example:</p>
+
+<ul>
+  <li>
+    <p>Find a <code class="language-plaintext highlighter-rouge">Column</code> in your code and navigate to its
+source code. To do this, use <code class="language-plaintext highlighter-rouge">command+B</code> (macOS)
+or <code class="language-plaintext highlighter-rouge">control+B</code> (Windows/Linux) in Android Studio or IntelliJ.
+You’ll be taken to the <code class="language-plaintext highlighter-rouge">basic.dart</code> file.
+Since <code class="language-plaintext highlighter-rouge">Column</code> extends <code class="language-plaintext highlighter-rouge">Flex</code>, navigate to the <code class="language-plaintext highlighter-rouge">Flex</code>
+source code (also in <code class="language-plaintext highlighter-rouge">basic.dart</code>).</p>
+  </li>
+  <li>
+    <p>Scroll down until you find a method called
+<code class="language-plaintext highlighter-rouge">createRenderObject()</code>. As you can see,
+this method returns a <code class="language-plaintext highlighter-rouge">RenderFlex</code>.
+This is the render-object for the <code class="language-plaintext highlighter-rouge">Column</code>.
+Now navigate to the source-code of <code class="language-plaintext highlighter-rouge">RenderFlex</code>,
+which takes you to the <code class="language-plaintext highlighter-rouge">flex.dart</code> file.</p>
+  </li>
+  <li>
+    <p>Scroll down until you find a method called
+<code class="language-plaintext highlighter-rouge">performLayout()</code>. This is the method that does
+the layout for the <code class="language-plaintext highlighter-rouge">Column</code>.</p>
+  </li>
+</ul>
+
+<p><img src="/assets/images/docs/ui/layout/layout-final.png" class="mw-100" alt="A goodbye layout" /></p>
+
+<hr />
+
+<p>Article by Marcelo Glasberg</p>
+
+<p>Marcelo originally published this content as
+<a href="https://medium.com/flutter-community/flutter-the-advanced-layout-rule-even-beginners-must-know-edc9516d1a2">Flutter: The Advanced Layout Rule Even Beginners Must Know</a>
+on Medium. We loved it and asked that he allow us to publish
+in on docs.flutter.dev, to which he graciously agreed. Thanks, Marcelo!
+You can find Marcelo on <a href="https://github.com/marcglasberg">GitHub</a> and <a href="https://pub.dev/publishers/glasberg.dev/packages">pub.dev</a>.</p>
+
+<p>Also, thanks to <a href="https://github.com/slightfoot">Simon Lightfoot</a> for creating the
+header image at the top of the article.</p>
+
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    <script src="https://dartpad.dev/inject_embed.dart.js" defer></script>
+    
+
+  </body>
+</html>

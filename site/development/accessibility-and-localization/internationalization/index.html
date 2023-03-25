@@ -1,0 +1,3536 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Internationalizing Flutter apps | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="How to internationalize your Flutter app.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Internationalizing Flutter apps">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/accessibility-and-localization/internationalization">
+    <meta property="og:description" content="How to internationalize your Flutter app.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    
+  
+  
+  
+  <div
+    id="site-toc--side"
+    class="site-toc site-toc--side fixed-col col-xl-2 order-3 "
+    data-fixed-column
+  >
+    <header class="site-toc__title">
+      Contents
+      </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#introduction-to-localizations-in-flutter">Introduction to localizations in Flutter</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#setting-up">Setting up an internation­alized app: the Flutter_localizations package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#overriding-the-locale">Overriding the Locale</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#adding-your-own-localized-messages">Adding your own localized messages</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#placeholders-plurals-and-selects">Placeholders, plurals, and selects</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#escaping-syntax">Escaping syntax</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#messages-with-numbers-and-currencies">Messages with numbers and currencies</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#messages-with-dates">Messages with dates</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#localizing-for-ios-updating-the-ios-app-bundle">Localizing for iOS: Updating the iOS app bundle</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#advanced-topics-for-further-customization">Advanced topics for further customization</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#advanced-locale-definition">Advanced locale definition</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#tracking-the-locale-the-locale-class-and-the-localizations-widget">Tracking the locale: The Locale class and the Localizations widget</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#specifying-the-apps-supportedlocales-parameter">Specifying the app’s supported­Locales parameter</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#configuring-the-l10nyaml-file">Configuring the l10n.yaml file</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#how-internationalization-in-flutter-works">How internationalization in Flutter works</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#loading-and-retrieving-localized-values">Loading and retrieving localized values</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#defining-a-class-for-the-apps-localized-resources">Defining a class for the app’s localized resources</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#adding-support-for-a-new-language">Adding support for a new language</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#alternative-internationalization-workflows">Alternative internationalization workflows</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#an-alternative-class-for-the-apps-localized-resources">An alternative class for the app’s localized resources</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#using-the-dart-intl-tools">Using the Dart intl tools</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/accessibility-and-localization/internationalization.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Internationalizing Flutter apps'&page-url=http://0.0.0.0:4002/development/accessibility-and-localization/internationalization/&page-source=https://github.com/flutter/website/tree/main/src/development/accessibility-and-localization/internationalization.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Internationalizing Flutter apps</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/accessibility-and-localization" property="item" typeof="WebPage"><span property="name">a11y & i18n</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/accessibility-and-localization/internationalization" property="item" typeof="WebPage"><span property="name">i18n</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div
+    id="site-toc--inline"
+    class="site-toc site-toc--inline "
+  >
+    <header class="site-toc__title">
+      Contents
+    </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#introduction-to-localizations-in-flutter">Introduction to localizations in Flutter</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#setting-up">Setting up an internation­alized app: the Flutter_localizations package</a></li>
+<li class="toc-entry toc-h3"><a href="#overriding-the-locale">Overriding the Locale</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-your-own-localized-messages">Adding your own localized messages</a></li>
+<li class="toc-entry toc-h3"><a href="#placeholders-plurals-and-selects">Placeholders, plurals, and selects</a></li>
+<li class="toc-entry toc-h3"><a href="#escaping-syntax">Escaping syntax</a></li>
+<li class="toc-entry toc-h3"><a href="#messages-with-numbers-and-currencies">Messages with numbers and currencies</a></li>
+<li class="toc-entry toc-h3"><a href="#messages-with-dates">Messages with dates</a></li>
+<li class="toc-entry toc-h3"><a href="#localizing-for-ios-updating-the-ios-app-bundle">Localizing for iOS: Updating the iOS app bundle</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#advanced-topics-for-further-customization">Advanced topics for further customization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#advanced-locale-definition">Advanced locale definition</a></li>
+<li class="toc-entry toc-h3"><a href="#tracking-the-locale-the-locale-class-and-the-localizations-widget">Tracking the locale: The Locale class and the Localizations widget</a></li>
+<li class="toc-entry toc-h3"><a href="#specifying-the-apps-supportedlocales-parameter">Specifying the app’s supported­Locales parameter</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-the-l10nyaml-file">Configuring the l10n.yaml file</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#how-internationalization-in-flutter-works">How internationalization in Flutter works</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#loading-and-retrieving-localized-values">Loading and retrieving localized values</a></li>
+<li class="toc-entry toc-h3"><a href="#defining-a-class-for-the-apps-localized-resources">Defining a class for the app’s localized resources</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-support-for-a-new-language">Adding support for a new language</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#alternative-internationalization-workflows">Alternative internationalization workflows</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#an-alternative-class-for-the-apps-localized-resources">An alternative class for the app’s localized resources</a></li>
+<li class="toc-entry toc-h3"><a href="#using-the-dart-intl-tools">Using the Dart intl tools</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc">What you’ll learn</h4>
+
+  <ul>
+    <li>How to track the device’s locale (the user’s preferred language).</li>
+    <li>How to enable locale-specific Material or Cupertino widgets.</li>
+    <li>How to manage locale-specific app values.</li>
+    <li>How to define the locales an app supports.</li>
+  </ul>
+</aside>
+
+<p>If your app might be deployed to users who speak another language then
+you’ll need to internationalize it. That means you need to write
+the app in a way that makes it possible to localize values like text
+and layouts for each language or locale that the app
+supports. Flutter provides widgets and classes that help with
+internationalization and the Flutter libraries themselves are
+internationalized.</p>
+
+<p>This page covers concepts and workflows necessary to localize a
+Flutter application using the <code class="language-plaintext highlighter-rouge">MaterialApp</code> and <code class="language-plaintext highlighter-rouge">CupertinoApp</code>
+classes, as most apps are written that way. However, applications
+written using the lower level <code class="language-plaintext highlighter-rouge">WidgetsApp</code> class can also
+be internationalized using the same classes and logic.</p>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc">Sample internationalized apps</h4>
+
+  <p>If you’d like to start out by reading the code for an internationalized
+  Flutter app, here are two small examples. The first one is intended to
+  be as simple as possible, and the second one uses the APIs and tools
+  provided by the <a href="https://pub.dev/packages/intl"><code class="language-plaintext highlighter-rouge">intl</code></a> package.
+  If Dart’s intl package is new to you,
+  see <a href="#dart-tools">Using the Dart intl tools</a>.</p>
+
+  <ul>
+    <li><a href="https://github.com/flutter/website/tree/main/examples/internationalization/minimal">Minimal internationalization</a></li>
+    <li><a href="https://github.com/flutter/website/tree/main/examples/internationalization/intl_example">Internationalization based on the <code class="language-plaintext highlighter-rouge">intl</code> package</a></li>
+  </ul>
+</aside>
+
+<h2 id="introduction-to-localizations-in-flutter">
+<a class="anchor" href="#introduction-to-localizations-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction to localizations in Flutter</h2>
+
+<p>This section provides a tutorial on how to internationalize
+a new Flutter application, along with any additional setup that a
+target platform might require.</p>
+
+<h3 id="setting-up">
+<a class="anchor" href="#setting-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up an internation­alized app: the Flutter<wbr></wbr>_localizations package</h3>
+
+<p>By default, Flutter only provides US English localizations.
+To add support for other languages,
+an application must specify additional <code class="language-plaintext highlighter-rouge">MaterialApp</code> (or <code class="language-plaintext highlighter-rouge">CupertinoApp</code>)
+properties, and include a package called
+<code class="language-plaintext highlighter-rouge">flutter_localizations</code>. As of January 2023,
+this package supports 79 languages.</p>
+
+<p>To begin, start by creating a new Flutter application
+in a directory of your choice with the <code class="language-plaintext highlighter-rouge">flutter create</code> command.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter create &lt;name_of_flutter_app&gt;
+</code></pre></div></div>
+
+<p>To use <code class="language-plaintext highlighter-rouge">flutter_localizations</code>,
+add the package as a dependency to your <code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file, 
+as well as the <code class="language-plaintext highlighter-rouge">intl</code> package:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter pub add flutter_localizations <span class="nt">--sdk</span><span class="o">=</span>flutter
+<span class="gp">$</span><span class="w"> </span>flutter pub add intl:any
+</code></pre></div></div>
+
+<p>This results in a <code class="language-plaintext highlighter-rouge">pubspec.yml</code> with the following entries:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="yaml prettyprint lang-yaml">dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any</code></pre></div>
+</div>
+
+<p>Then import the <code class="language-plaintext highlighter-rouge">flutter_localizations</code> library and specify
+<code class="language-plaintext highlighter-rouge">localizationsDelegates</code> and <code class="language-plaintext highlighter-rouge">supportedLocales</code> for
+your <code class="language-plaintext highlighter-rouge">MaterialApp</code> or <code class="language-plaintext highlighter-rouge">CupertinoApp</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">import 'package:flutter_localizations/flutter_localizations.dart';</code></pre></div>
+</div>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return const MaterialApp(
+  title: 'Localizations Sample App',
+  localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ],
+  supportedLocales: [
+    Locale('en'), // English
+    Locale('es'), // Spanish
+  ],
+  home: MyHomePage(),
+);</code></pre></div>
+</div>
+
+<p>After introducing the <code class="language-plaintext highlighter-rouge">flutter_localizations</code> package
+and adding the code above, the <code class="language-plaintext highlighter-rouge">Material</code> and <code class="language-plaintext highlighter-rouge">Cupertino</code>
+packages should now be correctly localized in
+one of the 78 supported locales. Widgets should be
+adapted to the localized messages, along with
+correct left-to-right and right-to-left layout.</p>
+
+<p>Try switching the target platform’s locale to
+Spanish (<code class="language-plaintext highlighter-rouge">es</code>) and notice that the messages should
+be localized.</p>
+
+<p>Apps based on <code class="language-plaintext highlighter-rouge">WidgetsApp</code> are similar except that the
+<code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations.delegate</code> isn’t needed.</p>
+
+<p>The full <code class="language-plaintext highlighter-rouge">Locale.fromSubtags</code> constructor is preferred
+as it supports <a href="https://api.flutter.dev/flutter/package-intl_locale/Locale/scriptCode.html"><code class="language-plaintext highlighter-rouge">scriptCode</code></a>, though the <code class="language-plaintext highlighter-rouge">Locale</code> default
+constructor is still fully valid.</p>
+
+<p>The elements of the <code class="language-plaintext highlighter-rouge">localizationsDelegates</code> list are factories that produce
+collections of localized values. <code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations.delegate</code>
+provides localized strings and other values for the Material Components
+library. <code class="language-plaintext highlighter-rouge">GlobalWidgetsLocalizations.delegate</code> defines the default
+text direction, either left-to-right or right-to-left, for the widgets
+library.</p>
+
+<p>More information about these app properties, the types they
+depend on, and how internationalized Flutter apps are typically
+structured, can be found below.</p>
+
+<p><a name="overriding-locale"></a></p>
+<h3 id="overriding-the-locale">
+<a class="anchor" href="#overriding-the-locale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overriding the Locale</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Localizations.override</code> is a factory constructor for the <code class="language-plaintext highlighter-rouge">Localizations</code> widget
+that allows for (the typically rare) situation where a section of your application
+needs to be localized to a different locale than the locale configured for your device.</p>
+
+<p>To observe this behavior, add a call to <code class="language-plaintext highlighter-rouge">Localizations.override</code>
+and a simple <code class="language-plaintext highlighter-rouge">CalendarDatePicker</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(widget.title),
+    ),
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: &lt;Widget&gt;[
+          // Add the following code
+          Localizations.override(
+            context: context,
+            locale: const Locale('es'),
+            // Using a Builder to get the correct BuildContext.
+            // Alternatively, you can create a new widget and Localizations.override
+            // will pass the updated BuildContext to the new widget.
+            child: Builder(
+              builder: (context) {
+                // A toy example for an internationalized Material widget.
+                return CalendarDatePicker(
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  onDateChanged: (value) {},
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}</code></pre></div>
+</div>
+
+<p>Hot reload the app and observe that the <code class="language-plaintext highlighter-rouge">CalendarDatePicker</code> widget re-renders in Spanish.</p>
+
+<p><a name="adding-localized-messages"></a></p>
+<h3 id="adding-your-own-localized-messages">
+<a class="anchor" href="#adding-your-own-localized-messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding your own localized messages</h3>
+
+<p>Once the <code class="language-plaintext highlighter-rouge">flutter_localizations</code> package is added, use the
+following instructions to add localized text to your application.</p>
+
+<ol>
+  <li>
+    <p>Add the <code class="language-plaintext highlighter-rouge">intl</code> package as a dependency,
+using the version pinned by <code class="language-plaintext highlighter-rouge">flutter_localizations</code> with <code class="language-plaintext highlighter-rouge">any</code>:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>flutter pub add intl:any
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Then in the <code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file, enable the <code class="language-plaintext highlighter-rouge">generate</code> flag. 
+This is added to the section of the pubspec that is specific to Flutter, 
+and usually comes later in the pubspec file.</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="yaml prettyprint lang-yaml"># The following section is specific to Flutter.
+flutter:
+  generate: true # Add this line</code></pre></div>
+</div>
+  </li>
+  <li>
+    <p>Add a new yaml file to the root directory of the Flutter project 
+called <code class="language-plaintext highlighter-rouge">l10n.yaml</code> with the following content:</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="yaml prettyprint lang-yaml">arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart</code></pre></div>
+</div>
+
+    <p>This file configures the localization tool; in this example,
+the input files are located in <code class="language-plaintext highlighter-rouge">${FLUTTER_PROJECT}/lib/l10n</code>,
+the <code class="language-plaintext highlighter-rouge">app_en.arb</code> file provides the template, and the generated
+localizations are placed in the <code class="language-plaintext highlighter-rouge">app_localizations.dart</code> file.</p>
+  </li>
+  <li>
+    <p>In <code class="language-plaintext highlighter-rouge">${FLUTTER_PROJECT}/lib/l10n</code>,
+add the <code class="language-plaintext highlighter-rouge">app_en.arb</code> template file. For example:</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  }
+}</code></pre></div>
+</div>
+  </li>
+  <li>
+    <p>Next, add an <code class="language-plaintext highlighter-rouge">app_es.arb</code> file in the same directory with a
+Spanish translation of the same message:</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">{
+    "helloWorld": "¡Hola Mundo!"
+}</code></pre></div>
+</div>
+  </li>
+  <li>
+    <p>Now, run <code class="language-plaintext highlighter-rouge">flutter gen-l10n</code> so that codegen takes place. You should see generated files in
+<code class="language-plaintext highlighter-rouge">${FLUTTER_PROJECT}/.dart_tool/flutter_gen/gen_l10n</code>.
+Alternatively, you can also run <code class="language-plaintext highlighter-rouge">flutter gen-l10n</code> to generate the same
+files without running the app.</p>
+  </li>
+  <li>
+    <p>Add the import statement on <code class="language-plaintext highlighter-rouge">app_localizations.dart</code> and <code class="language-plaintext highlighter-rouge">AppLocalizations.delegate</code>
+in your call to the constructor for <code class="language-plaintext highlighter-rouge">MaterialApp</code>.</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">import 'package:flutter_gen/gen_l10n/app_localizations.dart';</code></pre></div>
+</div>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return const MaterialApp(
+  title: 'Localizations Sample App',
+  localizationsDelegates: [
+    AppLocalizations.delegate, // Add this line
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ],
+  supportedLocales: [
+    Locale('en'), // English
+    Locale('es'), // Spanish
+  ],
+  home: MyHomePage(),
+);</code></pre></div>
+</div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">AppLocalizations</code> class also provides auto-generated
+<code class="language-plaintext highlighter-rouge">localizationsDelegates</code> and <code class="language-plaintext highlighter-rouge">supportedLocales</code> lists.
+You can use these instead of providing them manually.</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const MaterialApp(
+  title: 'Localizations Sample App',
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
+);</code></pre></div>
+</div>
+  </li>
+  <li>
+    <p>Now you can use <code class="language-plaintext highlighter-rouge">AppLocalizations</code> anywhere in your app:</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">appBar: AppBar(
+  // The [AppBar] title text should update its message
+  // according to the system locale of the target platform.
+  // Switching between English and Spanish locales should
+  // cause this text to update.
+  title: Text(AppLocalizations.of(context)!.helloWorld),
+),</code></pre></div>
+</div>
+
+    <p>This code generates a Text widget that displays “Hello World!”
+if the target device’s locale is set to English, and “¡Hola Mundo!”
+if the target device’s locale is set to Spanish. In the <code class="language-plaintext highlighter-rouge">arb</code> files,
+the key of each entry is used as the method name of the getter,
+while the value of that entry contains the localized message.</p>
+  </li>
+</ol>
+
+<p>To see a sample Flutter app using this tool, please see
+<a href="https://github.com/flutter/website/tree/main/examples/internationalization/gen_l10n_example"><code class="language-plaintext highlighter-rouge">gen_l10n_example</code></a>.</p>
+
+<p>To localize your device app description, you can pass in the localized
+string into <a href="https://api.flutter.dev/flutter/material/MaterialApp/onGenerateTitle.html"><code class="language-plaintext highlighter-rouge">MaterialApp.onGenerateTitle</code></a>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return MaterialApp(
+  onGenerateTitle: (context) =&gt; DemoLocalizations.of(context).title,</code></pre></div>
+</div>
+
+<h3 id="placeholders-plurals-and-selects">
+<a class="anchor" href="#placeholders-plurals-and-selects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Placeholders, plurals, and selects</h3>
+<p>You can also include application values in a message with
+special syntax that uses a <em>placeholder</em> to generate a method
+instead of a getter.
+A placeholder, which must be a valid Dart identifier name,
+becomes a positional parameter in the generated method in the
+<code class="language-plaintext highlighter-rouge">AppLocalizations</code> code. Define a placeholder name by wrapping
+it in curly braces as follows:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"{placeholderName}"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Define each placeholder in the <code class="language-plaintext highlighter-rouge">placeholders</code> object in the app’s <code class="language-plaintext highlighter-rouge">.arb</code> file.
+For example, to define a hello message with a <code class="language-plaintext highlighter-rouge">userName</code> parameter,
+add the following to <code class="language-plaintext highlighter-rouge">lib/l10n/app_en.arb</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">"hello": "Hello {userName}",
+"@hello": {
+  "description": "A message with a single parameter",
+  "placeholders": {
+    "userName": {
+      "type": "String",
+      "example": "Bob"
+    }
+  }
+}</code></pre></div>
+</div>
+
+<p>Regenerate the <code class="language-plaintext highlighter-rouge">AppLocalizations</code> file. This adds a <code class="language-plaintext highlighter-rouge">hello</code> method call to
+the <code class="language-plaintext highlighter-rouge">AppLocalizations.of(context)</code> object, and the method accepts
+a parameter of type <code class="language-plaintext highlighter-rouge">String</code>; the <code class="language-plaintext highlighter-rouge">hello</code> method returns a string.</p>
+
+<p>Implement this by replacing the code passed into <code class="language-plaintext highlighter-rouge">Builder</code>
+with the following:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">// Examples of internationalized strings.
+return Column(
+  children: &lt;Widget&gt;[
+    // Returns 'Hello John'
+    Text(AppLocalizations.of(context)!.hello('John')),
+  ],
+);</code></pre></div>
+</div>
+
+<p>You can also use numerical placeholders to specify multiple values.
+Different languages have different ways to pluralize words.
+The syntax also supports specifying <em>how</em> a word should be pluralized.
+A <em>pluralized</em> message must include a <code class="language-plaintext highlighter-rouge">num</code> parameter indicating
+how to pluralize the word in different situations.  English, for example,
+pluralizes “person” to “people”, but that doesn’t go far enough. The
+<code class="language-plaintext highlighter-rouge">message0</code> plural might be “no people” or “zero people”.
+The <code class="language-plaintext highlighter-rouge">messageFew</code> plural might be
+“several people”, “some people”, or “a few people”. 
+The <code class="language-plaintext highlighter-rouge">messageMany</code> plural might
+be  “most people” or “many people”, or “a crowd”. 
+Only the more general <code class="language-plaintext highlighter-rouge">messageOther</code> field is required.
+The following example shows what options are available:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"{countPlaceholder, plural, =0{message0} =1{message1} =2{message2} few{messageFew} many{messageMany} other{messageOther}}"</span><span class="w">
+</span></code></pre></div></div>
+<p>The expression above will be replaced by the message variation
+(<code class="language-plaintext highlighter-rouge">message0</code>, <code class="language-plaintext highlighter-rouge">message1</code>, …) corresponding to the value
+of the <code class="language-plaintext highlighter-rouge">countPlaceholder</code>. Only the <code class="language-plaintext highlighter-rouge">messageOther</code> field is required.</p>
+
+<p>The following example defines a message that pluralizes the word, “wombat”:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">"nWombats": "{count, plural, =0{no wombats} =1{1 wombat} other{{count} wombats}}",
+"@nWombats": {
+  "description": "A plural message",
+  "placeholders": {
+    "count": {
+      "type": "num",
+      "format": "compact"
+    }
+  }
+}</code></pre></div>
+</div>
+
+<p>Using a plural method is easy enough, just pass it the item count parameter:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">// Examples of internationalized strings.
+return Column(
+  children: &lt;Widget&gt;[
+    ...
+    // Returns 'no wombats'
+    Text(AppLocalizations.of(context)!.nWombats(0)),
+    // Returns '1 wombat'
+    Text(AppLocalizations.of(context)!.nWombats(1)),
+    // Returns '5 wombats'
+    Text(AppLocalizations.of(context)!.nWombats(5)),
+  ],
+);</code></pre></div>
+</div>
+
+<p>Similar to plurals, you can also choose a value based on a <code class="language-plaintext highlighter-rouge">String</code> placeholder.
+This is most often used to support gendered languages. The syntax is:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"{selectPlaceholder, select, case{message} ... other{messageOther}}"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The following example defines a message that selects a pronoun based on gender:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">"pronoun": "{gender, select, male{he} female{she} other{they}}",
+"@pronoun": {
+  "description": "A gendered message",
+  "placeholders": {
+    "gender": {
+      "type": "String"
+    }
+  }
+}</code></pre></div>
+</div>
+
+<p>To use this feature, pass the gender string as a parameter:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">// Examples of internationalized strings.
+return Column(
+  children: &lt;Widget&gt;[
+    ...
+    // Returns 'he'
+    Text(AppLocalizations.of(context)!.pronoun('male')),
+    // Returns 'she'
+    Text(AppLocalizations.of(context)!.pronoun('female')),
+    // Returns 'they'
+    Text(AppLocalizations.of(context)!.pronoun('other')),
+  ],
+);</code></pre></div>
+</div>
+
+<p>Keep in mind that when using <code class="language-plaintext highlighter-rouge">select</code> statements, comparison between the
+parameter and the actual value is case-sensitive. That is,
+<code class="language-plaintext highlighter-rouge">AppLocalizations.of(context)!.pronoun("Male")</code> will default to the
+“other” case, and return “they”.</p>
+
+<h3 id="escaping-syntax">
+<a class="anchor" href="#escaping-syntax" aria-hidden="true"><span class="octicon octicon-link"></span></a>Escaping syntax</h3>
+<p>Sometimes, you have to use tokens, such as <code class="language-plaintext highlighter-rouge">{</code> and <code class="language-plaintext highlighter-rouge">}</code>, as normal characters. To ignore
+such tokens from being parsed, enable the <code class="language-plaintext highlighter-rouge">use-escaping</code> flag by adding the following to <code class="language-plaintext highlighter-rouge">l10n.yaml</code>.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">use-escaping</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+<p>The parser ignores any string of characters wrapped with a pair of single quotes.
+To use a normal single quote character, use a pair of consecutive single quotes. For example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello! '{Isn''t}' this a wonderful day?"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>becomes the following Dart <code class="language-plaintext highlighter-rouge">String</code>:</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"Hello! {Isn't} this a wonderful day?"</span>
+</code></pre></div></div>
+
+<h3 id="messages-with-numbers-and-currencies">
+<a class="anchor" href="#messages-with-numbers-and-currencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Messages with numbers and currencies</h3>
+<p>Numbers, including those that represent currency values,
+are displayed very differently in different locales. 
+The localizations generation tool in <code class="language-plaintext highlighter-rouge">flutter_localizations</code> uses the
+<a href="https://api.flutter.dev/flutter/intl/NumberFormat-class.html"><code class="language-plaintext highlighter-rouge">intl</code> package’s <code class="language-plaintext highlighter-rouge">NumberFormat</code> class</a>
+to properly format numbers based on the locale and the
+desired format.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, and <code class="language-plaintext highlighter-rouge">number</code> types can use any of the
+following <code class="language-plaintext highlighter-rouge">NumberFormat</code> constructors:</p>
+
+<div class="table-wrapper">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Message “format” value</th>
+        <th>Output for 1200000</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">compact</code></td>
+        <td>“1.2M”</td>
+      </tr>
+      <tr>
+        <td>
+<code class="language-plaintext highlighter-rouge">compactCurrency</code>*</td>
+        <td>“$1.2M”</td>
+      </tr>
+      <tr>
+        <td>
+<code class="language-plaintext highlighter-rouge">compactSimpleCurrency</code>*</td>
+        <td>“$1.2M”</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">compactLong</code></td>
+        <td>“1.2 million”</td>
+      </tr>
+      <tr>
+        <td>
+<code class="language-plaintext highlighter-rouge">currency</code>*</td>
+        <td>“USD1,200,000.00”</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">decimalPattern</code></td>
+        <td>“1,200,000”</td>
+      </tr>
+      <tr>
+        <td>
+<code class="language-plaintext highlighter-rouge">decimalPercentPattern</code>*</td>
+        <td>“120,000,000%”</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">percentPattern</code></td>
+        <td>“120,000,000%”</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">scientificPattern</code></td>
+        <td>“1E6”</td>
+      </tr>
+      <tr>
+        <td>
+<code class="language-plaintext highlighter-rouge">simpleCurrency</code>*</td>
+        <td>“$1,200,000”</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>The starred <code class="language-plaintext highlighter-rouge">NumberFormat</code> constructors in the table offer optional, named parameters.
+Those parameters can be specified as the value of the placeholder’s <code class="language-plaintext highlighter-rouge">optionalParameters</code> object.
+For example, to specify the optional <code class="language-plaintext highlighter-rouge">decimalDigits</code> parameter for <code class="language-plaintext highlighter-rouge">compactCurrency</code>,
+make the following changes to the <code class="language-plaintext highlighter-rouge">lib/l10n/app_en.arg</code> file:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="json prettyprint lang-json">"numberOfDataPoints": "Number of data points: {value}",
+"@numberOfDataPoints": {
+  "description": "A message with a formatted int parameter",
+  "placeholders": {
+    "value": {
+      "type": "int",
+      "format": "compactCurrency",
+      "optionalParameters": {
+        "decimalDigits": 2
+      }
+    }
+  }
+}</code></pre></div>
+</div>
+
+<h3 id="messages-with-dates">
+<a class="anchor" href="#messages-with-dates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Messages with dates</h3>
+<p>Dates strings are formatted in many different ways depending both the locale and the app’s needs.</p>
+
+<p>Placeholder values with type <code class="language-plaintext highlighter-rouge">DateTime</code> are formatted with
+<a href="https://api.flutter.dev/flutter/intl/DateFormat-class.html"><code class="language-plaintext highlighter-rouge">intl</code>’s <code class="language-plaintext highlighter-rouge">DateFormat</code> class</a>.
+There are 41 format variations, identified by the names of their <code class="language-plaintext highlighter-rouge">DateFormat</code> factory constructors.
+In the following example, the <code class="language-plaintext highlighter-rouge">DateTime</code> value that appears in the <code class="language-plaintext highlighter-rouge">helloWorldOn</code> message is formatted with <code class="language-plaintext highlighter-rouge">DateFormat.yMd</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"helloWorldOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World on {date}"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"@helloWorldOn"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A message with a date parameter"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"placeholders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yMd"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In an app where the locale is US English, the following expression would produce  “7/10/1996”. In a Russian locale, it would produce “10.07.1996”.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AppLocalizations</span><span class="o">.</span><span class="na">of</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="na">helloWorldOn</span><span class="p">(</span><span class="n">DateTime</span><span class="o">.</span><span class="na">utc</span><span class="p">(</span><span class="mi">1996</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><a name="ios-specifics"></a></p>
+<h3 id="localizing-for-ios-updating-the-ios-app-bundle">
+<a class="anchor" href="#localizing-for-ios-updating-the-ios-app-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Localizing for iOS: Updating the iOS app bundle</h3>
+
+<p>iOS applications define key application metadata,
+including supported locales, in an <code class="language-plaintext highlighter-rouge">Info.plist</code> file
+that is built into the application bundle.
+To configure the locales supported by your app,
+use the following instructions:</p>
+
+<ol>
+  <li>
+    <p>Open your project’s <code class="language-plaintext highlighter-rouge">ios/Runner.xcworkspace</code> Xcode file.</p>
+  </li>
+  <li>
+    <p>In the <strong>Project Navigator</strong>, open the <code class="language-plaintext highlighter-rouge">Info.plist</code> file
+under the <code class="language-plaintext highlighter-rouge">Runner</code> project’s <code class="language-plaintext highlighter-rouge">Runner</code> folder.</p>
+  </li>
+  <li>
+    <p>Select the <strong>Information Property List</strong> item.
+Then select <strong>Add Item</strong> from the <strong>Editor</strong> menu,
+and select <strong>Localizations</strong> from the pop-up menu.</p>
+  </li>
+  <li>
+    <p>Select and expand the newly-created <code class="language-plaintext highlighter-rouge">Localizations</code> item.
+For each locale your application supports,
+add a new item and select the locale you wish to add
+from the pop-up menu in the <strong>Value</strong> field.
+This list should be consistent with the languages listed
+in the <a href="#specifying-supportedlocales">supportedLocales</a> parameter.</p>
+  </li>
+  <li>
+    <p>Once all supported locales have been added, save the file.</p>
+  </li>
+</ol>
+
+<p><a name="advanced-customization"></a></p>
+<h2 id="advanced-topics-for-further-customization">
+<a class="anchor" href="#advanced-topics-for-further-customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced topics for further customization</h2>
+
+<p>This section covers additional ways to customize a
+localized Flutter application.</p>
+
+<p><a name="advanced-locale"></a></p>
+<h3 id="advanced-locale-definition">
+<a class="anchor" href="#advanced-locale-definition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced locale definition</h3>
+
+<p>Some languages with multiple variants require more than just a
+language code to properly differentiate.</p>
+
+<p>For example, fully differentiating all variants of
+Chinese requires specifying the language code, script code,
+and country code. This is due to the existence
+of simplified and traditional script, as well as regional
+differences in the way characters are written within the same script type.</p>
+
+<p>In order to fully express every variant of Chinese for the
+country codes <code class="language-plaintext highlighter-rouge">CN</code>, <code class="language-plaintext highlighter-rouge">TW</code>, and <code class="language-plaintext highlighter-rouge">HK</code>, the list of supported
+locales should include:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">supportedLocales: [
+  Locale.fromSubtags(languageCode: 'zh'), // generic Chinese 'zh'
+  Locale.fromSubtags(
+      languageCode: 'zh',
+      scriptCode: 'Hans'), // generic simplified Chinese 'zh_Hans'
+  Locale.fromSubtags(
+      languageCode: 'zh',
+      scriptCode: 'Hant'), // generic traditional Chinese 'zh_Hant'
+  Locale.fromSubtags(
+      languageCode: 'zh',
+      scriptCode: 'Hans',
+      countryCode: 'CN'), // 'zh_Hans_CN'
+  Locale.fromSubtags(
+      languageCode: 'zh',
+      scriptCode: 'Hant',
+      countryCode: 'TW'), // 'zh_Hant_TW'
+  Locale.fromSubtags(
+      languageCode: 'zh',
+      scriptCode: 'Hant',
+      countryCode: 'HK'), // 'zh_Hant_HK'
+],</code></pre></div>
+</div>
+
+<p>This explicit full definition ensures that your app can
+distinguish between and provide the fully nuanced localized
+content to all combinations of these country codes.
+If a user’s preferred locale is not specified,
+then the closest match is used instead,
+which likely contains differences to what the user expects.
+Flutter only resolves to locales defined in <code class="language-plaintext highlighter-rouge">supportedLocales</code>.
+Flutter provides scriptCode-differentiated
+localized content for commonly used languages.
+See <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp/supportedLocales.html"><code class="language-plaintext highlighter-rouge">Localizations</code></a> for information on how the supported
+locales and the preferred locales are resolved.</p>
+
+<p>Although Chinese is a primary example,
+other languages like French (<code class="language-plaintext highlighter-rouge">fr_FR</code>, <code class="language-plaintext highlighter-rouge">fr_CA</code>)
+should also be fully differentiated for more nuanced localization.</p>
+
+<p><a name="tracking-locale"></a></p>
+<h3 id="tracking-the-locale-the-locale-class-and-the-localizations-widget">
+<a class="anchor" href="#tracking-the-locale-the-locale-class-and-the-localizations-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tracking the locale: The Locale class and the Localizations widget</h3>
+
+<p>The <a href="https://api.flutter.dev/flutter/dart-ui/Locale-class.html"><code class="language-plaintext highlighter-rouge">Locale</code></a> class identifies the user’s language.
+Mobile devices support setting the locale for all applications,
+usually using a system settings menu.
+Internationalized apps respond by displaying values that are
+locale-specific. For example, if the user switches the device’s locale
+from English to French, then a <code class="language-plaintext highlighter-rouge">Text</code> widget that originally
+displayed “Hello World” would be rebuilt with “Bonjour le monde”.</p>
+
+<p>The <a href="https://api.flutter.dev/flutter/flutter_localizations/GlobalWidgetsLocalizations-class.html"><code class="language-plaintext highlighter-rouge">Localizations</code></a> widget defines the locale
+for its child and the localized resources that the child depends on.
+The <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html"><code class="language-plaintext highlighter-rouge">WidgetsApp</code></a> widget creates a <code class="language-plaintext highlighter-rouge">Localizations</code> widget
+and rebuilds it if the system’s locale changes.</p>
+
+<p>You can always lookup an app’s current locale with
+<code class="language-plaintext highlighter-rouge">Localizations.localeOf()</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Locale myLocale = Localizations.localeOf(context);</code></pre></div>
+</div>
+
+<p><a name="specifying-supportedlocales"></a></p>
+<h3 id="specifying-the-apps-supportedlocales-parameter">
+<a class="anchor" href="#specifying-the-apps-supportedlocales-parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Specifying the app’s supported­Locales parameter</h3>
+
+<p>Although the <code class="language-plaintext highlighter-rouge">flutter_localizations</code> library currently supports 78
+languages and language variants, only English language translations
+are available by default. It’s up to the developer to decide exactly
+which languages to support.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">MaterialApp</code> <a href="https://api.flutter.dev/flutter/material/MaterialApp/supportedLocales.html"><code class="language-plaintext highlighter-rouge">supportedLocales</code></a>
+parameter limits locale changes. When the user changes the locale
+setting on their device, the app’s <code class="language-plaintext highlighter-rouge">Localizations</code> widget only
+follows suit if the new locale is a member of this list.
+If an exact match for the device locale isn’t found,
+then the first supported locale with a matching <a href="https://api.flutter.dev/flutter/dart-ui/Locale/languageCode.html"><code class="language-plaintext highlighter-rouge">languageCode</code></a>
+is used. If that fails, then the first element of the
+<code class="language-plaintext highlighter-rouge">supportedLocales</code> list is used.</p>
+
+<p>An app that wants to use a different “locale resolution”
+method can provide a <a href="https://api.flutter.dev/flutter/widgets/LocaleResolutionCallback.html"><code class="language-plaintext highlighter-rouge">localeResolutionCallback</code></a>.
+For example, to have your app unconditionally accept
+whatever locale the user selects:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">MaterialApp(
+  localeResolutionCallback: (
+    locale,
+    supportedLocales,
+  ) {
+    return locale;
+  },
+);</code></pre></div>
+</div>
+
+<h3 id="configuring-the-l10nyaml-file">
+<a class="anchor" href="#configuring-the-l10nyaml-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring the l10n.yaml file</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">l10n.yaml</code> file allows you to configure the <code class="language-plaintext highlighter-rouge">gen-l10n</code> tool
+to specify:</p>
+
+<ul>
+  <li>where all the input files are located</li>
+  <li>where all the output files should be created</li>
+  <li>what Dart class name to give your localizations delegate</li>
+</ul>
+
+<p>For a full list of options, either run <code class="language-plaintext highlighter-rouge">flutter gen-l10n --help</code>
+at the command line or refer to the following table:</p>
+
+<div class="table-wrapper">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">arb-dir</code></td>
+        <td>The directory where the template and translated arb files are located. The default is <code class="language-plaintext highlighter-rouge">lib/l10n</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">output-dir</code></td>
+        <td>The directory where the generated localization classes are written. This option is only relevant if you want to generate the localizations code somewhere else in the Flutter project. You also need to set the <code class="language-plaintext highlighter-rouge">synthetic-package</code> flag to false.<br><br>The app must import the file specified in the <code class="language-plaintext highlighter-rouge">output-localization-file</code> option from this directory. If unspecified, this defaults to the same directory as the input directory specified in <code class="language-plaintext highlighter-rouge">arb-dir</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">template-arb-file</code></td>
+        <td>The template arb file that is used as the basis for generating the Dart localization and messages files. The default is <code class="language-plaintext highlighter-rouge">app_en.arb</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">output-localization-file</code></td>
+        <td>The filename for the output localization and localizations delegate classes. The default is <code class="language-plaintext highlighter-rouge">app_localizations.dart</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">untranslated-messages-file</code></td>
+        <td>The location of a file that describes the localization messages haven’t been translated yet. Using this option creates a JSON file at the target location, in the following format: <br> <br><code class="language-plaintext highlighter-rouge">"locale": ["message_1", "message_2" ... "message_n"]</code><br><br> If this option is not specified, a summary of the messages that haven’t been translated are printed on the command line.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">output-class</code></td>
+        <td>The Dart class name to use for the output localization and localizations delegate classes. The default is <code class="language-plaintext highlighter-rouge">AppLocalizations</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">preferred-supported-locales</code></td>
+        <td>The list of preferred supported locales for the application. By default, the tool generates the supported locales list in alphabetical order. Use this flag to default to a different locale.<br><br>For example, pass in <code class="language-plaintext highlighter-rouge">[ en_US ]</code> to default to American English if a device supports it.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">header</code></td>
+        <td>The header to prepend to the generated Dart localizations files. This option takes in a string.<br><br>For example, pass in <code class="language-plaintext highlighter-rouge">"/// All localized files."</code> to prepend this string to the generated Dart file.<br><br>Alternatively, see the <code class="language-plaintext highlighter-rouge">header-file</code> option to pass in a text file for longer headers.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">header-file</code></td>
+        <td>The header to prepend to the generated Dart localizations files. The value of this option is the name of the file that contains the header text which will be inserted at the top of each generated Dart file. <br><br> Alternatively, see the <code class="language-plaintext highlighter-rouge">header</code> option to pass in a string for a simpler header.<br><br>This file should be placed in the directory specified in <code class="language-plaintext highlighter-rouge">arb-dir</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">[no-]use-deferred-loading</code></td>
+        <td>Specifies whether to generate the Dart localization file with locales imported as deferred, allowing for lazy loading of each locale in Flutter web.<br><br>This can reduce a web app’s initial startup time by decreasing the size of the JavaScript bundle. When this flag is set to true, the messages for a particular locale are only downloaded and loaded by the Flutter app as they are needed. For projects with a lot of different locales and many localization strings, it can improve performance to defer loading. For projects with a small number of locales, the difference is negligible, and might slow down the start up compared to bundling the localizations with the rest of the application.<br><br>Note that this flag doesn’t affect other platforms such as mobile or desktop.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">gen-inputs-and-outputs-list</code></td>
+        <td>When specified, the tool generates a JSON file containing the tool’s inputs and outputs, named <code class="language-plaintext highlighter-rouge">gen_l10n_inputs_ and_outputs.json</code>.<br><br>This can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations.  For example, the Flutter tool’s build system uses this file to keep track of when to call gen_l10n during hot reload.<br><br>The value of this option is the directory where the JSON file is generated.  When null, the JSON file won’t be generated.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">synthetic-package</code></td>
+        <td>Determines  whether the generated output files are generated as a synthetic package or at a specified directory in the Flutter project. This flag is <code class="language-plaintext highlighter-rouge">true</code> by default. When <code class="language-plaintext highlighter-rouge">synthetic-package</code> is set to <code class="language-plaintext highlighter-rouge">false</code>, it generates the localizations files in the directory specified by <code class="language-plaintext highlighter-rouge">arb-dir</code> by default. If <code class="language-plaintext highlighter-rouge">output-dir</code> is specified, files are generated there.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">project-dir</code></td>
+        <td>When specified, the tool uses the path passed into this option as the directory of the root Flutter project.<br><br>When null, the relative path to the present working directory is used.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">[no-]required-resource-attributes</code></td>
+        <td>Requires all resource ids to contain a corresponding resource attribute.<br><br>By default, simple messages won’t require metadata, but it’s highly recommended as this provides context for the meaning of a message to readers.<br><br>Resource attributes are still required for plural messages.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">[no-]nullable-getter</code></td>
+        <td>Specifies whether the localizations class getter is nullable.<br><br>By default, this value is true so that <code class="language-plaintext highlighter-rouge">Localizations.of(context)</code> returns a nullable value for backwards compatibility. If this value is false, then a null check is performed on the returned value of <code class="language-plaintext highlighter-rouge">Localizations.of(context)</code>, removing the need for null checking in user code.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">[no-]format</code></td>
+        <td>When specified, the <code class="language-plaintext highlighter-rouge">dart format</code> command is run after generating the localization files.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">use-escaping</code></td>
+        <td>Specifies whether to enable the use of single quotes as escaping syntax.</td>
+      </tr>
+      <tr>
+        <td><code class="language-plaintext highlighter-rouge">[no-]suppress-warnings</code></td>
+        <td>When specified, all warnings are suppressed.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="how-internationalization-in-flutter-works">
+<a class="anchor" href="#how-internationalization-in-flutter-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How internationalization in Flutter works</h2>
+
+<p>This section covers the technical details of how localizations work
+in Flutter. If you’re planning on supporting your own set of localized
+messages, the following content would be helpful. Otherwise, you can
+skip this section.</p>
+
+<p><a name="loading-and-retrieving"></a></p>
+<h3 id="loading-and-retrieving-localized-values">
+<a class="anchor" href="#loading-and-retrieving-localized-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading and retrieving localized values</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Localizations</code> widget is used to load and lookup objects that
+contain collections of localized values. Apps refer to these objects
+with <a href="https://api.flutter.dev/flutter/widgets/Localizations/of.html"><code class="language-plaintext highlighter-rouge">Localizations.of(context,type)</code></a>.
+If the device’s locale changes,
+the <code class="language-plaintext highlighter-rouge">Localizations</code> widget automatically loads values for
+the new locale and then rebuilds widgets that used it.
+This happens because <code class="language-plaintext highlighter-rouge">Localizations</code> works like an
+<a href="https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html"><code class="language-plaintext highlighter-rouge">InheritedWidget</code></a>.
+When a build function refers to an inherited widget,
+an implicit dependency on the inherited widget is created.
+When an inherited widget changes
+(when the <code class="language-plaintext highlighter-rouge">Localizations</code> widget’s locale changes),
+its dependent contexts are rebuilt.</p>
+
+<p>Localized values are loaded by the <code class="language-plaintext highlighter-rouge">Localizations</code> widget’s
+list of <a href="https://api.flutter.dev/flutter/widgets/LocalizationsDelegate-class.html"><code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code></a>s.
+Each delegate must define an asynchronous <a href="https://api.flutter.dev/flutter/widgets/LocalizationsDelegate/load.html"><code class="language-plaintext highlighter-rouge">load()</code></a>
+method that produces an object that encapsulates a
+collection of localized values.
+Typically these objects define one method per localized value.</p>
+
+<p>In a large app, different modules or packages might be bundled with
+their own localizations. That’s why the <code class="language-plaintext highlighter-rouge">Localizations</code> widget
+manages a table of objects, one per <code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code>.
+To retrieve the object produced by one of the <code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code>’s
+<code class="language-plaintext highlighter-rouge">load</code> methods, you specify a <code class="language-plaintext highlighter-rouge">BuildContext</code> and the object’s type.</p>
+
+<p>For example,
+the localized strings for the Material Components widgets
+are defined by the <a href="https://api.flutter.dev/flutter/material/MaterialLocalizations-class.html"><code class="language-plaintext highlighter-rouge">MaterialLocalizations</code></a> class.
+Instances of this class are created by a <code class="language-plaintext highlighter-rouge">LocalizationDelegate</code>
+provided by the <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html"><code class="language-plaintext highlighter-rouge">MaterialApp</code></a> class.
+They can be retrieved with <code class="language-plaintext highlighter-rouge">Localizations.of()</code>:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Localizations</span><span class="o">.</span><span class="na">of</span><span class="p">&lt;</span><span class="n">MaterialLocalizations</span><span class="p">&gt;(</span><span class="n">context</span><span class="p">,</span> <span class="n">MaterialLocalizations</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This particular <code class="language-plaintext highlighter-rouge">Localizations.of()</code> expression is used frequently,
+so the <code class="language-plaintext highlighter-rouge">MaterialLocalizations</code> class provides a convenient shorthand:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="n">MaterialLocalizations</span> <span class="nf">of</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">Localizations</span><span class="o">.</span><span class="na">of</span><span class="p">&lt;</span><span class="n">MaterialLocalizations</span><span class="p">&gt;(</span><span class="n">context</span><span class="p">,</span> <span class="n">MaterialLocalizations</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// References to the localized values defined by MaterialLocalizations</span>
+<span class="c1">/// are typically written like this:</span>
+
+<span class="nl">tooltip:</span> <span class="n">MaterialLocalizations</span><span class="o">.</span><span class="na">of</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="na">backButtonTooltip</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p><a name="defining-class"></a></p>
+<h3 id="defining-a-class-for-the-apps-localized-resources">
+<a class="anchor" href="#defining-a-class-for-the-apps-localized-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a class for the app’s localized resources</h3>
+
+<p>Putting together an internationalized Flutter app usually
+starts with the class that encapsulates the app’s localized values.
+The example that follows is typical of such classes.</p>
+
+<p>Complete source code for the <a href="https://github.com/flutter/website/tree/main/examples/internationalization/intl_example"><code class="language-plaintext highlighter-rouge">intl_example</code></a> for this app.</p>
+
+<p>This example is based on the APIs and tools provided by the
+<a href="https://pub.dev/packages/intl"><code class="language-plaintext highlighter-rouge">intl</code></a> package.
+<a href="#alternative-class">An alternative class for the app’s localized resources</a>
+describes <a href="https://github.com/flutter/website/tree/main/examples/internationalization/minimal">an example</a> that doesn’t depend on the <code class="language-plaintext highlighter-rouge">intl</code> package.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">DemoLocalizations</code> class defined below
+contains the app’s strings (just one for the example)
+translated into the locales that the app supports.
+It uses the <code class="language-plaintext highlighter-rouge">initializeMessages()</code> function
+generated by Dart’s <a href="https://pub.dev/packages/intl"><code class="language-plaintext highlighter-rouge">intl</code></a> package,
+<a href="https://pub.dev/documentation/intl/latest/intl/Intl/message.html"><code class="language-plaintext highlighter-rouge">Intl.message()</code></a>, to look them up.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class DemoLocalizations {
+  DemoLocalizations(this.localeName);
+
+  static Future&lt;DemoLocalizations&gt; load(Locale locale) {
+    final String name =
+        locale.countryCode == null || locale.countryCode!.isEmpty
+            ? locale.languageCode
+            : locale.toString();
+    final String localeName = Intl.canonicalizedLocale(name);
+
+    return initializeMessages(localeName).then((_) {
+      return DemoLocalizations(localeName);
+    });
+  }
+
+  static DemoLocalizations of(BuildContext context) {
+    return Localizations.of&lt;DemoLocalizations&gt;(context, DemoLocalizations)!;
+  }
+
+  final String localeName;
+
+  String get title {
+    return Intl.message(
+      'Hello World',
+      name: 'title',
+      desc: 'Title for the Demo application',
+      locale: localeName,
+    );
+  }
+}</code></pre></div>
+</div>
+
+<p>A class based on the <code class="language-plaintext highlighter-rouge">intl</code> package imports a generated
+message catalog that provides the <code class="language-plaintext highlighter-rouge">initializeMessages()</code>
+function and the per-locale backing store for <code class="language-plaintext highlighter-rouge">Intl.message()</code>.
+The message catalog is produced by an <a href="#dart-tools"><code class="language-plaintext highlighter-rouge">intl</code> tool</a>
+that analyzes the source code for classes that contain
+<code class="language-plaintext highlighter-rouge">Intl.message()</code> calls.  In this case that would just be the
+<code class="language-plaintext highlighter-rouge">DemoLocalizations</code> class.</p>
+
+<p><a name="adding-language"></a></p>
+<h3 id="adding-support-for-a-new-language">
+<a class="anchor" href="#adding-support-for-a-new-language" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding support for a new language</h3>
+
+<p>An app that needs to support a language that’s not included in
+<a href="https://api.flutter.dev/flutter/flutter_localizations/GlobalMaterialLocalizations-class.html"><code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations</code></a> has to do some extra work:
+it must provide about 70 translations (“localizations”)
+for words or phrases and the date patterns and symbols for the
+locale.</p>
+
+<p>See the following for an example of how to add
+support for the Norwegian Nynorsk language.</p>
+
+<p>A new <code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations</code> subclass defines the
+localizations that the Material library depends on.
+A new <code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code> subclass, which serves
+as factory for the <code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations</code> subclass,
+must also be defined.</p>
+
+<p>Here’s the source code for the complete <a href="https://github.com/flutter/website/tree/main/examples/internationalization/add_language/lib/main.dart"><code class="language-plaintext highlighter-rouge">add_language</code></a> example,
+minus the actual Nynorsk translations.</p>
+
+<p>The locale-specific <code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations</code> subclass
+is called <code class="language-plaintext highlighter-rouge">NnMaterialLocalizations</code>,
+and the <code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code> subclass is
+<code class="language-plaintext highlighter-rouge">_NnMaterialLocalizationsDelegate</code>.
+The value of <code class="language-plaintext highlighter-rouge">NnMaterialLocalizations.delegate</code>
+is an instance of the delegate, and is all
+that’s needed by an app that uses these localizations.</p>
+
+<p>The delegate class includes basic date and number format
+localizations. All of the other localizations are defined by <code class="language-plaintext highlighter-rouge">String</code>
+valued property getters in <code class="language-plaintext highlighter-rouge">NnMaterialLocalizations</code>, like this:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">@override
+String get moreButtonTooltip =&gt; r'More';
+
+@override
+String get aboutListTileTitleRaw =&gt; r'About $applicationName';
+
+@override
+String get alertDialogLabel =&gt; r'Alert';</code></pre></div>
+</div>
+
+<p>These are the English translations, of course.
+To complete the job you need to change the return
+value of each getter to an appropriate Nynorsk string.</p>
+
+<p>The getters return “raw” Dart strings that have an r prefix,
+like <code class="language-plaintext highlighter-rouge">r'About $applicationName'</code>,
+because sometimes the strings contain variables with a <code class="language-plaintext highlighter-rouge">$</code> prefix.
+The variables are expanded by parameterized localization methods:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">@override
+String get pageRowsInfoTitleRaw =&gt; r'$firstRow–$lastRow of $rowCount';
+
+@override
+String get pageRowsInfoTitleApproximateRaw =&gt;
+    r'$firstRow–$lastRow of about $rowCount';</code></pre></div>
+</div>
+
+<p>The date patterns and symbols of the locale will also need to
+be specified. In the source code, the date patterns and symbols
+are defined like this:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const nnLocaleDatePatterns = {
+  'd': 'd.',
+  'E': 'ccc',
+  'EEEE': 'cccc',
+  'LLL': 'LLL',
+  // ...
+}</code></pre></div>
+</div>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const nnDateSymbols = {
+  'NAME': 'nn',
+  'ERAS': &lt;dynamic&gt;[
+    'f.Kr.',
+    'e.Kr.',
+  ],
+  // ...
+}</code></pre></div>
+</div>
+
+<p>These will need to be modified for the locale to use the correct
+date formatting. Unfortunately, since the <code class="language-plaintext highlighter-rouge">intl</code> library does
+not share the same flexibility for number formatting, the formatting
+for an existing locale will have to be used as a substitute in
+<code class="language-plaintext highlighter-rouge">_NnMaterialLocalizationsDelegate</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class _NnMaterialLocalizationsDelegate
+    extends LocalizationsDelegate&lt;MaterialLocalizations&gt; {
+  const _NnMaterialLocalizationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) =&gt; locale.languageCode == 'nn';
+
+  @override
+  Future&lt;MaterialLocalizations&gt; load(Locale locale) async {
+    final String localeName = intl.Intl.canonicalizedLocale(locale.toString());
+
+    // The locale (in this case `nn`) needs to be initialized into the custom
+    // date symbols and patterns setup that Flutter uses.
+    date_symbol_data_custom.initializeDateFormattingCustom(
+      locale: localeName,
+      patterns: nnLocaleDatePatterns,
+      symbols: intl.DateSymbols.deserializeFromMap(nnDateSymbols),
+    );
+
+    return SynchronousFuture&lt;MaterialLocalizations&gt;(
+      NnMaterialLocalizations(
+        localeName: localeName,
+        // The `intl` library's NumberFormat class is generated from CLDR data
+        // (see https://github.com/dart-lang/intl/blob/master/lib/number_symbols_data.dart).
+        // Unfortunately, there is no way to use a locale that isn't defined in
+        // this map and the only way to work around this is to use a listed
+        // locale's NumberFormat symbols. So, here we use the number formats
+        // for 'en_US' instead.
+        decimalFormat: intl.NumberFormat('#,##0.###', 'en_US'),
+        twoDigitZeroPaddedFormat: intl.NumberFormat('00', 'en_US'),
+        // DateFormat here will use the symbols and patterns provided in the
+        // `date_symbol_data_custom.initializeDateFormattingCustom` call above.
+        // However, an alternative is to simply use a supported locale's
+        // DateFormat symbols, similar to NumberFormat above.
+        fullYearFormat: intl.DateFormat('y', localeName),
+        compactDateFormat: intl.DateFormat('yMd', localeName),
+        shortDateFormat: intl.DateFormat('yMMMd', localeName),
+        mediumDateFormat: intl.DateFormat('EEE, MMM d', localeName),
+        longDateFormat: intl.DateFormat('EEEE, MMMM d, y', localeName),
+        yearMonthFormat: intl.DateFormat('MMMM y', localeName),
+        shortMonthDayFormat: intl.DateFormat('MMM d'),
+      ),
+    );
+  }
+
+  @override
+  bool shouldReload(_NnMaterialLocalizationsDelegate old) =&gt; false;
+}</code></pre></div>
+</div>
+
+<p>For more information about localization strings, see the
+<a href="https://github.com/flutter/flutter/blob/master/packages/flutter_localizations/lib/src/l10n/README.md">flutter_localizations README</a>.</p>
+
+<p>Once you’ve implemented your language-specific subclasses of
+<code class="language-plaintext highlighter-rouge">GlobalMaterialLocalizations</code> and <code class="language-plaintext highlighter-rouge">LocalizationsDelegate</code>,
+you just need to add the language and a delegate instance to your app.
+Here’s some code that sets the app’s language to Nynorsk and
+adds the <code class="language-plaintext highlighter-rouge">NnMaterialLocalizations</code> delegate instance to the app’s
+<code class="language-plaintext highlighter-rouge">localizationsDelegates</code> list:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">const MaterialApp(
+  localizationsDelegates: [
+    GlobalWidgetsLocalizations.delegate,
+    GlobalMaterialLocalizations.delegate,
+    NnMaterialLocalizations.delegate, // Add the newly created delegate
+  ],
+  supportedLocales: [
+    Locale('en', 'US'),
+    Locale('nn'),
+  ],
+  home: Home(),
+),</code></pre></div>
+</div>
+
+<p><a name="alternative-internationalization-workflows"></a></p>
+<h2 id="alternative-internationalization-workflows">
+<a class="anchor" href="#alternative-internationalization-workflows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternative internationalization workflows</h2>
+
+<p>This section describes different approaches to internationalize
+your Flutter application.</p>
+
+<p><a name="alternative-class"></a></p>
+<h3 id="an-alternative-class-for-the-apps-localized-resources">
+<a class="anchor" href="#an-alternative-class-for-the-apps-localized-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>An alternative class for the app’s localized resources</h3>
+
+<p>The previous example was defined in terms of the Dart <code class="language-plaintext highlighter-rouge">intl</code>
+package. Developers can choose their own approach for managing
+localized values for the sake of simplicity or perhaps to integrate
+with a different i18n framework.</p>
+
+<p>Complete source code for the <a href="https://github.com/flutter/website/tree/main/examples/internationalization/minimal"><code class="language-plaintext highlighter-rouge">minimal</code></a> app.</p>
+
+<p>In the below example, the <code class="language-plaintext highlighter-rouge">DemoLocalizations</code> class 
+includes all of its translations directly in per language Maps.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class DemoLocalizations {
+  DemoLocalizations(this.locale);
+
+  final Locale locale;
+
+  static DemoLocalizations of(BuildContext context) {
+    return Localizations.of&lt;DemoLocalizations&gt;(context, DemoLocalizations)!;
+  }
+
+  static const _localizedValues = &lt;String, Map&lt;String, String&gt;&gt;{
+    'en': {
+      'title': 'Hello World',
+    },
+    'es': {
+      'title': 'Hola Mundo',
+    },
+  };
+
+  static List&lt;String&gt; languages ()=&gt; _localizedValues.keys.toList();
+
+  String get title {
+    return _localizedValues[locale.languageCode]!['title']!;
+  }
+}</code></pre></div>
+</div>
+
+<p>In the minimal app the <code class="language-plaintext highlighter-rouge">DemoLocalizationsDelegate</code> is slightly
+different. Its <code class="language-plaintext highlighter-rouge">load</code> method returns a <a href="https://api.flutter.dev/flutter/foundation/SynchronousFuture-class.html"><code class="language-plaintext highlighter-rouge">SynchronousFuture</code></a>
+because no asynchronous loading needs to take place.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class DemoLocalizationsDelegate
+    extends LocalizationsDelegate&lt;DemoLocalizations&gt; {
+  const DemoLocalizationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) =&gt; DemoLocalizations.languages().contains(locale.languageCode);
+
+
+  @override
+  Future&lt;DemoLocalizations&gt; load(Locale locale) {
+    // Returning a SynchronousFuture here because an async "load" operation
+    // isn't needed to produce an instance of DemoLocalizations.
+    return SynchronousFuture&lt;DemoLocalizations&gt;(DemoLocalizations(locale));
+  }
+
+  @override
+  bool shouldReload(DemoLocalizationsDelegate old) =&gt; false;
+}</code></pre></div>
+</div>
+
+<p><a name="dart-tools"></a></p>
+<h3 id="using-the-dart-intl-tools">
+<a class="anchor" href="#using-the-dart-intl-tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the Dart intl tools</h3>
+
+<p>Before building an API using the Dart <a href="https://pub.dev/packages/intl"><code class="language-plaintext highlighter-rouge">intl</code></a> package
+you’ll want to review the <code class="language-plaintext highlighter-rouge">intl</code> package’s documentation.
+Here’s a summary of the process
+for localizing an app that depends on the <code class="language-plaintext highlighter-rouge">intl</code> package.</p>
+
+<p>The demo app depends on a generated source file called
+<code class="language-plaintext highlighter-rouge">l10n/messages_all.dart</code>, which defines all of the
+localizable strings used by the app.</p>
+
+<p>Rebuilding <code class="language-plaintext highlighter-rouge">l10n/messages_all.dart</code> requires two steps.</p>
+
+<ol>
+  <li>
+    <p>With the app’s root directory as the current directory,
+generate <code class="language-plaintext highlighter-rouge">l10n/intl_messages.arb</code> from <code class="language-plaintext highlighter-rouge">lib/main.dart</code>:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>dart run intl_translation:extract_to_arb <span class="nt">--output-dir</span><span class="o">=</span>lib/l10n lib/main.dart
+</code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">intl_messages.arb</code> file is a JSON format map with one entry for
+each <code class="language-plaintext highlighter-rouge">Intl.message()</code> function defined in <code class="language-plaintext highlighter-rouge">main.dart</code>. This
+file serves as a template for the English and Spanish translations,
+<code class="language-plaintext highlighter-rouge">intl_en.arb</code> and <code class="language-plaintext highlighter-rouge">intl_es.arb</code>.
+These translations are created by you, the developer.</p>
+  </li>
+  <li>
+    <p>With the app’s root directory as the current directory,
+generate <code class="language-plaintext highlighter-rouge">intl_messages_&lt;locale&gt;.dart</code> for each
+<code class="language-plaintext highlighter-rouge">intl_&lt;locale&gt;.arb</code> file and <code class="language-plaintext highlighter-rouge">intl_messages_all.dart</code>,
+which imports all of the messages files:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>dart run intl_translation:generate_from_arb <span class="se">\</span>
+<span class="go">    --output-dir=lib/l10n --no-use-deferred-loading \
+    lib/main.dart lib/l10n/intl_*.arb
+</span></code></pre></div>    </div>
+
+    <p><strong><em>Windows does not support file name wildcarding.</em></strong>
+Instead, list the .arb files that were generated by the
+<code class="language-plaintext highlighter-rouge">intl_translation:extract_to_arb</code> command.</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>dart run intl_translation:generate_from_arb <span class="se">\</span>
+<span class="go">    --output-dir=lib/l10n --no-use-deferred-loading \
+    lib/main.dart \
+    lib/l10n/intl_en.arb lib/l10n/intl_fr.arb lib/l10n/intl_messages.arb
+</span></code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">DemoLocalizations</code> class uses the generated <code class="language-plaintext highlighter-rouge">initializeMessages()</code>
+function (defined in <code class="language-plaintext highlighter-rouge">intl_messages_all.dart</code>)
+to load the localized messages and <code class="language-plaintext highlighter-rouge">Intl.message()</code> to look them up.</p>
+  </li>
+</ol>
+
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    
+
+  </body>
+</html>

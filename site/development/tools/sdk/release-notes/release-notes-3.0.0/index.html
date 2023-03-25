@@ -1,0 +1,2897 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flutter 3.0.0 release notes | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="Release notes for Flutter 3.0.0.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Flutter 3.0.0 release notes">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/tools/sdk/release-notes/release-notes-3.0.0">
+    <meta property="og:description" content="Release notes for Flutter 3.0.0.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    
+  
+  
+  
+  <div
+    id="site-toc--side"
+    class="site-toc site-toc--side fixed-col col-xl-2 order-3 "
+    data-fixed-column
+  >
+    <header class="site-toc__title">
+      Contents
+      </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#if-you-see-warnings-about-bindings">If you see warnings about bindings</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#your-code">Your code</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#framework-issues">Framework issues</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#whats-changed">What’s Changed</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#framework">Framework</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#tooling">Tooling</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#macos">MacOS</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#new-contributors">New Contributors</a></li>
+</ul>
+  </div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/tools/sdk/release-notes/release-notes-3.0.0.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Flutter 3.0.0 release notes'&page-url=http://0.0.0.0:4002/development/tools/sdk/release-notes/release-notes-3.0.0/&page-source=https://github.com/flutter/website/tree/main/src/development/tools/sdk/release-notes/release-notes-3.0.0.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Flutter 3.0.0 release notes</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/tools" property="item" typeof="WebPage"><span property="name">Tools</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/tools/sdk" property="item" typeof="WebPage"><span property="name">SDK</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/tools/sdk/release-notes" property="item" typeof="WebPage"><span property="name">Release notes</span>
+      </a>
+      <meta property="position" content="3" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/tools/sdk/release-notes/release-notes-3.0.0" property="item" typeof="WebPage"><span property="name">3.0.0 release notes</span>
+      </a>
+      <meta property="position" content="4" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div
+    id="site-toc--inline"
+    class="site-toc site-toc--inline "
+  >
+    <header class="site-toc__title">
+      Contents
+    </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#if-you-see-warnings-about-bindings">If you see warnings about bindings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dependencies">Dependencies</a></li>
+<li class="toc-entry toc-h3"><a href="#your-code">Your code</a></li>
+<li class="toc-entry toc-h3"><a href="#framework-issues">Framework issues</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#whats-changed">What’s Changed</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#framework">Framework</a></li>
+<li class="toc-entry toc-h3"><a href="#tooling">Tooling</a></li>
+<li class="toc-entry toc-h3"><a href="#macos">MacOS</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#new-contributors">New Contributors</a></li>
+</ul>
+  </div>
+<p>This page has release notes for 3.0.0.
+For information about subsequent bug-fix releases,
+see <a href="https://github.com/flutter/flutter/wiki/Hotfixes-to-the-Stable-Channel">Hotfixes to the Stable Channel</a>.</p>
+
+<h2 id="if-you-see-warnings-about-bindings">
+<a class="anchor" href="#if-you-see-warnings-about-bindings" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you see warnings about bindings</h2>
+
+<p>When migrating to Flutter 3,
+you might see warnings like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning: Operand of null-aware operation '!' has type 'SchedulerBinding' which excludes null.
+</code></pre></div></div>
+
+<p>These are caused by a simplification of the API
+(the <code class="language-plaintext highlighter-rouge">instance</code> property on bindings is now non-nullable),
+combined with an eager compiler that wants to report
+any case where redundant null-aware operators
+(such as <code class="language-plaintext highlighter-rouge">!</code> and <code class="language-plaintext highlighter-rouge">?.</code>) that are used when
+they’re not necessary.</p>
+
+<p>If this happens,
+there might be several causes with different solutions:</p>
+
+<h3 id="dependencies">
+<a class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>If your dependencies use bindings,
+they might need updating to silence the warnings.
+Your builds should be unaffected except for
+the verbose warnings.
+You can ignore the warnings for now
+(maybe reach out to your dependency’s
+developers to convince them to update).</p>
+
+<h3 id="your-code">
+<a class="anchor" href="#your-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Your code</h3>
+
+<p>If the problem refers to your own code,
+you can update it by running <code class="language-plaintext highlighter-rouge">dart fix --apply</code>.
+This should resolve all the warnings.</p>
+
+<p>If you need your code to support both
+Flutter 3 and earlier versions
+(maybe because your code is a library),
+then you can wrap calls to <code class="language-plaintext highlighter-rouge">binding.instance</code>
+with calls to a method such as the following:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// This allows a value of type T or T?</span>
+<span class="c1">/// to be treated as a value of type T?.</span>
+<span class="c1">///</span>
+<span class="c1">/// We use this so that APIs that have become</span>
+<span class="c1">/// non-nullable can still be used with `!` and `?`</span>
+<span class="c1">/// to support older versions of the API as well.</span>
+<span class="n">T</span><span class="o">?</span> <span class="n">_ambiguate</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span><span class="o">?</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For example, instead of the following:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SchedulerBinding</span><span class="o">.</span><span class="na">instance</span><span class="o">!.</span><span class="na">addPostFrameCallback</span><span class="p">(...);</span>
+</code></pre></div></div>
+
+<p>You can use:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">_ambiguate</span><span class="p">(</span><span class="n">SchedulerBinding</span><span class="o">.</span><span class="na">instance</span><span class="p">)</span><span class="o">!.</span><span class="na">addPostFrameCallback</span><span class="p">(...);</span>
+</code></pre></div></div>
+
+<p>When you no longer need to support versions of
+Flutter before 3.0.0, you can remove this and
+replace it with the following:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SchedulerBinding</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">addPostFrameCallback</span><span class="p">(...);</span>
+</code></pre></div></div>
+
+<h3 id="framework-issues">
+<a class="anchor" href="#framework-issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Framework issues</h3>
+
+<p>If the error messages do not point to one of your dependencies,
+and <code class="language-plaintext highlighter-rouge">dart fix --apply</code> doesn’t fix the issue,
+or if the warnings are fatal
+(for example, your application refuses to run), please
+<a href="https://github.com/flutter/flutter/issues/new/choose">file a bug</a>.</p>
+
+<h2 id="whats-changed">
+<a class="anchor" href="#whats-changed" aria-hidden="true"><span class="octicon octicon-link"></span></a>What’s Changed</h2>
+
+<p>The following changes happened in this release:</p>
+
+<h3 id="framework">
+<a class="anchor" href="#framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Framework</h3>
+
+<ul>
+  <li>Revert “[Fonts] Update icons” by @guidezpl in https://github.com/flutter/flutter/pull/95966</li>
+  <li>Improve iOS fidelity of <code class="language-plaintext highlighter-rouge">barrierColor</code>s and edge decorations for full-screen Cupertino page transitions by @willlockwood in https://github.com/flutter/flutter/pull/95537</li>
+  <li>[Fonts] Update icons by @guidezpl in https://github.com/flutter/flutter/pull/96115</li>
+  <li>Allow <code class="language-plaintext highlighter-rouge">Checkbox</code>es in <code class="language-plaintext highlighter-rouge">DataTable</code>s to inherit colors from <code class="language-plaintext highlighter-rouge">CheckboxTheme</code> by @willlockwood in https://github.com/flutter/flutter/pull/96007</li>
+  <li>Fix autofill eligibility check by @LongCatIsLooong in https://github.com/flutter/flutter/pull/95210</li>
+  <li>[DropdownButtonFormField] Add borderRadius property by @dheerajv09 in https://github.com/flutter/flutter/pull/95944</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">DataTable</code> <code class="language-plaintext highlighter-rouge">_SortArrow</code> changing orientation when state is updated by @markusaksli-nc in https://github.com/flutter/flutter/pull/94455</li>
+  <li>Fix typo by @goderbauer in https://github.com/flutter/flutter/pull/96195</li>
+  <li>RawKeyboard repeat events, and SingleActivator.includeRepeats by @dkwingsmt in https://github.com/flutter/flutter/pull/96154</li>
+  <li>InteractiveViewer scaleFactor by @justinmc in https://github.com/flutter/flutter/pull/95224</li>
+  <li>Reland “Ensure the engineLayer is disposed when an OpacityLayer is disabled”” by @dnfield in https://github.com/flutter/flutter/pull/96295</li>
+  <li>Disallow copy and cut when <code class="language-plaintext highlighter-rouge">obscureText</code> is set on <code class="language-plaintext highlighter-rouge">TextField</code> by @gspencergoog in https://github.com/flutter/flutter/pull/96233</li>
+  <li>Revert “Disallow copy and cut when <code class="language-plaintext highlighter-rouge">obscureText</code> is set on <code class="language-plaintext highlighter-rouge">TextField</code> (#96233)” by @gspencergoog in https://github.com/flutter/flutter/pull/96308</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">paints..something</code> and <code class="language-plaintext highlighter-rouge">paints..everything</code> succeeding when they should fail by @willlockwood in https://github.com/flutter/flutter/pull/95993</li>
+  <li>Fixes <code class="language-plaintext highlighter-rouge">RangeError</code> bug when length of <code class="language-plaintext highlighter-rouge">TabBar.tabs</code> is changed by @werainkhatri in https://github.com/flutter/flutter/pull/94623</li>
+  <li>Make <code class="language-plaintext highlighter-rouge">FocusNode.traversalChildren</code> not be affected by parent’s <code class="language-plaintext highlighter-rouge">canRequestFocus</code> by @gspencergoog in https://github.com/flutter/flutter/pull/95061</li>
+  <li>fix a scrollbar bug by @xu-baolin in https://github.com/flutter/flutter/pull/95894</li>
+  <li>Do not crash on LeaderLayer.applyTransform after retained rendering by @goderbauer in https://github.com/flutter/flutter/pull/96144</li>
+  <li>LayerLink can temporary allow multiple leaders by @chunhtai in https://github.com/flutter/flutter/pull/95977</li>
+  <li>TextEditingValue default selection docs by @justinmc in https://github.com/flutter/flutter/pull/96245</li>
+  <li>Adds ability to mark a subtree as not traversable by @werainkhatri in https://github.com/flutter/flutter/pull/94626</li>
+  <li>InkResponse enable if onTapDown is not null by @markusaksli-nc in https://github.com/flutter/flutter/pull/96224</li>
+  <li>InkWell.overlayColor is now resolved against MaterialState.pressed by @HansMuller in https://github.com/flutter/flutter/pull/96435</li>
+  <li>Support Scribble Handwriting by @fbcouch in https://github.com/flutter/flutter/pull/75472</li>
+  <li>[RenderListWheelViewport] Update content dimensions to prevent scroll offset changes by @xu-baolin in https://github.com/flutter/flutter/pull/96102</li>
+  <li>Fix Dialog alignment doc by @TahaTesser in https://github.com/flutter/flutter/pull/96388</li>
+  <li>Enable no_leading_underscores_for_library_prefixes by @goderbauer in https://github.com/flutter/flutter/pull/96420</li>
+  <li>Expose keyCode field in RawKeyEventDataWeb. by @b-luk in https://github.com/flutter/flutter/pull/96483</li>
+  <li>enable more retained rendering opportunities for LeaderLayer by @goderbauer in https://github.com/flutter/flutter/pull/96486</li>
+  <li>Migrate FloatingActionButton to Material 3 by @darrenaustin in https://github.com/flutter/flutter/pull/94486</li>
+  <li>Make <code class="language-plaintext highlighter-rouge">DraggableScrollableController</code> a <code class="language-plaintext highlighter-rouge">ChangeNotifier</code> by @caseycrogers in https://github.com/flutter/flutter/pull/96089</li>
+  <li>enable unnecessary_late by @goderbauer in https://github.com/flutter/flutter/pull/96417</li>
+  <li>Correct scroll notifications for NestedScrollView by @Piinks in https://github.com/flutter/flutter/pull/96482</li>
+  <li>MaterialStateProperty Docs by @Piinks in https://github.com/flutter/flutter/pull/96532</li>
+  <li>Add debug property for onPointerHover by @WasserEsser in https://github.com/flutter/flutter/pull/96555</li>
+  <li>Date Picker year selectors should announce as ‘buttons’ to accessibility framework. by @darrenaustin in https://github.com/flutter/flutter/pull/96546</li>
+  <li>Revert “Support Scribble Handwriting” by @LongCatIsLooong in https://github.com/flutter/flutter/pull/96615</li>
+  <li>Add Supported devices to the TapGestureRecognizer by @chunhtai in https://github.com/flutter/flutter/pull/96560</li>
+  <li>Fix UNUSED_ELEMENT_PARAMETER for field formal initializers. by @scheglov in https://github.com/flutter/flutter/pull/96553</li>
+  <li>Mac cmd + shift + left/right by @justinmc in https://github.com/flutter/flutter/pull/95948</li>
+  <li>Modularize ReorderableListView auto scrolling logic by @chunhtai in https://github.com/flutter/flutter/pull/96563</li>
+  <li>Slider: add themeable mouse cursor v2 by @HansMuller in https://github.com/flutter/flutter/pull/96623</li>
+  <li>Land Set “basic” mouse cursor for disabled buttons, PR #89346 by @HansMuller in https://github.com/flutter/flutter/pull/96561</li>
+  <li>Fix a [_ViewportElement] RenderObjectChild update bug by @xu-baolin in https://github.com/flutter/flutter/pull/96377</li>
+  <li>Provide Appbar’s <code class="language-plaintext highlighter-rouge">foregroundColor</code> to package license page titles by @TahaTesser in https://github.com/flutter/flutter/pull/95685</li>
+  <li>Add example for CustomMultiChildLayout by @gspencergoog in https://github.com/flutter/flutter/pull/96632</li>
+  <li>PopupMenu: add themeable mouse cursor v2 by @HansMuller in https://github.com/flutter/flutter/pull/96567</li>
+  <li>Added TabBar.splashFactory, TabBarTheme.splashFactory,overlayColor by @HansMuller in https://github.com/flutter/flutter/pull/96252</li>
+  <li>[framework] dont null assert in _debugVerifyIllFatedPopulation by @jonahwilliams in https://github.com/flutter/flutter/pull/96551</li>
+  <li>Disallow copy and cut when text field is obscured. by @gspencergoog in https://github.com/flutter/flutter/pull/96309</li>
+  <li>feat: Added more youtube refs to widgets docstrings by @albertodev01 in https://github.com/flutter/flutter/pull/96484</li>
+  <li>update adaptive slider docs by @maheshmnj in https://github.com/flutter/flutter/pull/96599</li>
+  <li>Fix UNUSED_ELEMENT_PARAMETER for unused field formal parameter. by @scheglov in https://github.com/flutter/flutter/pull/96684</li>
+  <li>feat: added custom padding in PopupMenuButton by @arafaysaleem in https://github.com/flutter/flutter/pull/96657</li>
+  <li>[framework] remove hashcode override for Element by @jonahwilliams in https://github.com/flutter/flutter/pull/96644</li>
+  <li>Do not eagerly allocate inherited widget caches when initializing element tree by @jonahwilliams in https://github.com/flutter/flutter/pull/95596</li>
+  <li>Revert “feat: added custom padding in PopupMenuButton (#96657)” by @gspencergoog in https://github.com/flutter/flutter/pull/96781</li>
+  <li>Fix animate to curve argument by @caseycrogers in https://github.com/flutter/flutter/pull/96627</li>
+  <li>Clean up mouse region code by @chunhtai in https://github.com/flutter/flutter/pull/96636</li>
+  <li>Prevents DropdownButton from applying borderRadius property to first and last element of the list. by @chinmoy12c in https://github.com/flutter/flutter/pull/96695</li>
+  <li>Adds BorderStyle property to TabPageSelector by @chinmoy12c in https://github.com/flutter/flutter/pull/92436</li>
+  <li>Remove duplicate hashCode values &amp; add missing commas  by @TahaTesser in https://github.com/flutter/flutter/pull/96844</li>
+  <li>Removed the date from the Next/Previous month button’s semantics for the Date Picker. by @darrenaustin in https://github.com/flutter/flutter/pull/96876</li>
+  <li>chore: added YouTube ref to docstring by @albertodev01 in https://github.com/flutter/flutter/pull/96880</li>
+  <li>chore(flutter_test): updated ‘matchesGoldenFile’ documentation by @albertodev01 in https://github.com/flutter/flutter/pull/96194</li>
+  <li>Use strict-raw-types analysis instead of no-implicit-dynamic by @srawlins in https://github.com/flutter/flutter/pull/96296</li>
+  <li>[Keyboard] Dispatch solitary synthesized <code class="language-plaintext highlighter-rouge">KeyEvent</code>s by @dkwingsmt in https://github.com/flutter/flutter/pull/96874</li>
+  <li>[web] validate WebDriver responses by @yjbanov in https://github.com/flutter/flutter/pull/96884</li>
+  <li>Call image stream listeners asynchronously if added asynchronously by @WasserEsser in https://github.com/flutter/flutter/pull/95525</li>
+  <li>chore: Moved didUpdateWidget calls first by @albertodev01 in https://github.com/flutter/flutter/pull/96944</li>
+  <li>Explain how MaterialApp renders text style in absence of Material Widget by @TahaTesser in https://github.com/flutter/flutter/pull/96530</li>
+  <li>Enable no_leading_underscores_for_local_identifiers by @goderbauer in https://github.com/flutter/flutter/pull/96422</li>
+  <li>Add ability to control if bottom child focus can be excluded in <code class="language-plaintext highlighter-rouge">AnimatedCrossFade</code> by @TahaTesser in https://github.com/flutter/flutter/pull/96593</li>
+  <li>Add closeDrawer and closeEndDrawer in ScaffoldState by @pedromassango in https://github.com/flutter/flutter/pull/96960</li>
+  <li>PageView scroll physics to match Android by @nt4f04uNd in https://github.com/flutter/flutter/pull/95423</li>
+  <li>ListTile: add themeable mouse cursor  by @TahaTesser in https://github.com/flutter/flutter/pull/96740</li>
+  <li>Adds <code class="language-plaintext highlighter-rouge">CheckboxListTile.checkboxShape</code> by @werainkhatri in https://github.com/flutter/flutter/pull/95714</li>
+  <li>Allow current leader of layerlink to detach before the previous leade… by @chunhtai in https://github.com/flutter/flutter/pull/96810</li>
+  <li>Export shadows to <code class="language-plaintext highlighter-rouge">Icon</code> API by @mateusfccp in https://github.com/flutter/flutter/pull/83638</li>
+  <li>Deprecate Scrollbar isAlwaysShown -&gt; thumbVisibility by @Piinks in https://github.com/flutter/flutter/pull/96957</li>
+  <li>Show keyboard after text input connection restarts by @LongCatIsLooong in https://github.com/flutter/flutter/pull/96541</li>
+  <li>Revert “PageView scroll physics to match Android” by @Piinks in https://github.com/flutter/flutter/pull/97150</li>
+  <li>[framework] remove extra casts by @jonahwilliams in https://github.com/flutter/flutter/pull/97155</li>
+  <li>add direction to CupertinoPickerDefaultSelectionOverlay by @Dan-Crane in https://github.com/flutter/flutter/pull/92959</li>
+  <li>relax routerReportsNewRouteInformation function signature by @chunhtai in https://github.com/flutter/flutter/pull/97154</li>
+  <li>Adds <code class="language-plaintext highlighter-rouge">CommonFinders.bySubtype&lt;T extends Widget&gt;()</code> finder. by @lrhn in https://github.com/flutter/flutter/pull/91415</li>
+  <li>Use a more appropriate curve on ScrollsToTop by @SuhwanCha in https://github.com/flutter/flutter/pull/96574</li>
+  <li>Deprecate Scrollbar hoverThickness and showTrackOnHover by @Piinks in https://github.com/flutter/flutter/pull/97173</li>
+  <li>Add splashRadius to PopupMenuButton by @Moluram in https://github.com/flutter/flutter/pull/91148</li>
+  <li>[framework] make HitTestEntry generic by @jonahwilliams in https://github.com/flutter/flutter/pull/97175</li>
+  <li>Mirror before scaling in _AnimatedIconPainter by @Amir-P in https://github.com/flutter/flutter/pull/93312</li>
+  <li>Flutter web add support for NetworkImage headers by @jonas-martinez in https://github.com/flutter/flutter/pull/85954</li>
+  <li>Re-land “Support Scribble Handwriting” (#96615) by @fbcouch in https://github.com/flutter/flutter/pull/96881</li>
+  <li>Revert the Scribble reland by @justinmc in https://github.com/flutter/flutter/pull/97405</li>
+  <li>Update RawScrollbar to support the track by @Piinks in https://github.com/flutter/flutter/pull/97335</li>
+  <li>Deprecate <code class="language-plaintext highlighter-rouge">useDeleteButtonTooltip</code> for Chips by @RoyARG02 in https://github.com/flutter/flutter/pull/96174</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">RefreshIndicator</code>: Add an interactive example by @TahaTesser in https://github.com/flutter/flutter/pull/97254</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">CupertinoTimerPicker</code> Interactive Example by @TahaTesser in https://github.com/flutter/flutter/pull/93621</li>
+  <li>Fix tappable area for <code class="language-plaintext highlighter-rouge">DropdownButtonFormField</code> &amp; add <code class="language-plaintext highlighter-rouge">InkWell</code> to <code class="language-plaintext highlighter-rouge">DropdownButton</code> by @TahaTesser in https://github.com/flutter/flutter/pull/95906</li>
+  <li>fixes navigator to be able to handle route with duplicate page key in… by @chunhtai in https://github.com/flutter/flutter/pull/97394</li>
+  <li>Update <code class="language-plaintext highlighter-rouge">PopupMenuButton</code> example by @TahaTesser in https://github.com/flutter/flutter/pull/96681</li>
+  <li>[Icons] Prevent double underscores after replacement by @guidezpl in https://github.com/flutter/flutter/pull/96904</li>
+  <li>improve docs for testing dart fix by @werainkhatri in https://github.com/flutter/flutter/pull/97493</li>
+  <li>PointerDeviceKind and ui.PointerChange forwards-compatibility by @moffatman in https://github.com/flutter/flutter/pull/97350</li>
+  <li>Re-land “Support Scribble Handwriting” (#96615) by @fbcouch in https://github.com/flutter/flutter/pull/97437</li>
+  <li>BottomNavigationBar: add themeable mouse cursor by @TahaTesser in https://github.com/flutter/flutter/pull/96736</li>
+  <li>Fix VisualDensity’s vertical lerp implementation by @WasserEsser in https://github.com/flutter/flutter/pull/96597</li>
+  <li>chore: Updated AutofillContextAction documentation by @albertodev01 in https://github.com/flutter/flutter/pull/97245</li>
+  <li>Updated gen_defaults to use new JSON output from the Material token database. by @darrenaustin in https://github.com/flutter/flutter/pull/97596</li>
+  <li>Allow Clip.none as a valid clipBehavior by @Piinks in https://github.com/flutter/flutter/pull/95593</li>
+  <li>Add DisplayFeatureSubScreen widget by @andreidiaconu in https://github.com/flutter/flutter/pull/92907</li>
+  <li>Updated the FAB defaults to only use function overrides for computed values. by @darrenaustin in https://github.com/flutter/flutter/pull/97677</li>
+  <li>Add docs about horizontal scrollbars by @Piinks in https://github.com/flutter/flutter/pull/97673</li>
+  <li>Update SliverChildDelegate docs by @Piinks in https://github.com/flutter/flutter/pull/97674</li>
+  <li>Add splashBorderRadius to TabBar by @nayeemtby in https://github.com/flutter/flutter/pull/97204</li>
+  <li>Invalidate the TextPainter line metrics cache when redoing text layout by @jason-simmons in https://github.com/flutter/flutter/pull/97446</li>
+  <li>Fix RouterObserver didPop is not called when reverseTransitionDuratio… by @chunhtai in https://github.com/flutter/flutter/pull/97171</li>
+  <li>Fix Local <code class="language-plaintext highlighter-rouge">SwitchTheme</code> not being inherited by <code class="language-plaintext highlighter-rouge">Switch</code> Widget by @TahaTesser in https://github.com/flutter/flutter/pull/97705</li>
+  <li>Clean up the bindings APIs. by @Hixie in https://github.com/flutter/flutter/pull/89451</li>
+  <li>Fix Local <code class="language-plaintext highlighter-rouge">CheckBoxTheme</code> not being inherited by <code class="language-plaintext highlighter-rouge">CheckBox</code> Widget by @TahaTesser in https://github.com/flutter/flutter/pull/97715</li>
+  <li>Fix Local <code class="language-plaintext highlighter-rouge">RadioTheme</code> not being inherited by <code class="language-plaintext highlighter-rouge">Radio</code> Widget by @TahaTesser in https://github.com/flutter/flutter/pull/97713</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">PopupMenuButton</code> example tag by @TahaTesser in https://github.com/flutter/flutter/pull/97763</li>
+  <li>Prepare the flutter.material.RawMaterialButton.mouseCursor doc template for themeable mouse cursors by @jpnurmi in https://github.com/flutter/flutter/pull/88470</li>
+  <li>Text editing shift + tap + drag interaction by @justinmc in https://github.com/flutter/flutter/pull/95213</li>
+  <li>Make the application lifecycle does not affect <code class="language-plaintext highlighter-rouge">SchedulerBinding.scheduleForcedFrame</code>. by @ColdPaleLight in https://github.com/flutter/flutter/pull/97468</li>
+  <li>Report progress on Dismissible update callback by @cachapa in https://github.com/flutter/flutter/pull/95504</li>
+  <li>RenderIndexedStack - Mark invisible children as offstage in debugDescribeProperties by @WasserEsser in https://github.com/flutter/flutter/pull/96639</li>
+  <li>TabBar: add themeable mouse cursor  by @TahaTesser in https://github.com/flutter/flutter/pull/96737</li>
+  <li>removes <code class="language-plaintext highlighter-rouge">Material</code> from tests of <code class="language-plaintext highlighter-rouge">FooButton</code>s that implement it internally by @werainkhatri in https://github.com/flutter/flutter/pull/96899</li>
+  <li>Update default <code class="language-plaintext highlighter-rouge">ThemeData.textTheme</code> styles to Material 3 typography by @darrenaustin in https://github.com/flutter/flutter/pull/97829</li>
+  <li>Undo/redo by @justinmc in https://github.com/flutter/flutter/pull/96968</li>
+  <li>Remove RenderEditable dependency from TextSelectionHandleOverlay by @chunhtai in https://github.com/flutter/flutter/pull/97967</li>
+  <li>[framework] don’t hit test for system nav bar or system chrome on desktop by @jonahwilliams in https://github.com/flutter/flutter/pull/97883</li>
+  <li>[framework] inline casts on Element.widget getter to improve web performance by @jonahwilliams in https://github.com/flutter/flutter/pull/97822</li>
+  <li>[EditableText] honor the “brieflyShowPassword” system setting by @LongCatIsLooong in https://github.com/flutter/flutter/pull/97769</li>
+  <li>Revert “[EditableText] honor the “brieflyShowPassword” system setting” by @godofredoc in https://github.com/flutter/flutter/pull/98089</li>
+  <li>implemented TapUp within InkResponse and InkWell by @gslender in https://github.com/flutter/flutter/pull/93833</li>
+  <li>Fix timer keeps active when resampling disabled in some cases by @wangying3426 in https://github.com/flutter/flutter/pull/97197</li>
+  <li>Unify Text selection API by @chunhtai in https://github.com/flutter/flutter/pull/98073</li>
+  <li>Allow remove listener on disposed change notifier by @chunhtai in https://github.com/flutter/flutter/pull/97988</li>
+  <li>[flutter_driver] show refresh rate status in timeline summary by @cyanglaz in https://github.com/flutter/flutter/pull/95699</li>
+  <li>Shift tap on an unfocused field by @justinmc in https://github.com/flutter/flutter/pull/97543</li>
+  <li>Windows/Linux keyboard shortcuts at a wordwrap by @justinmc in https://github.com/flutter/flutter/pull/96323</li>
+  <li>PointerDeviceKind forwards-compatibility in flutter_test by @moffatman in https://github.com/flutter/flutter/pull/98202</li>
+  <li>EditableText does not request focus on autofill by @LongCatIsLooong in https://github.com/flutter/flutter/pull/97846</li>
+  <li>[framework] use platform touchslop on Android by @jonahwilliams in https://github.com/flutter/flutter/pull/97971</li>
+  <li>Fix NavigationRail Indicator alignment for <code class="language-plaintext highlighter-rouge">NavigationRailLabelType.none</code> by @TahaTesser in https://github.com/flutter/flutter/pull/98028</li>
+  <li>Update Material tokens to v0.81. by @darrenaustin in https://github.com/flutter/flutter/pull/98149</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">keyLog</code> and <code class="language-plaintext highlighter-rouge">connectionFactory</code> to HttpClient implementations by @brianquinlan in https://github.com/flutter/flutter/pull/98045</li>
+  <li>Reland “[EditableText] honor the “brieflyShowPassword” system setting #97769 “ by @LongCatIsLooong in https://github.com/flutter/flutter/pull/98150</li>
+  <li>[performance] Process dirty nodes from top to bottom during paint to avoid unnecessary layer tree walks by @goderbauer in https://github.com/flutter/flutter/pull/98219</li>
+  <li>Refactor TextSelectionOverlay by @chunhtai in https://github.com/flutter/flutter/pull/98153</li>
+  <li>[performance] Trace direct calls to inflateWidget by @goderbauer in https://github.com/flutter/flutter/pull/98277</li>
+  <li>Add a BindingBase.debugBindingType() method to enable asserts that want to verify that the binding isn’t initialized by @Hixie in https://github.com/flutter/flutter/pull/98226</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">fooTheme.of(context);</code> usage docs by @TahaTesser in https://github.com/flutter/flutter/pull/98402</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">CupertinoSlider</code> example by @TahaTesser in https://github.com/flutter/flutter/pull/93633</li>
+  <li>CupertinoActionSheet: Update sample by @TahaTesser in https://github.com/flutter/flutter/pull/98356</li>
+  <li>CupertinoAlertDialog: Update sample by @TahaTesser in https://github.com/flutter/flutter/pull/98357</li>
+  <li>Add custom size constraints parameter to <code class="language-plaintext highlighter-rouge">PopupMenu</code> by @TahaTesser in https://github.com/flutter/flutter/pull/97798</li>
+  <li>Update <code class="language-plaintext highlighter-rouge">NavigationBar</code> to support Material 3 token by @darrenaustin in https://github.com/flutter/flutter/pull/98285</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">CupertinoPicker</code> interactive example by @TahaTesser in https://github.com/flutter/flutter/pull/93622</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">ExpansionTileTheme</code> by @TahaTesser in https://github.com/flutter/flutter/pull/98405</li>
+  <li>Update <code class="language-plaintext highlighter-rouge">CupertinoTextField</code> example  by @TahaTesser in https://github.com/flutter/flutter/pull/93738</li>
+  <li>CupertinoSegmentedControl: Add an interactive example by @TahaTesser in https://github.com/flutter/flutter/pull/98154</li>
+  <li>CupertinoSlidingSegmentedControl: Add an interactive example by @TahaTesser in https://github.com/flutter/flutter/pull/98156</li>
+  <li>Added a NavgationBar example with nested Navigators by @HansMuller in https://github.com/flutter/flutter/pull/98440</li>
+  <li>Revert “[performance] Process dirty nodes from top to bottom during paint to avoid unnecessary layer tree walks” by @goderbauer in https://github.com/flutter/flutter/pull/98520</li>
+  <li>Hide toolbar when selection is out of view by @Renzo-Olivares in https://github.com/flutter/flutter/pull/98152</li>
+  <li>Add explanation to ChangeNotifier by @chunhtai in https://github.com/flutter/flutter/pull/98295</li>
+  <li>Dismiss text selection toolbar with ESC by @markusaksli-nc in https://github.com/flutter/flutter/pull/98511</li>
+  <li>Dismiss Autocomplete with ESC by @markusaksli-nc in https://github.com/flutter/flutter/pull/97790</li>
+  <li>Revert “Dismiss text selection toolbar with ESC” by @markusaksli-nc in https://github.com/flutter/flutter/pull/98600</li>
+  <li>Dismiss Modal Barrier on <code class="language-plaintext highlighter-rouge">handleTapCancel</code>  by @TahaTesser in https://github.com/flutter/flutter/pull/98191</li>
+  <li>Remove unused parameter and consequently unused variable by @mateusfccp in https://github.com/flutter/flutter/pull/98428</li>
+  <li>Update example code and docs for InteractiveViewer.builder by @goderbauer in https://github.com/flutter/flutter/pull/98623</li>
+  <li>Remove deprecated RectangularSliderTrackShape.disabledThumbGapWidth by @Piinks in https://github.com/flutter/flutter/pull/98613</li>
+  <li>Update stretching overscroll clip behavior by @Piinks in https://github.com/flutter/flutter/pull/97678</li>
+  <li>Remove deprecated UpdateLiveRegionEvent by @Piinks in https://github.com/flutter/flutter/pull/98615</li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">clipBehavior == Clip.none</code> conditions by @TahaTesser in https://github.com/flutter/flutter/pull/98503</li>
+  <li>Show <code class="language-plaintext highlighter-rouge">RefreshIndicator</code> on top when scroll’s axis direction is up (matching native behaviour) by @TahaTesser in https://github.com/flutter/flutter/pull/93779</li>
+  <li>Remove deprecated VelocityTracker constructor by @Piinks in https://github.com/flutter/flutter/pull/98541</li>
+  <li>Add more tests to slider to avoid future breakages by @goderbauer in https://github.com/flutter/flutter/pull/98772</li>
+  <li>Revert “Add more tests to slider to avoid future breakages” by @zanderso in https://github.com/flutter/flutter/pull/98783</li>
+  <li>Spacebar and enter in EditableText work with Inkwells by @justinmc in https://github.com/flutter/flutter/pull/98469</li>
+  <li>Avoid unnecessary lambdas in SelectionOverlay.showHandles() by @tgucio in https://github.com/flutter/flutter/pull/98912</li>
+  <li>Update comments for chip tests by @RoyARG02 in https://github.com/flutter/flutter/pull/97476</li>
+  <li>Added optional parameter keyboardType to showDatePicker by @kirolous-nashaat in https://github.com/flutter/flutter/pull/93439</li>
+  <li>Fix getOffsetForCaret to return correct value if contains widget span by @chunhtai in https://github.com/flutter/flutter/pull/98542</li>
+  <li>Reland “Add more tests to slider to avoid future breakages (#98772)” by @goderbauer in https://github.com/flutter/flutter/pull/98936</li>
+  <li>Enable use_if_null_to_convert_nulls_to_bools lint by @tgucio in https://github.com/flutter/flutter/pull/98753</li>
+  <li>Remove redundant hide handles API from TextSelectionDelegate by @chunhtai in https://github.com/flutter/flutter/pull/98944</li>
+  <li>Test that render object changed its visual appearance after texture is create by @blasten in https://github.com/flutter/flutter/pull/98622</li>
+  <li>Add actionsOverflowAlignment parameter to dialog by @himamis in https://github.com/flutter/flutter/pull/95995</li>
+  <li>Fixed some issues and clarified the docs for ReorderableListView. by @darrenaustin in https://github.com/flutter/flutter/pull/98954</li>
+  <li>Remove deprecated DayPicker and MonthPicker by @Piinks in https://github.com/flutter/flutter/pull/98543</li>
+  <li>Adds <code class="language-plaintext highlighter-rouge">onReorderStart</code> and <code class="language-plaintext highlighter-rouge">onReorderEnd</code> arguments to <code class="language-plaintext highlighter-rouge">ReorderableList</code>. by @werainkhatri in https://github.com/flutter/flutter/pull/96049</li>
+  <li>Correct the MediaQuery test name by @nt4f04uNd in https://github.com/flutter/flutter/pull/98984</li>
+  <li>Revert “Remove redundant hide handles API from TextSelectionDelegate … by @chunhtai in https://github.com/flutter/flutter/pull/99008</li>
+  <li>Clean up ClipboardStatusNotifier by @chunhtai in https://github.com/flutter/flutter/pull/98951</li>
+  <li>Use int for PlaceholderSpan.placeholderCodeUnit by @tgucio in https://github.com/flutter/flutter/pull/98971</li>
+  <li>Draggable can be accepted when the data is null by @xu-baolin in https://github.com/flutter/flutter/pull/97355</li>
+  <li>Call bringIntoView after RenderEditable updates on paste by @tgucio in https://github.com/flutter/flutter/pull/98604</li>
+  <li>Assert golden files use the right extension by @Piinks in https://github.com/flutter/flutter/pull/99016</li>
+  <li>Revert “Assert golden files use the right extension” by @hterkelsen in https://github.com/flutter/flutter/pull/99075</li>
+  <li>Pasting collapses the selection and puts it after the pasted content by @justinmc in https://github.com/flutter/flutter/pull/98679</li>
+  <li>Correct font weight for Cupertino tab label by @SimonHausdorf in https://github.com/flutter/flutter/pull/90109</li>
+  <li>adds <code class="language-plaintext highlighter-rouge">trackRadius</code> to <code class="language-plaintext highlighter-rouge">ScrollbarPainter</code> and <code class="language-plaintext highlighter-rouge">RawScrollbar</code> by @werainkhatri in https://github.com/flutter/flutter/pull/98018</li>
+  <li>Fix a Tabs crash when change the TabControllers by @xu-baolin in https://github.com/flutter/flutter/pull/98242</li>
+  <li>Re-land Assert golden files use the right extension by @Piinks in https://github.com/flutter/flutter/pull/99082</li>
+  <li>Do not crash if dispatch the mouse events before the tooltip overlay detached by @xu-baolin in https://github.com/flutter/flutter/pull/97268</li>
+  <li>[ReorderableListView] Add <code class="language-plaintext highlighter-rouge">footer</code> by @TahaTesser in https://github.com/flutter/flutter/pull/92086</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">clipBehavior</code> to <code class="language-plaintext highlighter-rouge">Snackbar</code> by @TahaTesser in https://github.com/flutter/flutter/pull/98252</li>
+  <li>Add Widget of the Week links by @craiglabenz in https://github.com/flutter/flutter/pull/99178</li>
+  <li>feat: Added docstring examples to AnimatedBuilder and ChangeNotifier by @albertodev01 in https://github.com/flutter/flutter/pull/98628</li>
+  <li>[Keyboard] Correctly convert down events that are immediately synthesized released by @dkwingsmt in https://github.com/flutter/flutter/pull/99200</li>
+  <li>Updated to v0.86 of the Material Design tokens. by @darrenaustin in https://github.com/flutter/flutter/pull/99292</li>
+  <li>Add NavigationBar dartpad example  by @maheshmnj in https://github.com/flutter/flutter/pull/97046</li>
+  <li>Migrates packages/flutter to from <code class="language-plaintext highlighter-rouge">hashValues</code> to <code class="language-plaintext highlighter-rouge">Object.hash</code> by @werainkhatri in https://github.com/flutter/flutter/pull/96109</li>
+  <li>Added viewport fraction parameter to tabView by @Hari-07 in https://github.com/flutter/flutter/pull/98512</li>
+  <li>[framework] improve Notification API performance by skipping full Element tree traversal by @jonahwilliams in https://github.com/flutter/flutter/pull/98451</li>
+  <li>Remove redundant properties passed to _Editable by @Renzo-Olivares in https://github.com/flutter/flutter/pull/99192</li>
+  <li>Revert “Clean up ClipboardStatusNotifier (#98951)” by @chunhtai in https://github.com/flutter/flutter/pull/99361</li>
+  <li>Reland “Dismiss text selection toolbar with ESC” by @markusaksli-nc in https://github.com/flutter/flutter/pull/98995</li>
+  <li>Fix a Scrollbar hittest penetration issue by @xu-baolin in https://github.com/flutter/flutter/pull/99328</li>
+  <li>Revert “Draggable can be accepted when the data is null” by @Piinks in https://github.com/flutter/flutter/pull/99419</li>
+  <li>Limit overscroll stretching by @Piinks in https://github.com/flutter/flutter/pull/99364</li>
+  <li>Simplify SafeArea test for maintainBottomViewPadding to ensure maintainBottomViewPadding is always respected by @joellurcook in https://github.com/flutter/flutter/pull/97646</li>
+  <li>Specify widget height in EditableText shortcuts tests by @tgucio in https://github.com/flutter/flutter/pull/98607</li>
+  <li>More beautiful linear_gradient sample by @goderbauer in https://github.com/flutter/flutter/pull/99298</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">CupertinoSliverNavigationBar</code>: Add example by @TahaTesser in https://github.com/flutter/flutter/pull/99384</li>
+  <li>Add material localizations for keyboard keys used for shortcut descriptions in menus. by @gspencergoog in https://github.com/flutter/flutter/pull/99020</li>
+  <li>Deprecate MaterialButtonWithIconMixin by @Piinks in https://github.com/flutter/flutter/pull/99088</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">PlatformDispatcher.instance</code> over <code class="language-plaintext highlighter-rouge">window</code> where possible by @goderbauer in https://github.com/flutter/flutter/pull/99496</li>
+  <li>Reland clean up clipboard. by @chunhtai in https://github.com/flutter/flutter/pull/99363</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">BindingBase.platformDispatcher</code> over <code class="language-plaintext highlighter-rouge">BindingBase.window</code> where possible by @goderbauer in https://github.com/flutter/flutter/pull/99443</li>
+  <li>Improve documentation of  <code class="language-plaintext highlighter-rouge">EditableText</code>/<code class="language-plaintext highlighter-rouge">TextField</code> callbacks by @TahaTesser in https://github.com/flutter/flutter/pull/98414</li>
+  <li>complete migration of flutter repo to Object.hash* by @werainkhatri in https://github.com/flutter/flutter/pull/99505</li>
+  <li>Migrate <code class="language-plaintext highlighter-rouge">Dialog</code> to Material 3 by @TahaTesser in https://github.com/flutter/flutter/pull/98919</li>
+  <li>Improve container widget by @r-mzy47 in https://github.com/flutter/flutter/pull/98389</li>
+  <li>CupertinoButton: Add clickable cursor on web by @TahaTesser in https://github.com/flutter/flutter/pull/96863</li>
+  <li>[framework] add gesture settings to draggable by @jonahwilliams in https://github.com/flutter/flutter/pull/99567</li>
+  <li>Make popup menu position configurable by @TahaTesser in https://github.com/flutter/flutter/pull/98979</li>
+  <li>Re-invoke DismissIntent in Autocomplete if ignored by @markusaksli-nc in https://github.com/flutter/flutter/pull/99403</li>
+  <li>Remove package:typed_data from package:flutter dependencies by @jonahwilliams in https://github.com/flutter/flutter/pull/99604</li>
+  <li>Remove deprecated RenderObjectElement methods by @Piinks in https://github.com/flutter/flutter/pull/98616</li>
+  <li>CupertinoTabBar: Add clickable cursor on web by @TahaTesser in https://github.com/flutter/flutter/pull/96996</li>
+  <li>Remove deprecated Overflow and Stack.overflow by @Piinks in https://github.com/flutter/flutter/pull/98583</li>
+  <li>Remove deprecated CupertinoTextField, TextField, TextFormField maxLengthEnforced by @Piinks in https://github.com/flutter/flutter/pull/98539</li>
+  <li>Fix: Date picker interactive sample not loading  by @maheshmnj in https://github.com/flutter/flutter/pull/99401</li>
+  <li>Add Foldable support for modal routes by @andreidiaconu in https://github.com/flutter/flutter/pull/92909</li>
+  <li>Revert “Remove deprecated CupertinoTextField, TextField, TextFormField maxLengthEnforced” by @Piinks in https://github.com/flutter/flutter/pull/99768</li>
+  <li>Update Material tokens to v0.88 by @darrenaustin in https://github.com/flutter/flutter/pull/99568</li>
+  <li>Remove deprecated OutlineButton by @Piinks in https://github.com/flutter/flutter/pull/98546</li>
+  <li>Add the refresh rate fields to perf_test by @cyanglaz in https://github.com/flutter/flutter/pull/99710</li>
+  <li>Re-land removal of maxLengthEnforced deprecation by @Piinks in https://github.com/flutter/flutter/pull/99787</li>
+  <li>Revert “Add the refresh rate fields to perf_test” by @zanderso in https://github.com/flutter/flutter/pull/99801</li>
+  <li>Avoid calling <code class="language-plaintext highlighter-rouge">performLayout</code> when only the relayout boundary is different by @LongCatIsLooong in https://github.com/flutter/flutter/pull/99056</li>
+  <li>remove unnecessary null check by @a14n in https://github.com/flutter/flutter/pull/99507</li>
+  <li>updateEditingValueWithDeltas snippet docs fix by @justinmc in https://github.com/flutter/flutter/pull/99570</li>
+  <li>Updated tokens to v0.90. by @darrenaustin in https://github.com/flutter/flutter/pull/99782</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">ColorScheme.shadow</code> to default to black even for dark themes. by @darrenaustin in https://github.com/flutter/flutter/pull/99722</li>
+  <li>Remove deprecated RenderEditable.onSelectionChanged by @Piinks in https://github.com/flutter/flutter/pull/98582</li>
+  <li>[Material] Create an InkSparkle splash effect that matches the Material 3 ripple effect by @clocksmith in https://github.com/flutter/flutter/pull/99731</li>
+  <li>Remove expired ThemeData deprecations by @Piinks in https://github.com/flutter/flutter/pull/98578</li>
+  <li>Update <code class="language-plaintext highlighter-rouge">NavigationRail</code> to support Material 3 tokens by @darrenaustin in https://github.com/flutter/flutter/pull/99171</li>
+  <li>Revert “Remove expired ThemeData deprecations” by @Piinks in https://github.com/flutter/flutter/pull/99920</li>
+  <li>Revert “[web] roll Chromium dep to 96.2” by @zanderso in https://github.com/flutter/flutter/pull/99949</li>
+  <li>Fix/text containing finder work with rich texts by @valentinmarq in https://github.com/flutter/flutter/pull/99682</li>
+  <li>Update semantics live region documentation by @jjoelson in https://github.com/flutter/flutter/pull/99987</li>
+  <li>Fix AndroidView offset and resize by @blasten in https://github.com/flutter/flutter/pull/99888</li>
+  <li>Revert “Avoid calling <code class="language-plaintext highlighter-rouge">performLayout</code> when only the relayout boundary is different” by @LongCatIsLooong in https://github.com/flutter/flutter/pull/100068</li>
+  <li>Make NavigationRail.selectedIndex nullable by @Jjagg in https://github.com/flutter/flutter/pull/95336</li>
+  <li>Revert “Do not eagerly allocate inherited widget caches when initializing element tree” by @jonahwilliams in https://github.com/flutter/flutter/pull/100152</li>
+  <li>Add ‘mouseCursor’ to TextFormField by @SahajRana in https://github.com/flutter/flutter/pull/99822</li>
+  <li>Web: treat modifier key without location by @moko256 in https://github.com/flutter/flutter/pull/98460</li>
+  <li>Always use texture layer when displaying an Android view by @blasten in https://github.com/flutter/flutter/pull/100091</li>
+  <li>Revert “Always use texture layer when displaying an Android view” by @zanderso in https://github.com/flutter/flutter/pull/100222</li>
+  <li>Add missing <code class="language-plaintext highlighter-rouge">expansionTileTheme</code> theme copyWith test by @TahaTesser in https://github.com/flutter/flutter/pull/100165</li>
+  <li>docs(flutter_test): fix mention of non-existing <code class="language-plaintext highlighter-rouge">matchesSemanticsNode</code> by @daadu in https://github.com/flutter/flutter/pull/99659</li>
+  <li>Remove unnecessary ignore: override_on_non_overriding_member by @brianquinlan in https://github.com/flutter/flutter/pull/99793</li>
+  <li>Disable Gold post-submit failures by @Piinks in https://github.com/flutter/flutter/pull/100308</li>
+  <li>Reland: “Always use texture layer when displaying an Android view” by @blasten in https://github.com/flutter/flutter/pull/100237</li>
+  <li>Roll chrome 96 attempt 2 by @yjbanov in https://github.com/flutter/flutter/pull/100073</li>
+  <li>Refractor <code class="language-plaintext highlighter-rouge">compute</code> by @jellynoone in https://github.com/flutter/flutter/pull/99527</li>
+  <li>Disable post-submit Gold failures entirely by @Piinks in https://github.com/flutter/flutter/pull/100332</li>
+  <li>Add support for surface tint color overlays to <code class="language-plaintext highlighter-rouge">Material</code> widget. by @darrenaustin in https://github.com/flutter/flutter/pull/100036</li>
+  <li>Material text selection menu should not show pointer cursor by @justinmc in https://github.com/flutter/flutter/pull/100248</li>
+  <li>Revert “[framework] don’t hit test for system nav bar or system chrome on desktop” by @jonahwilliams in https://github.com/flutter/flutter/pull/100263</li>
+  <li>[Material] Use InkSparkle for splashFactory in ThemeData when useMaterial3 is true for Android non-web runtimes by @clocksmith in https://github.com/flutter/flutter/pull/99882</li>
+  <li>Reorganize compute docs and add sample code by @goderbauer in https://github.com/flutter/flutter/pull/100253</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">PopupMenuButton</code>’s <code class="language-plaintext highlighter-rouge">IconButton</code> not inheriting <code class="language-plaintext highlighter-rouge">IconTheme</code> size by @TahaTesser in https://github.com/flutter/flutter/pull/100199</li>
+  <li>Hide toolbar after select all on desktop by @justinmc in https://github.com/flutter/flutter/pull/100261</li>
+  <li>[framework] Remove danger zone  by @jonahwilliams in https://github.com/flutter/flutter/pull/100246</li>
+  <li>Add fadeDuration back to TextSelectionOverlay by @chunhtai in https://github.com/flutter/flutter/pull/100381</li>
+  <li>Fix wrong documentation: There is no <code class="language-plaintext highlighter-rouge">LeaderLayer._lastOffset</code> anymore by @fzyzcjy in https://github.com/flutter/flutter/pull/100300</li>
+  <li>Introduce Theme extensions by @guidezpl in https://github.com/flutter/flutter/pull/98033</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">CupertinoSwitch</code>: Add clickable cursor for web by @TahaTesser in https://github.com/flutter/flutter/pull/99554</li>
+  <li>Typo in EditableText strutStyle by @MrBirb in https://github.com/flutter/flutter/pull/100474</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">deprecated_new_in_comment_reference</code> for <code class="language-plaintext highlighter-rouge">material</code> library by @guidezpl in https://github.com/flutter/flutter/pull/100289</li>
+  <li>Fix stretch edge case by @Piinks in https://github.com/flutter/flutter/pull/99365</li>
+  <li>Reland “Add the refresh rate fields to perf_test #99710” by @cyanglaz in https://github.com/flutter/flutter/pull/99854</li>
+  <li>Put stretch indicator behind m3 flag by @Piinks in https://github.com/flutter/flutter/pull/100234</li>
+  <li>Re-land text selection theme clean up by @Piinks in https://github.com/flutter/flutter/pull/99927</li>
+  <li>Hide autocomplete menu on select. by @LongCatIsLooong in https://github.com/flutter/flutter/pull/100251</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">surfaceTint</code> color to the ColorScheme. by @darrenaustin in https://github.com/flutter/flutter/pull/100153</li>
+  <li>Revert “Re-land text selection theme clean up” by @Piinks in https://github.com/flutter/flutter/pull/100564</li>
+  <li>Make <code class="language-plaintext highlighter-rouge">Tooltip</code> state class public by @TahaTesser in https://github.com/flutter/flutter/pull/100553</li>
+  <li>[RenderAnimatedSize] Resume interrupted resizing animation on attach by @LongCatIsLooong in https://github.com/flutter/flutter/pull/100519</li>
+  <li>Migrate <code class="language-plaintext highlighter-rouge">Card</code> widget to support Material 3 by @darrenaustin in https://github.com/flutter/flutter/pull/100532</li>
+  <li>Add back Gold <code class="language-plaintext highlighter-rouge">passfail</code> by @Piinks in https://github.com/flutter/flutter/pull/100576</li>
+  <li>[framework] use Uint8List for SMC by @jonahwilliams in https://github.com/flutter/flutter/pull/100582</li>
+  <li>Fix a ModalbottomSheet bug by @xu-baolin in https://github.com/flutter/flutter/pull/99970</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">HitTestBehavior</code> property to <code class="language-plaintext highlighter-rouge">MouseRegion</code> by @xu-baolin in https://github.com/flutter/flutter/pull/100405</li>
+  <li>Fix: fix the delay of showOnScreen animation when keyboard comes up. by @luckysmg in https://github.com/flutter/flutter/pull/99546</li>
+  <li>Fix crash after paste and unmount by @justinmc in https://github.com/flutter/flutter/pull/100589</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">compute</code> in unsound null safety debug mode by @jellynoone in https://github.com/flutter/flutter/pull/100544</li>
+  <li>Updated tokens to v0.92. by @darrenaustin in https://github.com/flutter/flutter/pull/100599</li>
+  <li>Add child for placeholder widget by @M97Chahboun in https://github.com/flutter/flutter/pull/100372</li>
+  <li>Move <code class="language-plaintext highlighter-rouge">ListTileTheme</code> and its tests into separate classes and  add <code class="language-plaintext highlighter-rouge">visualDensity</code> to the <code class="language-plaintext highlighter-rouge">ListTileTheme</code> by @TahaTesser in https://github.com/flutter/flutter/pull/100622</li>
+  <li>Revert “Reland: “Always use texture layer when displaying an Android view”” by @blasten in https://github.com/flutter/flutter/pull/100660</li>
+  <li>fix hidden TextSpan with recognizer does not auto scroll by @chunhtai in https://github.com/flutter/flutter/pull/100494</li>
+  <li>Fix typo (again) by @fzyzcjy in https://github.com/flutter/flutter/pull/100684</li>
+  <li>Fixes some widgets(<code class="language-plaintext highlighter-rouge">ListView.builder</code>, <code class="language-plaintext highlighter-rouge">GridView.builder</code> etc.) state-lose issue by @xu-baolin in https://github.com/flutter/flutter/pull/100547</li>
+  <li>Revert “Dismiss Modal Barrier on <code class="language-plaintext highlighter-rouge">handleTapCancel</code>  (#98191)” by @chunhtai in https://github.com/flutter/flutter/pull/100784</li>
+  <li>Check for mount after cut postframecallback by @justinmc in https://github.com/flutter/flutter/pull/100776</li>
+  <li>Editable text sends enableInteractiveSelection to text input client by @chunhtai in https://github.com/flutter/flutter/pull/100649</li>
+  <li>Allow Drawer width to be customized by @TytaniumDev in https://github.com/flutter/flutter/pull/99777</li>
+  <li>Android Q transition by default by @AlexV525 in https://github.com/flutter/flutter/pull/98559</li>
+  <li>Revert “Android Q transition by default” by @zanderso in https://github.com/flutter/flutter/pull/100799</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">Tooltip</code>: Add an example for <code class="language-plaintext highlighter-rouge">TooltipTriggerMode.manual</code> and add tests for existing <code class="language-plaintext highlighter-rouge">Tooltip</code> examples by @TahaTesser in https://github.com/flutter/flutter/pull/100554</li>
+  <li>Reland “Avoid calling <code class="language-plaintext highlighter-rouge">performLayout</code> when only the relayout boundary is different” by @LongCatIsLooong in https://github.com/flutter/flutter/pull/100581</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">FollowerLayer</code> (<code class="language-plaintext highlighter-rouge">CompositedTransformFollower</code>) has null pointer error when using with some kinds of <code class="language-plaintext highlighter-rouge">Layer</code>s by @fzyzcjy in https://github.com/flutter/flutter/pull/100672</li>
+  <li>Consider backgroundBlendMode in equality of BoxDecoration by @goderbauer in https://github.com/flutter/flutter/pull/100788</li>
+  <li>✨ Android Q transition by default by @AlexV525 in https://github.com/flutter/flutter/pull/100812</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">CupertinoActionSheet</code>/<code class="language-plaintext highlighter-rouge">CupertinoAlertDialog</code>: Add clickable cursor for web by @TahaTesser in https://github.com/flutter/flutter/pull/99548</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">CupertinoSegmentedControl</code>/<code class="language-plaintext highlighter-rouge">CupertinoSlidingSegmentedControl</code>: Add clickable cursor for web by @TahaTesser in https://github.com/flutter/flutter/pull/99551</li>
+  <li>Make popup menus avoid display features by @andreidiaconu in https://github.com/flutter/flutter/pull/98981</li>
+  <li>Update performanceOverlay links  by @danagbemava-nc in https://github.com/flutter/flutter/pull/100894</li>
+  <li>Relands “Starts using the –source flag to compile the dart registrant. (#98046)” by @gaaclarke in https://github.com/flutter/flutter/pull/100572</li>
+  <li>Reland: “Use texture layer when displaying an Android view”  by @blasten in https://github.com/flutter/flutter/pull/100934</li>
+  <li>Revert “Reland: “Use texture layer when displaying an Android view” “ by @zanderso in https://github.com/flutter/flutter/pull/100950</li>
+  <li>Allow unknown device kind to scroll scrollables by @chunhtai in https://github.com/flutter/flutter/pull/100800</li>
+  <li>Reland: “Use texture layer when displaying an Android view” by @blasten in https://github.com/flutter/flutter/pull/100990</li>
+  <li>Add isActivatedBy to ShortcutActivator by @gspencergoog in https://github.com/flutter/flutter/pull/100167</li>
+  <li>[Fonts] Update icons by @guidezpl in https://github.com/flutter/flutter/pull/100885</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">IconTheme</code> is not inherited when <code class="language-plaintext highlighter-rouge">Icon</code> is provided to <code class="language-plaintext highlighter-rouge">ListTile.title</code> and <code class="language-plaintext highlighter-rouge">ListTile.subtitle</code> by @TahaTesser in https://github.com/flutter/flutter/pull/100757</li>
+  <li>Minor improvements to <code class="language-plaintext highlighter-rouge">ThemeExtension</code> example by @guidezpl in https://github.com/flutter/flutter/pull/100693</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">LicensePage</code> too much spacing padding when <code class="language-plaintext highlighter-rouge">applicationVersion</code> and  <code class="language-plaintext highlighter-rouge">applicationLegalese</code> are empty by @TahaTesser in https://github.com/flutter/flutter/pull/101030</li>
+  <li>Fix constructor doc for ScrollView.primary by @goderbauer in https://github.com/flutter/flutter/pull/100935</li>
+  <li>Prepare <code class="language-plaintext highlighter-rouge">packages</code> (minus tools,framework) for <code class="language-plaintext highlighter-rouge">use_super_parameters</code> by @goderbauer in https://github.com/flutter/flutter/pull/100510</li>
+  <li>Material 3 common buttons should use sparkle splash effect on Android. by @darrenaustin in https://github.com/flutter/flutter/pull/101075</li>
+  <li>Revert “Allow unknown device kind to scroll scrollables (#100800)” by @chunhtai in https://github.com/flutter/flutter/pull/101129</li>
+  <li>Fix Local <code class="language-plaintext highlighter-rouge">DataTableTheme</code> not being inherited by <code class="language-plaintext highlighter-rouge">DataTable</code> Widget by @TahaTesser in https://github.com/flutter/flutter/pull/101112</li>
+  <li>Refactor <code class="language-plaintext highlighter-rouge">ToggleButtons</code> (remove <code class="language-plaintext highlighter-rouge">RawMaterialButton</code>) by @TahaTesser in https://github.com/flutter/flutter/pull/99493</li>
+  <li>Reland “Allow unknown device kind to scroll scrollables (#100800)” by @chunhtai in https://github.com/flutter/flutter/pull/101301</li>
+  <li>Fix crashes when current route parsing transactions are discarded by @chunhtai in https://github.com/flutter/flutter/pull/100657</li>
+  <li>Implements a PlatformMenuBar widget and associated data structures by @gspencergoog in https://github.com/flutter/flutter/pull/100274</li>
+  <li>Made flag for debugging build time of user created widgets by @gaaclarke in https://github.com/flutter/flutter/pull/100926</li>
+  <li>[Cherrypick] Revert “Refactor <code class="language-plaintext highlighter-rouge">ToggleButtons</code> (remove <code class="language-plaintext highlighter-rouge">RawMaterialButton</code>) (#99493)” by @CaseyHillers in https://github.com/flutter/flutter/pull/101538</li>
+  <li>[flutter_releases] Flutter beta 2.13.0-0.2.pre Framework Cherrypicks by @CaseyHillers in https://github.com/flutter/flutter/pull/102193</li>
+  <li>[flutter_releases] Upgrade dwds to 12.1.1 by @christopherfujino in https://github.com/flutter/flutter/pull/101546</li>
+</ul>
+
+<h3 id="tooling">
+<a class="anchor" href="#tooling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tooling</h3>
+
+<ul>
+  <li>FFI plugin by @dcharkes in https://github.com/flutter/flutter/pull/94101</li>
+  <li>Revert “FFI plugin” by @zanderso in https://github.com/flutter/flutter/pull/96122</li>
+  <li>Add a new PrebuiltFlutterApplicationPackage interface. by @chingjun in https://github.com/flutter/flutter/pull/95290</li>
+  <li>Do not show v1 Android embedding message for non-Android commands by @jmagman in https://github.com/flutter/flutter/pull/96148</li>
+  <li>Migrate build commands to null safety by @jmagman in https://github.com/flutter/flutter/pull/95649</li>
+  <li>Migrate emulators, packages, upgrade, and downgrade to null safety by @jmagman in https://github.com/flutter/flutter/pull/95712</li>
+  <li>feat(flutter_tools): Added doctor path printing on verbose by @crisboarna in https://github.com/flutter/flutter/pull/95453</li>
+  <li>feat(flutter_tools): Changed NoIdeValidator validation type from error to warning by @crisboarna in https://github.com/flutter/flutter/pull/95492</li>
+  <li>Fix analyze –watch command iterator by @jmagman in https://github.com/flutter/flutter/pull/96264</li>
+  <li>Warm cache with all transitive dependencies in <code class="language-plaintext highlighter-rouge">flutter update-packages</code> command by @gspencergoog in https://github.com/flutter/flutter/pull/96258</li>
+  <li>Hide PII from doctor validators for GitHub template by @jmagman in https://github.com/flutter/flutter/pull/96250</li>
+  <li>Revert “feat(flutter_tools): Added doctor path printing on verbose” by @zanderso in https://github.com/flutter/flutter/pull/96414</li>
+  <li>Add suggestion for compileSdkVersion warning by @blasten in https://github.com/flutter/flutter/pull/95369</li>
+  <li>Fix typo by @utibeabasi6 in https://github.com/flutter/flutter/pull/96058</li>
+  <li>Update Flutter desktop doc URL in error message by @cbracken in https://github.com/flutter/flutter/pull/96559</li>
+  <li>Bump Android dependencies that rely on Jcenter by @blasten in https://github.com/flutter/flutter/pull/96558</li>
+  <li>Fully support Dart-only mobile and macOS plugins by @stuartmorgan in https://github.com/flutter/flutter/pull/96183</li>
+  <li>fix rsync output utf8decode bug by @intspt in https://github.com/flutter/flutter/pull/95881</li>
+  <li>Fix wrong documentation URL for adding desktop support to existing app by @PoojaB26 in https://github.com/flutter/flutter/pull/94399</li>
+  <li>Document template CMake files by @stuartmorgan in https://github.com/flutter/flutter/pull/96534</li>
+  <li>Migrate assemble and integration_test_device to null safety by @jmagman in https://github.com/flutter/flutter/pull/96630</li>
+  <li>Skip flaky test: background_isolate_test.dart: Hot restart kills background isolates by @keyonghan in https://github.com/flutter/flutter/pull/96678</li>
+  <li>feat: support configure a custom launch url for flutter web by @wangying3426 in https://github.com/flutter/flutter/pull/95002</li>
+  <li>Add boxes around version freshness alerts by @jmagman in https://github.com/flutter/flutter/pull/96152</li>
+  <li>Enable inline Dart plugin implementation on Desktop by @stuartmorgan in https://github.com/flutter/flutter/pull/96610</li>
+  <li>Pass ‘build ios’ device ID into xcodebuild by @jmagman in https://github.com/flutter/flutter/pull/96669</li>
+  <li>Take screenshot when drive fails to start app or test by @jmagman in https://github.com/flutter/flutter/pull/96828</li>
+  <li>Fix SDK versions for Flutter packages in analyze tests to enable null-safe mode by @DanTup in https://github.com/flutter/flutter/pull/96950</li>
+  <li>Remove unused code from android_device.dart by @swift-kim in https://github.com/flutter/flutter/pull/95450</li>
+  <li>Adjust lipo thinning input/output for macOS by @zanderso in https://github.com/flutter/flutter/pull/97111</li>
+  <li>Use frontend_server from the Dart SDK by @zanderso in https://github.com/flutter/flutter/pull/97078</li>
+  <li>[flutter_tools] support files in flutter analyze #96231 by @Jasguerrero in https://github.com/flutter/flutter/pull/97021</li>
+  <li>Don’t use example folder as a project type signal by @stuartmorgan in https://github.com/flutter/flutter/pull/97157</li>
+  <li>[flutter_tools] Fix bug in background_isolate_test.dart by @christopherfujino in https://github.com/flutter/flutter/pull/97170</li>
+  <li>[flutter_tools] auto-migrate dev users to beta by @christopherfujino in https://github.com/flutter/flutter/pull/97028</li>
+  <li>Take drive screenshot on test failure before app is stopped by @jmagman in https://github.com/flutter/flutter/pull/96973</li>
+  <li>Fix hot-restart background-isolate-test test by ensuring updated timestamp is in the future. by @aam in https://github.com/flutter/flutter/pull/97247</li>
+  <li>[flutter_tools] add validation of paths of contained files to os_utils _unpackArchive() by @christopherfujino in https://github.com/flutter/flutter/pull/96565</li>
+  <li>ProxiedDevice, connection to a remotely connected device via flutter daemon. by @chingjun in https://github.com/flutter/flutter/pull/95738</li>
+  <li>[tool] Use an arm64 Dart SDK on arm64 macOS by @zanderso in https://github.com/flutter/flutter/pull/97189</li>
+  <li>FFI plugins by @dcharkes in https://github.com/flutter/flutter/pull/96225</li>
+  <li>Make remaining DAP tests null-safe by @DanTup in https://github.com/flutter/flutter/pull/97368</li>
+  <li>[flutter_tools] remove dummy implementation from abstract class .isEnabled() by @christopherfujino in https://github.com/flutter/flutter/pull/96888</li>
+  <li>Make DAP tests more tolerant of output that didn’t come from the app being tested by @DanTup in https://github.com/flutter/flutter/pull/97291</li>
+  <li>Fix typo: recieve =&gt; receive by @caioagiani in https://github.com/flutter/flutter/pull/97488</li>
+  <li>Disallow running on unsupported devices by @jmagman in https://github.com/flutter/flutter/pull/97338</li>
+  <li>Export an IPA for distribution via “flutter build ipa” without –export-options-plist by @jmagman in https://github.com/flutter/flutter/pull/97243</li>
+  <li>Revert “Export an IPA for distribution via “flutter build ipa” without –export-options-plist” by @jmagman in https://github.com/flutter/flutter/pull/97616</li>
+  <li>[flutter_tools] Use proper project name in templates by @collinjackson in https://github.com/flutter/flutter/pull/96373</li>
+  <li>[flutter_tool] Download gen_snapshot.zip for macOS desktop by @zanderso in https://github.com/flutter/flutter/pull/97627</li>
+  <li>Change all instance of throwing strings to throw specific error classes. by @chingjun in https://github.com/flutter/flutter/pull/97325</li>
+  <li>Revert “[flutter_tool] Download gen_snapshot.zip for macOS desktop (#97627) by @zanderso in https://github.com/flutter/flutter/pull/97664</li>
+  <li>Addresses the feedbacks in #95738 by @chingjun in https://github.com/flutter/flutter/pull/97457</li>
+  <li>Reland: [flutter_tool] Download gen_snapshot.zip for macOS desktop by @zanderso in https://github.com/flutter/flutter/pull/97671</li>
+  <li>Exit the tool if a DevTools subprocess fails when running on a bot by @jason-simmons in https://github.com/flutter/flutter/pull/97613</li>
+  <li>[flutter_tool] allow disabling profile mode timeline traces by @jonahwilliams in https://github.com/flutter/flutter/pull/97622</li>
+  <li>Export an IPA for distribution via “flutter build ipa” without –export-options-plist by @jmagman in https://github.com/flutter/flutter/pull/97672</li>
+  <li>Pin <code class="language-plaintext highlighter-rouge">package:ffi</code> in <code class="language-plaintext highlighter-rouge">plugin_ffi</code> template by @dcharkes in https://github.com/flutter/flutter/pull/97720</li>
+  <li>Restructure Windows plugin template by @stuartmorgan in https://github.com/flutter/flutter/pull/93511</li>
+  <li>[flutter_tools] Fix bundle file not found when flavor contains upperc… by @MichaelTamm in https://github.com/flutter/flutter/pull/92660</li>
+  <li>Fix error in type cast. by @chingjun in https://github.com/flutter/flutter/pull/97778</li>
+  <li>[flutter_tools] increment y instead of m when calling flutter –version on master by @christopherfujino in https://github.com/flutter/flutter/pull/97827</li>
+  <li>Include -isysroot -arch and -miphoneos-version-min when creating dummy module App.framework by @jmagman in https://github.com/flutter/flutter/pull/97689</li>
+  <li>Add support for attachRequest in DAP, running “flutter attach” by @DanTup in https://github.com/flutter/flutter/pull/97652</li>
+  <li>Fix how Gradle resolves Android plugin by @blasten in https://github.com/flutter/flutter/pull/97823</li>
+  <li>Fix typo FutterApplication -&gt; FlutterApplication by @bannzai in https://github.com/flutter/flutter/pull/97897</li>
+  <li>Revert “Fix how Gradle resolves Android plugin” by @blasten in https://github.com/flutter/flutter/pull/98050</li>
+  <li>Export activity for module in AndroidManifest.xml by @blasten in https://github.com/flutter/flutter/pull/98076</li>
+  <li>Add debugging info to android_plugin_example_app_build_test by @dcharkes in https://github.com/flutter/flutter/pull/98107</li>
+  <li>[flutter_tools] Make variants of Pub have consistent method signatures by @swift-kim in https://github.com/flutter/flutter/pull/98119</li>
+  <li>Fix flutter gen-l10n help message by @TahaTesser in https://github.com/flutter/flutter/pull/98147</li>
+  <li>[flutter_tools] fix type error in flutter update-packages –jobs=n by @christopherfujino in https://github.com/flutter/flutter/pull/98283</li>
+  <li>flutter_build_null_unsafe_test print failed build output by @jmagman in https://github.com/flutter/flutter/pull/98310</li>
+  <li>[flutter_tools] remove pub dependencies from universal by @Jasguerrero in https://github.com/flutter/flutter/pull/97722</li>
+  <li>[flutter_tools] rename two unit tests that were not actually being run on CI by @christopherfujino in https://github.com/flutter/flutter/pull/98299</li>
+  <li>Update flutter_tools to look for new VM service message by @bkonyi in https://github.com/flutter/flutter/pull/97683</li>
+  <li>[flutter_tools] do not validate maven upstream if cloud storage override provided by @christopherfujino in https://github.com/flutter/flutter/pull/98293</li>
+  <li>Dump backtrace when cannot attach to observatory by @jmagman in https://github.com/flutter/flutter/pull/98550</li>
+  <li>Remove “beta-quality” for Windows by @timsneath in https://github.com/flutter/flutter/pull/98614</li>
+  <li>[flutter_tools] remove flaky web vm service test by @christopherfujino in https://github.com/flutter/flutter/pull/98540</li>
+  <li>Reland “Enable caching of CPU samples collected at application startup (#89600)” by @bkonyi in https://github.com/flutter/flutter/pull/98769</li>
+  <li>Improve Gradle retry logic by @blasten in https://github.com/flutter/flutter/pull/96554</li>
+  <li>[flutter_tools] deprecate the dev branch from the feature system by @christopherfujino in https://github.com/flutter/flutter/pull/98689</li>
+  <li>Revert “Reland “Enable caching of CPU samples collected at application startup (#89600)”” by @zanderso in https://github.com/flutter/flutter/pull/98803</li>
+  <li>Fixed order dependency and removed no-shuffle-tag in build_ios_framew… by @Swiftaxe in https://github.com/flutter/flutter/pull/94699</li>
+  <li>Add option in ProxiedDevice to only transfer the delta when deploying. by @chingjun in https://github.com/flutter/flutter/pull/97462</li>
+  <li>Removed no-shuffle tag and fixed order dependency in daemon_test.dart by @Swiftaxe in https://github.com/flutter/flutter/pull/98970</li>
+  <li>Skip <code class="language-plaintext highlighter-rouge">can validate flutter version in parallel</code> test in <code class="language-plaintext highlighter-rouge">Linux web_tool_tests</code> by @keyonghan in https://github.com/flutter/flutter/pull/99017</li>
+  <li>Increase recommended CocoaPods version to 1.11 by @jmagman in https://github.com/flutter/flutter/pull/98621</li>
+  <li>reads min/target sdk versions from localproperties by @brunotacca in https://github.com/flutter/flutter/pull/98450</li>
+  <li>[dap] Don’t use –start-paused when running in Profile/Release mode by @DanTup in https://github.com/flutter/flutter/pull/98926</li>
+  <li>Wait for ios-deploy stdout before closing logLine stream by @jmagman in https://github.com/flutter/flutter/pull/99041</li>
+  <li>Work around VS CMake generation bug by @stuartmorgan in https://github.com/flutter/flutter/pull/98945</li>
+  <li>Print events and views when first frame is taking awhile during tracing by @jmagman in https://github.com/flutter/flutter/pull/98957</li>
+  <li>Revert “reads min/target sdk versions from localproperties” by @blasten in https://github.com/flutter/flutter/pull/99191</li>
+  <li>Starts using the <code class="language-plaintext highlighter-rouge">--source</code> flag to compile the dart registrant. by @gaaclarke in https://github.com/flutter/flutter/pull/98046</li>
+  <li>Update minimum required version to Xcode 13 by @jmagman in https://github.com/flutter/flutter/pull/97746</li>
+  <li>Fix the race condition in cache_test.dart by @gspencergoog in https://github.com/flutter/flutter/pull/99423</li>
+  <li>Fix custom-device default forwardPortSuccessRegex by @mbriand in https://github.com/flutter/flutter/pull/97719</li>
+  <li>Add Windows performance benchmark by @jonahwilliams in https://github.com/flutter/flutter/pull/99564</li>
+  <li>Add logging when first frame is not rendering by @jmagman in https://github.com/flutter/flutter/pull/99566</li>
+  <li>[flutter_tools] Add timeout duration to error and handle exceptions for HttpHostValidator. by @RoyARG02 in https://github.com/flutter/flutter/pull/98290</li>
+  <li>Support route on ios by @Jasguerrero in https://github.com/flutter/flutter/pull/99078</li>
+  <li>Check string size before Win32 MultiByte &lt;-&gt; WideChar conversions by @cbracken in https://github.com/flutter/flutter/pull/99729</li>
+  <li>Handle hidden dot files in iOS framework bundles by @jmagman in https://github.com/flutter/flutter/pull/99771</li>
+  <li>Fix Typo by @Phelicks in https://github.com/flutter/flutter/pull/97793</li>
+  <li>95533 min sdk error msgs enhancements by @brunotacca in https://github.com/flutter/flutter/pull/99550</li>
+  <li>Remove tool crash git.io link shortener by @jmagman in https://github.com/flutter/flutter/pull/99574</li>
+  <li>Pass ‘assume-initialize-from-dill-up-to-date’ flag to the frontend server by @chingjun in https://github.com/flutter/flutter/pull/99791</li>
+  <li>First pass at using platform abstraction for plugins by @fuzzybinary in https://github.com/flutter/flutter/pull/92672</li>
+  <li>[tool] Add CADisableMinimumFrameDurationOnPhone to iOS templates by @cyanglaz in https://github.com/flutter/flutter/pull/94509</li>
+  <li>Fix flutter web app not respecting assets path when in non-root folder by @nicolasvac in https://github.com/flutter/flutter/pull/96774</li>
+  <li>Fix route integration test on ios by @Jasguerrero in https://github.com/flutter/flutter/pull/99781</li>
+  <li>[flutter_tools] exec rather than spawn subprocess from bin/internal/shared.sh by @christopherfujino in https://github.com/flutter/flutter/pull/99871</li>
+  <li>Add portForwarder for ProxiedDevice. by @chingjun in https://github.com/flutter/flutter/pull/100111</li>
+  <li>Add more specific cause on web development tool error output by @yuseok in https://github.com/flutter/flutter/pull/98553</li>
+  <li>MigrateConfig and migrate integration testing base by @GaryQian in https://github.com/flutter/flutter/pull/99092</li>
+  <li>[macOS] Enable universal binary builds by default by @cbracken in https://github.com/flutter/flutter/pull/100271</li>
+  <li>[flutter_tools] Null safe update packages by @christopherfujino in https://github.com/flutter/flutter/pull/99357</li>
+  <li>Reintroduce the ability to override the coverage formatter by @liamappelbe in https://github.com/flutter/flutter/pull/100320</li>
+  <li>[flutter_tools] check if stream is open before sending message in ios device by @christopherfujino in https://github.com/flutter/flutter/pull/99947</li>
+  <li>Handle Flutter.Error events and disable structure errors for noDebug mode by @DanTup in https://github.com/flutter/flutter/pull/100149</li>
+  <li>[flutter_tools] process exception during linux_doctor is handled by @Jasguerrero in https://github.com/flutter/flutter/pull/100159</li>
+  <li>Specify destination when building for macOS by @dnfield in https://github.com/flutter/flutter/pull/100315</li>
+  <li>Revert “Starts using the <code class="language-plaintext highlighter-rouge">--source</code> flag to compile the dart registrant. (#98046) by @gaaclarke in https://github.com/flutter/flutter/pull/100493</li>
+  <li>Revert “[flutter_tools] remove pub dependencies from universal #97722” by @Jasguerrero in https://github.com/flutter/flutter/pull/100508</li>
+  <li>[macOS] Use arm64 snapshot in arm64 App.framework by @cbracken in https://github.com/flutter/flutter/pull/100504</li>
+  <li>Upgrade to flutter_lints 2.0 by @goderbauer in https://github.com/flutter/flutter/pull/99881</li>
+  <li>[flutter_tools] Skip version freshness check for non-standard remotes by @RoyARG02 in https://github.com/flutter/flutter/pull/97202</li>
+  <li>[dap] Remove some code that’s not longer required by @DanTup in https://github.com/flutter/flutter/pull/98928</li>
+  <li>Don’t terminate Dart process pids from VM Service, record flutter_tools VM pid by @DanTup in https://github.com/flutter/flutter/pull/100223</li>
+  <li>Remove the end period of a URL in project template by @asashour in https://github.com/flutter/flutter/pull/99816</li>
+  <li>Filter out some stray Xcode logging during macOS builds by @jmagman in https://github.com/flutter/flutter/pull/100707</li>
+  <li>[flutter_tools] Fix VersionUpstreamValidator to respect FLUTTER_GIT_URL by @RoyARG02 in https://github.com/flutter/flutter/pull/100605</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">CADisableMinimumFrameDurationOnPhone</code> migration by @cyanglaz in https://github.com/flutter/flutter/pull/100647</li>
+  <li>[flutter_tool] Adds <code class="language-plaintext highlighter-rouge">--enable-impeller</code> flag to the run command by @zanderso in https://github.com/flutter/flutter/pull/100835</li>
+  <li>Pass ARCHS build setting to flutter assemble on macOS by @jmagman in https://github.com/flutter/flutter/pull/100811</li>
+  <li>[flutter_tools] warn when doctor takes long by @christopherfujino in https://github.com/flutter/flutter/pull/100805</li>
+  <li>[macOS] Remove beta-quality wording from messages by @cbracken in https://github.com/flutter/flutter/pull/99699</li>
+  <li>[Linux] Remove beta-quality wording from messages by @cbracken in https://github.com/flutter/flutter/pull/99700</li>
+  <li>Set ARCHS to single-arch for local engine macOS builds by @jmagman in https://github.com/flutter/flutter/pull/100917</li>
+  <li>[flutter_tool] Have long-running validators fail by @christopherfujino in https://github.com/flutter/flutter/pull/100936</li>
+  <li>[flutter_conductor] Extend timeout for codesign integration test by @christopherfujino in https://github.com/flutter/flutter/pull/100940</li>
+  <li>Migrate .packages -&gt; package_config.json by @sigurdm in https://github.com/flutter/flutter/pull/99677</li>
+  <li>Reland “Enable caching of CPU samples collected at application startup (#89600)” by @bkonyi in https://github.com/flutter/flutter/pull/100995</li>
+  <li>Migrate AGP and Gradle versions to 7.1.2/7.4 by @blasten in https://github.com/flutter/flutter/pull/99723</li>
+  <li>[web] flutter.js initialization with ui.webOnlyWarmupEngine by @ditman in https://github.com/flutter/flutter/pull/100177</li>
+  <li>[winuwp] Add removal warning in config help text by @cbracken in https://github.com/flutter/flutter/pull/101086</li>
+  <li>Retire v1 embedding compatibility from automatic multidex support by @GaryQian in https://github.com/flutter/flutter/pull/100685</li>
+  <li>Prepare <code class="language-plaintext highlighter-rouge">flutter_tools</code> for <code class="language-plaintext highlighter-rouge">use_super_parameters</code> by @goderbauer in https://github.com/flutter/flutter/pull/100509</li>
+  <li>[Revert] Skip overall_experience_test.dart: flutter run writes and clears pidfile appropriately by @keyonghan in https://github.com/flutter/flutter/pull/101267</li>
+  <li>Add note to doctor validator if script is running Rosetta by @jmagman in https://github.com/flutter/flutter/pull/101309</li>
+  <li>[Cherrypick] Partial revert of super params in tools (#101436) by @CaseyHillers in https://github.com/flutter/flutter/pull/101527</li>
+  <li>[flutter_releases] Flutter beta 2.13.0-0.3.pre Framework Cherrypicks by @CaseyHillers in https://github.com/flutter/flutter/pull/102620</li>
+</ul>
+
+<h3 id="macos">
+<a class="anchor" href="#macos" aria-hidden="true"><span class="octicon octicon-link"></span></a>MacOS</h3>
+
+<ul>
+  <li>[macOS] Add run release test in devicelab by @cbracken in https://github.com/flutter/flutter/pull/100526</li>
+</ul>
+
+<h2 id="new-contributors">
+<a class="anchor" href="#new-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>New Contributors</h2>
+
+<p>Thanks to the following contributors in this release:</p>
+
+<ul>
+  <li>@willlockwood made their first contribution in https://github.com/flutter/flutter/pull/95537</li>
+  <li>@utibeabasi6 made their first contribution in https://github.com/flutter/flutter/pull/96058</li>
+  <li>@fbcouch made their first contribution in https://github.com/flutter/flutter/pull/75472</li>
+  <li>@b-luk made their first contribution in https://github.com/flutter/flutter/pull/96483</li>
+  <li>@WasserEsser made their first contribution in https://github.com/flutter/flutter/pull/96555</li>
+  <li>@intspt made their first contribution in https://github.com/flutter/flutter/pull/95881</li>
+  <li>@PoojaB26 made their first contribution in https://github.com/flutter/flutter/pull/94399</li>
+  <li>@ipowell made their first contribution in https://github.com/flutter/flutter/pull/91899</li>
+  <li>@swift-kim made their first contribution in https://github.com/flutter/flutter/pull/95450</li>
+  <li>@Dan-Crane made their first contribution in https://github.com/flutter/flutter/pull/92959</li>
+  <li>@SuhwanCha made their first contribution in https://github.com/flutter/flutter/pull/96574</li>
+  <li>@Amir-P made their first contribution in https://github.com/flutter/flutter/pull/93312</li>
+  <li>@jonas-martinez made their first contribution in https://github.com/flutter/flutter/pull/85954</li>
+  <li>@caioagiani made their first contribution in https://github.com/flutter/flutter/pull/97488</li>
+  <li>@MichaelTamm made their first contribution in https://github.com/flutter/flutter/pull/92660</li>
+  <li>@cachapa made their first contribution in https://github.com/flutter/flutter/pull/95504</li>
+  <li>@bannzai made their first contribution in https://github.com/flutter/flutter/pull/97897</li>
+  <li>@gslender made their first contribution in https://github.com/flutter/flutter/pull/93833</li>
+  <li>@brianquinlan made their first contribution in https://github.com/flutter/flutter/pull/98045</li>
+  <li>@KristinBi made their first contribution in https://github.com/flutter/flutter/pull/98159</li>
+  <li>@kirolous-nashaat made their first contribution in https://github.com/flutter/flutter/pull/93439</li>
+  <li>@himamis made their first contribution in https://github.com/flutter/flutter/pull/95995</li>
+  <li>@brunotacca made their first contribution in https://github.com/flutter/flutter/pull/98450</li>
+  <li>@SimonHausdorf made their first contribution in https://github.com/flutter/flutter/pull/90109</li>
+  <li>@Hari-07 made their first contribution in https://github.com/flutter/flutter/pull/98512</li>
+  <li>@mbriand made their first contribution in https://github.com/flutter/flutter/pull/97719</li>
+  <li>@r-mzy47 made their first contribution in https://github.com/flutter/flutter/pull/98389</li>
+  <li>@Phelicks made their first contribution in https://github.com/flutter/flutter/pull/97793</li>
+  <li>@nicolasvac made their first contribution in https://github.com/flutter/flutter/pull/96774</li>
+  <li>@valentinmarq made their first contribution in https://github.com/flutter/flutter/pull/99682</li>
+  <li>@jjoelson made their first contribution in https://github.com/flutter/flutter/pull/99987</li>
+  <li>@SahajRana made their first contribution in https://github.com/flutter/flutter/pull/99822</li>
+  <li>@yuseok made their first contribution in https://github.com/flutter/flutter/pull/98553</li>
+  <li>@jellynoone made their first contribution in https://github.com/flutter/flutter/pull/99527</li>
+  <li>@luckysmg made their first contribution in https://github.com/flutter/flutter/pull/99546</li>
+  <li>@M97Chahboun made their first contribution in https://github.com/flutter/flutter/pull/100372</li>
+  <li>@TytaniumDev made their first contribution in https://github.com/flutter/flutter/pull/99777</li>
+</ul>
+
+<p><strong>Full Changelog</strong>: https://github.com/flutter/flutter/compare/2.10.0…2.13.0-0.4.pre</p>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    
+
+  </body>
+</html>

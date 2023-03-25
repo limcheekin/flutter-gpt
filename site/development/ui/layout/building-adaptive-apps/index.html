@@ -1,0 +1,3463 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Building adaptive apps | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="Some considerations and instructions on how to build adaptive apps to run on a variety of platforms.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Building adaptive apps">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/ui/layout/building-adaptive-apps">
+    <meta property="og:description" content="Some considerations and instructions on how to build adaptive apps to run on a variety of platforms.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    
+  
+  
+  
+  <div
+    id="site-toc--side"
+    class="site-toc site-toc--side fixed-col col-xl-2 order-3 "
+    data-fixed-column
+  >
+    <header class="site-toc__title">
+      Contents
+      </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#overview">Overview</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#building-adaptive-layouts">Building adaptive layouts</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#layout-widgets">Layout widgets</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#visual-density">Visual density</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#contextual-layout">Contextual layout</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#screen-based-breakpoints">Screen-based breakpoints</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#use-layoutbuilder-for-extra-flexibility">Use LayoutBuilder for extra flexibility</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#device-segmentation">Device segmentation</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#single-source-of-truth-for-styling">Single source of truth for styling</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#design-to-the-strengths-of-each-form-factor">Design to the strengths of each form factor</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#use-desktop-build-targets-for-rapid-testing">Use desktop build targets for rapid testing</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#solve-touch-first">Solve touch first</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#input">Input</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#scroll-wheel">Scroll wheel</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#tab-traversal-and-focus-interactions">Tab traversal and focus interactions</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#controlling-traversal-order">Controlling traversal order</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#keyboard-accelerators">Keyboard accelerators</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#mouse-enter-exit-and-hover">Mouse enter, exit, and hover</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#idioms-and-norms">Idioms and norms</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#consider-expected-behavior-on-each-platform">Consider expected behavior on each platform</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#find-a-platform-advocate">Find a platform advocate</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#stay-unique">Stay unique</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#common-idioms-and-norms-to-consider">Common idioms and norms to consider</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#scrollbar-appearance-and-behavior">Scrollbar appearance and behavior</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#multi-select">Multi-select</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#selectable-text">Selectable text</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#title-bars">Title bars</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#context-menus-and-tooltips">Context menus and tooltips</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#horizontal-button-order">Horizontal button order</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#menu-bar">Menu bar</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#drag-and-drop">Drag and drop</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#educate-yourself-on-basic-usability-principles">Educate yourself on basic usability principles</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/ui/layout/building-adaptive-apps.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Building adaptive apps'&page-url=http://0.0.0.0:4002/development/ui/layout/building-adaptive-apps/&page-source=https://github.com/flutter/website/tree/main/src/development/ui/layout/building-adaptive-apps.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Building adaptive apps</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/ui" property="item" typeof="WebPage"><span property="name">UI</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/ui/layout" property="item" typeof="WebPage"><span property="name">Layout</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/ui/layout/building-adaptive-apps" property="item" typeof="WebPage"><span property="name">Building adaptive apps</span>
+      </a>
+      <meta property="position" content="3" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div
+    id="site-toc--inline"
+    class="site-toc site-toc--inline "
+  >
+    <header class="site-toc__title">
+      Contents
+    </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#overview">Overview</a></li>
+<li class="toc-entry toc-h2"><a href="#building-adaptive-layouts">Building adaptive layouts</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#layout-widgets">Layout widgets</a></li>
+<li class="toc-entry toc-h3"><a href="#visual-density">Visual density</a></li>
+<li class="toc-entry toc-h3"><a href="#contextual-layout">Contextual layout</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#screen-based-breakpoints">Screen-based breakpoints</a></li>
+<li class="toc-entry toc-h4"><a href="#use-layoutbuilder-for-extra-flexibility">Use LayoutBuilder for extra flexibility</a></li>
+<li class="toc-entry toc-h4"><a href="#device-segmentation">Device segmentation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#single-source-of-truth-for-styling">Single source of truth for styling</a></li>
+<li class="toc-entry toc-h3"><a href="#design-to-the-strengths-of-each-form-factor">Design to the strengths of each form factor</a></li>
+<li class="toc-entry toc-h3"><a href="#use-desktop-build-targets-for-rapid-testing">Use desktop build targets for rapid testing</a></li>
+<li class="toc-entry toc-h3"><a href="#solve-touch-first">Solve touch first</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#input">Input</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#scroll-wheel">Scroll wheel</a></li>
+<li class="toc-entry toc-h3"><a href="#tab-traversal-and-focus-interactions">Tab traversal and focus interactions</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#controlling-traversal-order">Controlling traversal order</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#keyboard-accelerators">Keyboard accelerators</a></li>
+<li class="toc-entry toc-h3"><a href="#mouse-enter-exit-and-hover">Mouse enter, exit, and hover</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#idioms-and-norms">Idioms and norms</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#consider-expected-behavior-on-each-platform">Consider expected behavior on each platform</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#find-a-platform-advocate">Find a platform advocate</a></li>
+<li class="toc-entry toc-h4"><a href="#stay-unique">Stay unique</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#common-idioms-and-norms-to-consider">Common idioms and norms to consider</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#scrollbar-appearance-and-behavior">Scrollbar appearance and behavior</a></li>
+<li class="toc-entry toc-h4"><a href="#multi-select">Multi-select</a></li>
+<li class="toc-entry toc-h4"><a href="#selectable-text">Selectable text</a></li>
+<li class="toc-entry toc-h4"><a href="#title-bars">Title bars</a></li>
+<li class="toc-entry toc-h4"><a href="#context-menus-and-tooltips">Context menus and tooltips</a></li>
+<li class="toc-entry toc-h4"><a href="#horizontal-button-order">Horizontal button order</a></li>
+<li class="toc-entry toc-h4"><a href="#menu-bar">Menu bar</a></li>
+<li class="toc-entry toc-h4"><a href="#drag-and-drop">Drag and drop</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#educate-yourself-on-basic-usability-principles">Educate yourself on basic usability principles</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
+<h2 id="overview">
+<a class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>Flutter provides new opportunities to build apps that can
+run on mobile, desktop, and the web from a single codebase.
+However, with these opportunities, come new challenges.
+You want your app to feel familiar to users,
+adapting to each platform by maximizing usability and
+ensuring a comfortable and seamless experience.
+That is, you need to build apps that are not just
+multiplatform, but are fully platform adaptive.</p>
+
+<p>There are many considerations for developing platform-adaptive
+apps, but they fall into three major categories:</p>
+
+<ul>
+  <li><a href="#building-adaptive-layouts">Layout</a></li>
+  <li><a href="#input">Input</a></li>
+  <li><a href="#idioms-and-norms">Idioms and norms</a></li>
+</ul>
+
+<iframe style="max-width: 100%" width="560" height="315" src="https://youtube.com/embed/RCdeSKVt7LI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>This page covers all three categories in detail
+using code snippets to illustrate the concepts.
+If you’d like to see how these concepts come together,
+check out the <a href="https://github.com/gskinnerTeam/flokk">Flokk</a> and <a href="https://github.com/gskinnerTeam/flutter-folio">Folio</a> examples that
+were built using the concepts described here.</p>
+
+<p>Original demo code for adaptive app development techniques from <a href="https://github.com/gskinnerTeam/flutter-adaptive-demo">flutter-adaptive-demo</a>.</p>
+
+<h2 id="building-adaptive-layouts">
+<a class="anchor" href="#building-adaptive-layouts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building adaptive layouts</h2>
+
+<p>One of the first things you must consider when bringing
+your app to multiple platforms is how to adapt
+it to the various sizes and shapes of the screens that
+it will run on.</p>
+
+<h3 id="layout-widgets">
+<a class="anchor" href="#layout-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout widgets</h3>
+
+<p>If you’ve been building apps or websites,
+you’re probably familiar with creating responsive interfaces.
+Luckily for Flutter developers,
+there are a large set of widgets to make this easier.</p>
+
+<p>Some of Flutter’s most useful layout widgets include:</p>
+
+<p><strong>Single child</strong></p>
+
+<ul>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Align-class.html"><code class="language-plaintext highlighter-rouge">Align</code></a>—Aligns a child within itself.
+It takes a double value between -1 and 1,
+for both the vertical and horizontal alignment.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/AspectRatio-class.html"><code class="language-plaintext highlighter-rouge">AspectRatio</code></a>—Attempts to size the
+child to a specific aspect ratio.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html"><code class="language-plaintext highlighter-rouge">ConstrainedBox</code></a>—Imposes size constraints on its child,
+offering control over the minimum or maximum size.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/CustomSingleChildLayout-class.html"><code class="language-plaintext highlighter-rouge">CustomSingleChildLayout</code></a>—Uses a delegate function
+to position a single child. The delegate can determine
+the layout constraints and positioning for the child.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html"><code class="language-plaintext highlighter-rouge">Expanded</code></a> and <a href="https://api.flutter.dev/flutter/widgets/Flexible-class.html"><code class="language-plaintext highlighter-rouge">Flexible</code></a>—Allows a child of a
+<code class="language-plaintext highlighter-rouge">Row</code> or <code class="language-plaintext highlighter-rouge">Column</code> to shrink or grow to fill any available space.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html"><code class="language-plaintext highlighter-rouge">FractionallySizedBox</code></a>—Sizes its child to a fraction
+of the available space.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html"><code class="language-plaintext highlighter-rouge">LayoutBuilder</code></a>—Builds a widget that can reflow
+itself based on its parents size.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html"><code class="language-plaintext highlighter-rouge">SingleChildScrollView</code></a>—Adds scrolling to a single child.
+Often used with a <code class="language-plaintext highlighter-rouge">Row</code> or <code class="language-plaintext highlighter-rouge">Column</code>.</p>
+  </li>
+</ul>
+
+<p><strong>Multichild</strong></p>
+
+<ul>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Column-class.html"><code class="language-plaintext highlighter-rouge">Column</code></a>, <a href="https://api.flutter.dev/flutter/widgets/Row-class.html"><code class="language-plaintext highlighter-rouge">Row</code></a>, and <a href="https://api.flutter.dev/flutter/widgets/Flex-class.html"><code class="language-plaintext highlighter-rouge">Flex</code></a>—Lays out children
+in a single horizontal or vertical run.
+Both <code class="language-plaintext highlighter-rouge">Column</code> and <code class="language-plaintext highlighter-rouge">Row</code> extend the <code class="language-plaintext highlighter-rouge">Flex</code> widget.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html"><code class="language-plaintext highlighter-rouge">CustomMultiChildLayout</code></a>—Uses a delegate function to
+position multiple children during the layout phase.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Flow-class.html"><code class="language-plaintext highlighter-rouge">Flow</code></a>—Similar to <code class="language-plaintext highlighter-rouge">CustomMultiChildLayout</code>,
+but more efficient because it’s performed during the
+paint phase rather than the layout phase.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/ListView-class.html"><code class="language-plaintext highlighter-rouge">ListView</code></a>, <a href="https://api.flutter.dev/flutter/widgets/GridView-class.html"><code class="language-plaintext highlighter-rouge">GridView</code></a>, and
+<a href="https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html"><code class="language-plaintext highlighter-rouge">CustomScrollView</code></a>—Provides scrollable
+lists of children.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Stack-class.html"><code class="language-plaintext highlighter-rouge">Stack</code></a>—Layers and positions multiple children
+relative to the edges of the <code class="language-plaintext highlighter-rouge">Stack</code>.
+Functions similarly to position-fixed in CSS.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Table-class.html"><code class="language-plaintext highlighter-rouge">Table</code></a>—Uses a classic table layout algorithm for
+its children, combining multiple rows and columns.</p>
+  </li>
+  <li>
+    <p><a href="https://api.flutter.dev/flutter/widgets/Wrap-class.html"><code class="language-plaintext highlighter-rouge">Wrap</code></a>—Displays its children in multiple horizontal
+or vertical runs.</p>
+  </li>
+</ul>
+
+<p>To see more available widgets and example code, see
+<a href="http://0.0.0.0:4002/development/ui/widgets/layout">Layout widgets</a>.</p>
+
+<h3 id="visual-density">
+<a class="anchor" href="#visual-density" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visual density</h3>
+
+<p>Different input devices offer various levels of precision,
+which necessitate differently sized hit areas.
+Flutter’s <code class="language-plaintext highlighter-rouge">VisualDensity</code> class makes it easy to adjust the
+density of your views across the entire application,
+for example, by making a button larger
+(and therefore easier to tap) on a touch device.</p>
+
+<p>When you change the <code class="language-plaintext highlighter-rouge">VisualDensity</code> for your <code class="language-plaintext highlighter-rouge">MaterialApp</code>,
+<code class="language-plaintext highlighter-rouge">MaterialComponents</code> that support it animate their densities
+to match. By default, both horizontal and vertical densities
+are set to 0.0, but you can set the densities to any negative
+or positive value that you want. By switching between different
+densities, you can easily adjust your UI:</p>
+
+<p><img src="http://0.0.0.0:4002/assets/images/docs/development/ui/layout/adaptive_scaffold.gif" alt="Adaptive scaffold" width="100%"></p>
+
+<p>To set a custom visual density, inject the density into
+your <code class="language-plaintext highlighter-rouge">MaterialApp</code> theme:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">double densityAmt = touchMode ? 0.0 : -1.0;
+VisualDensity density =
+    VisualDensity(horizontal: densityAmt, vertical: densityAmt);
+return MaterialApp(
+  theme: ThemeData(visualDensity: density),
+  home: MainAppScaffold(),
+  debugShowCheckedModeBanner: false,
+);</code></pre></div>
+</div>
+
+<p>To use <code class="language-plaintext highlighter-rouge">VisualDensity</code> inside your own views,
+you can look it up:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">VisualDensity density = Theme.of(context).visualDensity;</code></pre></div>
+</div>
+
+<p>Not only does the container react automatically to changes
+in density, it also animates when it changes.
+This ties together your custom components,
+along with the built-in components,
+for a smooth transition effect across the app.</p>
+
+<p>As shown, <code class="language-plaintext highlighter-rouge">VisualDensity</code> is unit-less,
+so it can mean different things to different views.
+In this example, 1 density unit equals 6 pixels,
+but this is totally up to your views to decide.
+The fact that it is unit-less makes it quite versatile,
+and it should work in most contexts.</p>
+
+<p>It’s worth noting that the Material Components generally
+use a value of around 4 logical pixels for each
+visual density unit. For more information about the
+supported components, see <a href="https://api.flutter.dev/flutter/material/VisualDensity-class.html"><code class="language-plaintext highlighter-rouge">VisualDensity</code></a> API.
+For more information about density principles in general,
+see the <a href="https://material.io/design/layout/applying-density.html#usage">Material Design guide</a>.</p>
+
+<h3 id="contextual-layout">
+<a class="anchor" href="#contextual-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contextual layout</h3>
+
+<p>If you need more than density changes and can’t find a
+widget that does what you need, you can take a more
+procedural approach to adjust parameters, calculate sizes,
+swap widgets, or completely restructure your UI to suit
+a particular form factor.</p>
+
+<h4 id="screen-based-breakpoints">
+<a class="anchor" href="#screen-based-breakpoints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screen-based breakpoints</h4>
+
+<p>The simplest form of procedural layouts uses
+screen-based breakpoints. In Flutter,
+this can be done with the <code class="language-plaintext highlighter-rouge">MediaQuery</code> API.
+There are no hard and fast rules for the sizes to use
+here, but these are general values:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class FormFactor {
+  static double desktop = 900;
+  static double tablet = 600;
+  static double handset = 300;
+}</code></pre></div>
+</div>
+
+<p>Using breakpoints, you can set up a simple system
+to determine the device type:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">ScreenType getFormFactor(BuildContext context) {
+  // Use .shortestSide to detect device type regardless of orientation
+  double deviceWidth = MediaQuery.of(context).size.shortestSide;
+  if (deviceWidth &gt; FormFactor.desktop) return ScreenType.Desktop;
+  if (deviceWidth &gt; FormFactor.tablet) return ScreenType.Tablet;
+  if (deviceWidth &gt; FormFactor.handset) return ScreenType.Handset;
+  return ScreenType.Watch;
+}</code></pre></div>
+</div>
+
+<p>As an alternative, you could abstract it more
+and define it in terms of small to large:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">enum ScreenSize { Small, Normal, Large, ExtraLarge }
+
+ScreenSize getSize(BuildContext context) {
+  double deviceWidth = MediaQuery.of(context).size.shortestSide;
+  if (deviceWidth &gt; 900) return ScreenSize.ExtraLarge;
+  if (deviceWidth &gt; 600) return ScreenSize.Large;
+  if (deviceWidth &gt; 300) return ScreenSize.Normal;
+  return ScreenSize.Small;
+}</code></pre></div>
+</div>
+
+<p>Screen-based breakpoints are best used for making
+top-level decisions in your app. Changing things like
+visual density, paddings, or font-sizes are best when
+defined on a global basis.</p>
+
+<p>You can also use screen-based breakpoints to reflow your
+top-level widget trees. For example, you could switch
+from a vertical to a horizontal layout when the user isn’t on a handset:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">bool isHandset = MediaQuery.of(context).size.width &lt; 600;
+return Flex(
+    children: [Text('Foo'), Text('Bar'), Text('Baz')],
+    direction: isHandset ? Axis.vertical : Axis.horizontal);</code></pre></div>
+</div>
+
+<p>In another widget,
+you might swap some of the children completely:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Widget foo = Row(
+  children: [
+    ...isHandset ? _getHandsetChildren() : _getNormalChildren(),
+  ],
+);</code></pre></div>
+</div>
+
+<h4 id="use-layoutbuilder-for-extra-flexibility">
+<a class="anchor" href="#use-layoutbuilder-for-extra-flexibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use LayoutBuilder for extra flexibility</h4>
+
+<p>Even though checking total screen size is great for
+full-screen pages or making global layout decisions,
+it’s often not ideal for nested subviews.
+Often, subviews have their own internal breakpoints
+and care only about the space that they have available to render.</p>
+
+<p>The simplest way to handle this in Flutter is using the
+<a href="https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html"><code class="language-plaintext highlighter-rouge">LayoutBuilder</code></a> class. <code class="language-plaintext highlighter-rouge">LayoutBuilder</code> allows a
+widget to respond to incoming local size constraints,
+which can make the widget more versatile than if it
+depended on a global value.</p>
+
+<p>The previous example could be rewritten using <code class="language-plaintext highlighter-rouge">LayoutBuilder</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">Widget foo = LayoutBuilder(
+    builder: (context, constraints) {
+  bool useVerticalLayout = constraints.maxWidth &lt; 400.0;
+  return Flex(
+    children: [
+      Text('Hello'),
+      Text('World'),
+    ],
+    direction: useVerticalLayout ? Axis.vertical : Axis.horizontal,
+  );
+});</code></pre></div>
+</div>
+
+<p>This widget can now be composed within a side panel,
+dialog, or even a full-screen view,
+and adapt its layout to whatever space is provided.</p>
+
+<h4 id="device-segmentation">
+<a class="anchor" href="#device-segmentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Device segmentation</h4>
+
+<p>There are times when you want to make layout decisions
+based on the actual platform you’re running on,
+regardless of size. For example, when building a
+custom title bar, you might need to check the operating
+system type and tweak the layout of your title bar, so
+it doesn’t get covered by the native window buttons.</p>
+
+<p>To determine which combination of platforms you’re on,
+you can use the <a href="https://api.flutter.dev/flutter/package-platform_platform/Platform-class.html"><code class="language-plaintext highlighter-rouge">Platform</code></a> API along with the <code class="language-plaintext highlighter-rouge">kIsWeb</code> value:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">bool get isMobileDevice =&gt; !kIsWeb &amp;&amp; (Platform.isIOS || Platform.isAndroid);
+bool get isDesktopDevice =&gt;
+    !kIsWeb &amp;&amp; (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
+bool get isMobileDeviceOrWeb =&gt; kIsWeb || isMobileDevice;
+bool get isDesktopDeviceOrWeb =&gt; kIsWeb || isDesktopDevice;</code></pre></div>
+</div>
+
+<p>The <code class="language-plaintext highlighter-rouge">Platform</code> API can’t be accessed from web builds without 
+throwing an exception, because the <code class="language-plaintext highlighter-rouge">dart.io</code> package is not
+supported on the web target. As a result, this code checks 
+for web first, and because of short-circuiting, Dart will 
+never call <code class="language-plaintext highlighter-rouge">Platform</code> on web targets.</p>
+
+<h3 id="single-source-of-truth-for-styling">
+<a class="anchor" href="#single-source-of-truth-for-styling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Single source of truth for styling</h3>
+
+<p>You’ll probably find it easier to maintain your views
+if you create a single source of truth for styling values
+like padding, spacing, corner shape, font sizes, and so on.
+This can be done easily with some helper classes:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class Insets {
+  static const double xsmall = 3;
+  static const double small = 4;
+  static const double medium = 5;
+  static const double large = 10;
+  static const double extraLarge = 20;
+  // etc
+}
+
+class Fonts {
+  static const String raleway = 'Raleway';
+  // etc
+}
+
+class TextStyles {
+  static const TextStyle raleway = const TextStyle(
+    fontFamily: Fonts.raleway,
+  );
+  static TextStyle buttonText1 =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
+  static TextStyle buttonText2 =
+      TextStyle(fontWeight: FontWeight.normal, fontSize: 11);
+  static TextStyle h1 = TextStyle(fontWeight: FontWeight.bold, fontSize: 22);
+  static TextStyle h2 = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
+  static late TextStyle body1 = raleway.copyWith(color: Color(0xFF42A5F5));
+  // etc
+}</code></pre></div>
+</div>
+
+<p>These constants can then be used in place of hard-coded numeric values:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return Padding(
+  padding: EdgeInsets.all(Insets.small),
+  child: Text('Hello!', style: TextStyles.body1),
+);</code></pre></div>
+</div>
+
+<p>With all views referencing the same shared-design system rules,
+they tend to look better and more consistent.
+Making a change or adjusting a value for a specific platform
+can be done in a single place, instead of using an error-prone
+search and replace. Using shared rules has the added benefit
+of helping enforce consistency on the design side.</p>
+
+<p>Some common design system categories that can be represented
+this way are:</p>
+
+<ul>
+  <li>Animation timings</li>
+  <li>Sizes and breakpoints</li>
+  <li>Insets and paddings</li>
+  <li>Corner radius</li>
+  <li>Shadows</li>
+  <li>Strokes</li>
+  <li>Font families, sizes, and styles</li>
+</ul>
+
+<p>Like most rules, there are exceptions:
+one-off values that are used nowhere else in the app.
+There is little point in cluttering up the styling rules
+with these values, but it’s worth considering if they
+should be derived from an existing value (for example,
+<code class="language-plaintext highlighter-rouge">padding + 1.0</code>). You should also watch for reuse or duplication
+of the same semantic values. Those values should likely be
+added to the global styling ruleset.</p>
+
+<h3 id="design-to-the-strengths-of-each-form-factor">
+<a class="anchor" href="#design-to-the-strengths-of-each-form-factor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design to the strengths of each form factor</h3>
+
+<p>Beyond screen size, you should also spend time
+considering the unique strengths and weaknesses
+of different form factors. It isn’t always ideal
+for your multiplatform app to offer identical
+functionality everywhere. Consider whether it makes
+sense to focus on specific capabilities,
+or even remove certain features, on some device categories.</p>
+
+<p>For example, mobile devices are portable and have cameras,
+but they aren’t well suited for detailed creative work.
+With this in mind, you might focus more on capturing content
+and tagging it with location data for a mobile UI,
+but focus on organizing or manipulating that content
+for a tablet or desktop UI.</p>
+
+<p>Another example is leveraging the web’s extremely low barrier
+for sharing. If you’re deploying a web app,
+decide which deep links to support,
+and design your navigation routes with those in mind.</p>
+
+<p>The key takeaway here is to think about what each
+platform does best and see if there are unique capabilities
+you can leverage.</p>
+
+<h3 id="use-desktop-build-targets-for-rapid-testing">
+<a class="anchor" href="#use-desktop-build-targets-for-rapid-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use desktop build targets for rapid testing</h3>
+
+<p>One of the most effective ways to test adaptive
+interfaces is to take advantage of the desktop build targets.</p>
+
+<p>When running on a desktop, you can easily resize the window
+while the app is running to preview various screen sizes.
+This, combined with hot reload, can greatly accelerate the
+development of a responsive UI.</p>
+
+<p><img src="http://0.0.0.0:4002/assets/images/docs/development/ui/layout/adaptive_scaffold2.gif" alt="Adaptive scaffold 2" width="100%"></p>
+
+<h3 id="solve-touch-first">
+<a class="anchor" href="#solve-touch-first" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solve touch first</h3>
+
+<p>Building a great touch UI can often be more difficult
+than a traditional desktop UI due, in part,
+to the lack of input accelerators like right-click,
+scroll wheel, or keyboard shortcuts.</p>
+
+<p>One way to approach this challenge is to focus initially
+on a great touch-oriented UI. You can still do most of
+your testing using the desktop target for its iteration speed.
+But, remember to switch frequently to a mobile device to
+verify that everything feels right.</p>
+
+<p>After you have the touch interface polished, you can tweak
+the visual density for mouse users, and then layer on all
+the additional inputs. Approach these other inputs as
+accelerator—alternatives that make a task faster.
+The important thing to consider is what a user expects
+when using a particular input device,
+and work to reflect that in your app.</p>
+
+<h2 id="input">
+<a class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input</h2>
+
+<p>Of course, it isn’t enough to just adapt how your app looks,
+you also have to support varying user inputs.
+The mouse and keyboard introduce input types beyond those
+found on a touch device—like scroll wheel, right-click,
+hover interactions, tab traversal, and keyboard shortcuts.</p>
+
+<h3 id="scroll-wheel">
+<a class="anchor" href="#scroll-wheel" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scroll wheel</h3>
+
+<p>Scrolling widgets like <code class="language-plaintext highlighter-rouge">ScrollView</code> or <code class="language-plaintext highlighter-rouge">ListView</code>
+support the scroll wheel by default, and because
+almost every scrollable custom widget is built
+using one of these, it works with them as well.</p>
+
+<p>If you need to implement custom scroll behavior,
+you can use the <a href="https://api.flutter.dev/flutter/widgets/Listener-class.html"><code class="language-plaintext highlighter-rouge">Listener</code></a> widget, which lets you
+customize how your UI reacts to the scroll wheel.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return Listener(
+    onPointerSignal: (event) {
+      if (event is PointerScrollEvent) print(event.scrollDelta.dy);
+    },
+    child: ListView());</code></pre></div>
+</div>
+
+<h3 id="tab-traversal-and-focus-interactions">
+<a class="anchor" href="#tab-traversal-and-focus-interactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tab traversal and focus interactions</h3>
+
+<p>Users with physical keyboards expect that they can use
+the tab key to quickly navigate your application,
+and users with motor or vision differences often rely
+completely on keyboard navigation.</p>
+
+<p>There are two considerations for tab interactions:
+how focus moves from widget to widget, known as traversal,
+and the visual highlight shown when a widget is focused.</p>
+
+<p>Most built-in components, like buttons and text fields,
+support traversal and highlights by default.
+If you have your own widget that you want included in
+traversal, you can use the <a href="https://api.flutter.dev/flutter/widgets/FocusableActionDetector-class.html"><code class="language-plaintext highlighter-rouge">FocusableActionDetector</code></a> widget
+to create your own controls. It combines the functionality
+of <a href="https://api.flutter.dev/flutter/widgets/Actions-class.html"><code class="language-plaintext highlighter-rouge">Actions</code></a>, <a href="https://api.flutter.dev/flutter/widgets/Shortcuts-class.html"><code class="language-plaintext highlighter-rouge">Shortcuts</code></a>, <a href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html"><code class="language-plaintext highlighter-rouge">MouseRegion</code></a>, and
+<a href="https://api.flutter.dev/flutter/widgets/Focus-class.html"><code class="language-plaintext highlighter-rouge">Focus</code></a> widgets to create a detector that defines actions
+and key bindings, and provides callbacks for handling focus
+and hover highlights.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">class _BasicActionDetectorState extends State&lt;BasicActionDetector&gt; {
+  bool _hasFocus = false;
+  @override
+  Widget build(BuildContext context) {
+    return FocusableActionDetector(
+      onFocusChange: (value) =&gt; setState(() =&gt; _hasFocus = value),
+      actions: &lt;Type, Action&lt;Intent&gt;&gt;{
+        ActivateIntent: CallbackAction&lt;Intent&gt;(onInvoke: (intent) {
+          print('Enter or Space was pressed!');
+          return null;
+        }),
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          FlutterLogo(size: 100),
+          // Position focus in the negative margin for a cool effect
+          if (_hasFocus)
+            Positioned(
+                left: -4,
+                top: -4,
+                bottom: -4,
+                right: -4,
+                child: _roundedBorder())
+        ],
+      ),
+    );
+  }
+}</code></pre></div>
+</div>
+
+<h4 id="controlling-traversal-order">
+<a class="anchor" href="#controlling-traversal-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>Controlling traversal order</h4>
+
+<p>To get more control over the order that
+widgets are focused on when the user presses tab,
+you can use <a href="https://api.flutter.dev/flutter/widgets/FocusTraversalGroup-class.html"><code class="language-plaintext highlighter-rouge">FocusTraversalGroup</code></a> to define sections
+of the tree that should be treated as a group when tabbing.</p>
+
+<p>For example, you might to tab through all the fields in
+a form before tabbing to the submit button:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return Column(children: [
+  FocusTraversalGroup(
+    child: MyFormWithMultipleColumnsAndRows(),
+  ),
+  SubmitButton(),
+]);</code></pre></div>
+</div>
+
+<p>Flutter has several built-in ways to traverse widgets and groups,
+defaulting to the <code class="language-plaintext highlighter-rouge">ReadingOrderTraversalPolicy</code> class.
+This class usually works well, but it’s possible to modify this
+using another predefined <code class="language-plaintext highlighter-rouge">TraversalPolicy</code> class or by creating
+a custom policy.</p>
+
+<h3 id="keyboard-accelerators">
+<a class="anchor" href="#keyboard-accelerators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keyboard accelerators</h3>
+
+<p>In addition to tab traversal, desktop and web users are accustomed
+to having various keyboard shortcuts bound to specific actions.
+Whether it’s the <code class="language-plaintext highlighter-rouge">Delete</code> key for quick deletions or
+<code class="language-plaintext highlighter-rouge">Control+N</code> for a new document, be sure to consider the different
+accelerators your users expect. The keyboard is a powerful
+input tool, so try to squeeze as much efficiency from it as you can.
+Your users will appreciate it!</p>
+
+<p>Keyboard accelerators can be accomplished in a few ways in Flutter
+depending on your goals.</p>
+
+<p>If you have a single widget like a <code class="language-plaintext highlighter-rouge">TextField</code> or a <code class="language-plaintext highlighter-rouge">Button</code> that
+already has a focus node, you can wrap it in a
+<a href="https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html"><code class="language-plaintext highlighter-rouge">RawKeyboardListener</code></a> and listen for keyboard events:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      onKey: (node, event) {
+        if (event is RawKeyDownEvent) {
+          print(event.logicalKey);
+        }
+        return KeyEventResult.ignored;
+      },
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 400),
+        child: TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre></div>
+</div>
+
+<p>If you’d like to apply a set of keyboard shortcuts to a
+large section of the tree, you can use the <a href="https://api.flutter.dev/flutter/widgets/Shortcuts-class.html"><code class="language-plaintext highlighter-rouge">Shortcuts</code></a> widget:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">// Define a class for each type of shortcut action you want
+class CreateNewItemIntent extends Intent {
+  const CreateNewItemIntent();
+}
+
+Widget build(BuildContext context) {
+  return Shortcuts(
+    // Bind intents to key combinations
+    shortcuts: &lt;ShortcutActivator, Intent&gt;{
+      SingleActivator(LogicalKeyboardKey.keyN, control: true):
+          CreateNewItemIntent(),
+    },
+    child: Actions(
+      // Bind intents to an actual method in your code
+      actions: &lt;Type, Action&lt;Intent&gt;&gt;{
+        CreateNewItemIntent: CallbackAction&lt;CreateNewItemIntent&gt;(
+            onInvoke: (intent) =&gt; _createNewItem()),
+      },
+      // Your sub-tree must be wrapped in a focusNode, so it can take focus.
+      child: Focus(
+        autofocus: true,
+        child: Container(),
+      ),
+    ),
+  );
+}</code></pre></div>
+</div>
+
+<p>The <a href="https://api.flutter.dev/flutter/widgets/Shortcuts-class.html"><code class="language-plaintext highlighter-rouge">Shortcuts</code></a> widget is useful because it only
+allows shortcuts to be fired when this widget tree
+or one of its children has focus and is visible.</p>
+
+<p>The final option is a global listener. This listener
+can be used for always-on, app-wide shortcuts or for
+panels that can accept shortcuts whenever they’re visible
+(regardless of their focus state). Adding global listeners
+is easy with <a href="https://api.flutter.dev/flutter/services/RawKeyboard-class.html"><code class="language-plaintext highlighter-rouge">RawKeyboard</code></a>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">void initState() {
+  super.initState();
+  RawKeyboard.instance.addListener(_handleKey);
+}
+
+@override
+void dispose() {
+  RawKeyboard.instance.removeListener(_handleKey);
+  super.dispose();
+}</code></pre></div>
+</div>
+
+<p>To check key combinations with the global listener,
+you can use the <code class="language-plaintext highlighter-rouge">RawKeyboard.instance.keysPressed</code> map.
+For example, a method like the following can check whether any
+of the provided keys are being held down:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">static bool isKeyDown(Set&lt;LogicalKeyboardKey&gt; keys) {
+  return keys.intersection(RawKeyboard.instance.keysPressed).isNotEmpty;
+}</code></pre></div>
+</div>
+
+<p>Putting these two things together,
+you can fire an action when <code class="language-plaintext highlighter-rouge">Shift+N</code> is pressed:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">void _handleKey(event) {
+  if (event is RawKeyDownEvent) {
+    bool isShiftDown = isKeyDown({
+      LogicalKeyboardKey.shiftLeft,
+      LogicalKeyboardKey.shiftRight,
+    });
+    if (isShiftDown &amp;&amp; event.logicalKey == LogicalKeyboardKey.keyN) {
+      _createNewItem();
+    }
+  }
+}</code></pre></div>
+</div>
+
+<p>One note of caution when using the static listener,
+is that you often need to disable it when the user
+is typing in a field or when the widget it’s associated with
+is hidden from view.
+Unlike with <code class="language-plaintext highlighter-rouge">Shortcuts</code> or <code class="language-plaintext highlighter-rouge">RawKeyboardListener</code>,
+this is your responsibility to manage. This can be especially
+important when you’re binding a Delete/Backspace accelerator for
+<code class="language-plaintext highlighter-rouge">Delete</code>, but then have child <code class="language-plaintext highlighter-rouge">TextFields</code> that the user
+might be typing in.</p>
+
+<h3 id="mouse-enter-exit-and-hover">
+<a class="anchor" href="#mouse-enter-exit-and-hover" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mouse enter, exit, and hover</h3>
+
+<p>On desktop, it’s common to change the mouse cursor
+to indicate the functionality about the content the
+mouse is hovering over. For example, you usually see
+a hand cursor when you hover over a button,
+or an <code class="language-plaintext highlighter-rouge">I</code> cursor when you hover over text.</p>
+
+<p>The Material Component set has built-in support
+for your standard button and text cursors.
+To change the cursor from within your own widgets,
+use <a href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html"><code class="language-plaintext highlighter-rouge">MouseRegion</code></a>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">// Show hand cursor
+return MouseRegion(
+  cursor: SystemMouseCursors.click,
+  // Request focus when clicked
+  child: GestureDetector(
+    onTap: () {
+      Focus.of(context).requestFocus();
+      _submit();
+    },
+    child: Logo(showBorder: hasFocus),
+  ),
+);</code></pre></div>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">MouseRegion</code> is also useful for creating custom
+rollover and hover effects:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return MouseRegion(
+  onEnter: (_) =&gt; setState(() =&gt; _isMouseOver = true),
+  onExit: (_) =&gt; setState(() =&gt; _isMouseOver = false),
+  onHover: (e) =&gt; print(e.localPosition),
+  child: Container(
+    height: 500,
+    color: _isMouseOver ? Colors.blue : Colors.black,
+  ),
+);</code></pre></div>
+</div>
+
+<h2 id="idioms-and-norms">
+<a class="anchor" href="#idioms-and-norms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Idioms and norms</h2>
+
+<p>The final area to consider for adaptive apps is platform standards.
+Each platform has its own idioms and norms;
+these nominal or de facto standards inform user expectations
+of how an application should behave. Thanks, in part to the web,
+users are accustomed to more customized experiences,
+but reflecting these platform standards can still provide
+significant benefits:</p>
+
+<ul>
+  <li>
+    <p><strong>Reduce cognitive load</strong>—By matching the user’s
+existing mental model, accomplishing tasks becomes intuitive,
+which requires less thinking,
+boosts productivity, and reduces frustrations.</p>
+  </li>
+  <li>
+    <p><strong>Build trust</strong>—Users can become wary or suspicious
+when applications don’t adhere to their expectations.
+Conversely, a UI that feels familiar can build user trust
+and can help improve the perception of quality.
+This often has the added benefit of better app store
+ratings—something we can all appreciate!</p>
+  </li>
+</ul>
+
+<h3 id="consider-expected-behavior-on-each-platform">
+<a class="anchor" href="#consider-expected-behavior-on-each-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>Consider expected behavior on each platform</h3>
+
+<p>The first step is to spend some time considering what
+the expected appearance, presentation, or behavior is on this platform.
+Try to forget any limitations of your current implementation,
+and just envision the ideal user experience.
+Work backwards from there.</p>
+
+<p>Another way to think about this is to ask,
+“How would a user of this platform expect to achieve this goal?”
+Then, try to envision how that would work in your app
+without any compromises.</p>
+
+<p>This can be difficult if you aren’t a regular user of the platform.
+You might be unaware of the specific idioms and can easily miss
+them completely. For example, a lifetime Android user will
+likely be unaware of platform conventions on iOS,
+and the same holds true for macOS, Linux, and Windows.
+These differences might be subtle to you,
+but be painfully obvious to an experienced user.</p>
+
+<h4 id="find-a-platform-advocate">
+<a class="anchor" href="#find-a-platform-advocate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Find a platform advocate</h4>
+
+<p>If possible, assign someone as an advocate for each platform.
+Ideally, your advocate uses the platform as their primary device,
+and can offer the perspective of a highly opinionated user.
+To reduce the number of people, combine roles.
+Have one advocate for Windows and Android,
+one for Linux and the web, and one for Mac and iOS.</p>
+
+<p>The goal is to have constant, informed feedback so the app
+feels great on each platform. Advocates should be encouraged
+to be quite picky, calling out anything they feel differs from
+typical applications on their device. A simple example is how
+the default button in a dialog is typically on the left on Mac
+and Linux, but is on the right on Windows.
+Details like that are easy to miss if you aren’t using a platform
+on a regular basis.</p>
+
+<aside class="alert alert-secondary" role="alert">
+  <p><strong>Important</strong>: Advocates don’t need to be developers or
+  even full-time team members. They can be designers,
+  stakeholders, or external testers that are provided
+  with regular builds.</p>
+</aside>
+
+<h4 id="stay-unique">
+<a class="anchor" href="#stay-unique" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stay unique</h4>
+
+<p>Conforming to expected behaviors doesn’t mean that your app
+needs to use default components or styling.
+Many of the most popular multiplatform apps have very distinct
+and opinionated UIs including custom buttons, context menus,
+and title bars.</p>
+
+<p>The more you can consolidate styling and behavior across platforms,
+the easier development and testing will be. 
+The trick is to balance creating a unique experience with a
+strong identity, while respecting the norms of each platform.</p>
+
+<h3 id="common-idioms-and-norms-to-consider">
+<a class="anchor" href="#common-idioms-and-norms-to-consider" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common idioms and norms to consider</h3>
+
+<p>Take a quick look at a few specific norms and idioms
+you might want to consider, and how you could approach
+them in Flutter.</p>
+
+<h4 id="scrollbar-appearance-and-behavior">
+<a class="anchor" href="#scrollbar-appearance-and-behavior" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scrollbar appearance and behavior</h4>
+
+<p>Desktop and mobile users expect scrollbars,
+but they expect them to behave differently on different platforms.
+Mobile users expect smaller scrollbars that only appear
+while scrolling, whereas desktop users generally expect
+omnipresent, larger scrollbars that they can click or drag.</p>
+
+<p>Flutter comes with a built-in <code class="language-plaintext highlighter-rouge">Scrollbar</code> widget that already
+has support for adaptive colors and sizes according to the
+current platform. The one tweak you might want to make is to
+toggle <code class="language-plaintext highlighter-rouge">alwaysShown</code> when on a desktop platform:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return Scrollbar(
+  thumbVisibility: DeviceType.isDesktop,
+  controller: _scrollController,
+  child: GridView.count(
+      controller: _scrollController,
+      padding: EdgeInsets.all(Insets.extraLarge),
+      childAspectRatio: 1,
+      crossAxisCount: colCount,
+      children: listChildren),
+);</code></pre></div>
+</div>
+
+<p>This subtle attention to detail can make your app feel more
+comfortable on a given platform.</p>
+
+<h4 id="multi-select">
+<a class="anchor" href="#multi-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-select</h4>
+
+<p>Dealing with multi-select within a list is another area
+with subtle differences across platforms:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">static bool get isSpanSelectModifierDown =&gt;
+    isKeyDown({LogicalKeyboardKey.shiftLeft, LogicalKeyboardKey.shiftRight});</code></pre></div>
+</div>
+
+<p>To perform a platform-aware check for control or command,
+you can write something like this:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">static bool get isMultiSelectModifierDown {
+  bool isDown = false;
+  if (Platform.isMacOS) {
+    isDown = isKeyDown(
+        {LogicalKeyboardKey.metaLeft, LogicalKeyboardKey.metaRight});
+  } else {
+    isDown = isKeyDown(
+        {LogicalKeyboardKey.controlLeft, LogicalKeyboardKey.controlRight});
+  }
+  return isDown;
+}</code></pre></div>
+</div>
+
+<p>A final consideration for keyboard users is the <strong>Select All</strong> action.
+If you have a large list of items of selectable items,
+many of your keyboard users will expect that they can use
+<code class="language-plaintext highlighter-rouge">Control+A</code> to select all the items.</p>
+
+<h5 id="touch-devices">Touch devices</h5>
+
+<p>On touch devices, multi-selection is typically simplified,
+with the expected behavior being similar to having the
+<code class="language-plaintext highlighter-rouge">isMultiSelectModifier</code> down on the desktop.
+You can select or deselect items using a single tap,
+and will usually have a button to <strong>Select All</strong> or
+<strong>Clear</strong> the current selection.</p>
+
+<p>How you handle multi-selection on different devices depends
+on your specific use cases, but the important thing is to
+make sure that you’re offering each platform the best
+interaction model possible.</p>
+
+<h4 id="selectable-text">
+<a class="anchor" href="#selectable-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Selectable text</h4>
+
+<p>A common expectation on the web (and to a lesser extent desktop)
+is that most visible text can be selected with the mouse cursor.
+When text is not selectable,
+users on the web tend to have an adverse reaction.</p>
+
+<p>Luckily, this is easy to support with the <a href="https://api.flutter.dev/flutter/material/SelectableText-class.html"><code class="language-plaintext highlighter-rouge">SelectableText</code></a> widget:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return SelectableText('Select me!');</code></pre></div>
+</div>
+
+<p>To support rich text, then use <code class="language-plaintext highlighter-rouge">TextSpan</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return SelectableText.rich(
+  TextSpan(
+    children: [
+      TextSpan(text: 'Hello'),
+      TextSpan(text: 'Bold', style: TextStyle(fontWeight: FontWeight.bold)),
+    ],
+  ),
+);</code></pre></div>
+</div>
+
+<h4 id="title-bars">
+<a class="anchor" href="#title-bars" aria-hidden="true"><span class="octicon octicon-link"></span></a>Title bars</h4>
+
+<p>On modern desktop applications, it’s common to customize
+the title bar of your app window, adding a logo for
+stronger branding or contextual controls to help save
+vertical space in your main UI.</p>
+
+<p><img src="http://0.0.0.0:4002/assets/images/docs/development/ui/layout/titlebar.png" alt="Samples of title bars" width="100%"></p>
+
+<p>This isn’t supported directly in Flutter, but you can use the
+<a href="https://github.com/bitsdojo/bitsdojo_window"><code class="language-plaintext highlighter-rouge">bits_dojo</code></a> package to disable the native title bars,
+and replace them with your own.</p>
+
+<p>This package lets you add whatever widgets you want to the
+<code class="language-plaintext highlighter-rouge">TitleBar</code> because it uses pure Flutter widgets under the hood.
+This makes it easy to adapt the title bar as you navigate
+to different sections of the app.</p>
+
+<h4 id="context-menus-and-tooltips">
+<a class="anchor" href="#context-menus-and-tooltips" aria-hidden="true"><span class="octicon octicon-link"></span></a>Context menus and tooltips</h4>
+
+<p>On desktop, there are several interactions that
+manifest as a widget shown in an overlay,
+but with differences in how they’re triggered, dismissed,
+and positioned:</p>
+
+<ul>
+  <li>
+    <p><strong>Context menu</strong>—Typically triggered by a right-click,
+a context menu is positioned close to the mouse,
+and is dismissed by clicking anywhere,
+selecting an option from the menu, or clicking outside it.</p>
+  </li>
+  <li>
+    <p><strong>Tooltip</strong>—Typically triggered by hovering for
+200-400ms over an interactive element,
+a tooltip is usually anchored to a widget
+(as opposed to the mouse position) and is dismissed
+when the mouse cursor leaves that widget.</p>
+  </li>
+  <li>
+    <p><strong>Popup panel (also known as flyout)</strong>—Similar to a tooltip,
+a popup panel is usually anchored to a widget.
+The main difference is that panels are most often
+shown on a tap event, and they usually don’t hide
+themselves when the cursor leaves.
+Instead, panels are typically dismissed by clicking
+outside the panel or by pressing a <strong>Close</strong> or <strong>Submit</strong> button.</p>
+  </li>
+</ul>
+
+<p>To show basic tooltips in Flutter,
+use the built-in <a href="https://api.flutter.dev/flutter/material/Tooltip-class.html"><code class="language-plaintext highlighter-rouge">Tooltip</code></a> widget:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">return const Tooltip(
+  message: 'I am a Tooltip',
+  child: Text('Hover over the text to show a tooltip.'),
+);</code></pre></div>
+</div>
+
+<p>Flutter also provides built-in context menus when editing
+or selecting text.</p>
+
+<p>To show more advanced tooltips, popup panels,
+or create custom context menus,
+you either use one of the available packages,
+or build it yourself using a <code class="language-plaintext highlighter-rouge">Stack</code> or <code class="language-plaintext highlighter-rouge">Overlay</code>.</p>
+
+<p>Some available packages include:</p>
+
+<ul>
+  <li><a href="https://pub.dev/packages/context_menus"><code class="language-plaintext highlighter-rouge">context_menus</code></a></li>
+  <li><a href="https://pub.dev/packages/anchored_popups"><code class="language-plaintext highlighter-rouge">anchored_popups</code></a></li>
+  <li><a href="https://pub.dev/packages/flutter_portal"><code class="language-plaintext highlighter-rouge">flutter_portal</code></a></li>
+  <li><a href="https://pub.dev/packages/super_tooltip"><code class="language-plaintext highlighter-rouge">super_tooltip</code></a></li>
+  <li><a href="https://pub.dev/packages/custom_pop_up_menu"><code class="language-plaintext highlighter-rouge">custom_pop_up_menu</code></a></li>
+</ul>
+
+<p>While these controls can be valuable for touch users as accelerators,
+they are essential for mouse users. These users expect
+to right-click things, edit content in place,
+and hover for more information. Failing to meet those expectations
+can lead to disappointed users, or at least,
+a feeling that something isn’t quite right.</p>
+
+<h4 id="horizontal-button-order">
+<a class="anchor" href="#horizontal-button-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>Horizontal button order</h4>
+
+<p>On Windows, when presenting a row of buttons,
+the confirmation button is placed at the start of
+the row (left side). On all other platforms,
+it’s the opposite. The confirmation button is
+placed at the end of the row (right side).</p>
+
+<p>This can be easily handled in Flutter using the
+<code class="language-plaintext highlighter-rouge">TextDirection</code> property on <code class="language-plaintext highlighter-rouge">Row</code>:</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><pre><code class="dart prettyprint lang-dart">TextDirection btnDirection =
+    DeviceType.isWindows ? TextDirection.rtl : TextDirection.ltr;
+return Row(
+  children: [
+    Spacer(),
+    Row(
+      textDirection: btnDirection,
+      children: [
+        DialogButton(
+            label: 'Cancel',
+            onPressed: () =&gt; Navigator.pop(context, false)),
+        DialogButton(
+            label: 'Ok', onPressed: () =&gt; Navigator.pop(context, true)),
+      ],
+    ),
+  ],
+);</code></pre></div>
+</div>
+
+<p><img src="http://0.0.0.0:4002/assets/images/docs/development/ui/layout/embed_image1.png" alt="Sample of embedded image" width="75%"></p>
+
+<p><img src="http://0.0.0.0:4002/assets/images/docs/development/ui/layout/embed_image2.png" alt="Sample of embedded image" width="90%"></p>
+
+<h4 id="menu-bar">
+<a class="anchor" href="#menu-bar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Menu bar</h4>
+
+<p>Another common pattern on desktop apps is the menu bar.
+On Windows and Linux, this menu lives as part of the Chrome title bar,
+whereas on macOS, it’s located along the top of the primary screen.</p>
+
+<p>Currently, you can specify custom menu bar entries using
+a prototype plugin, but it’s expected that this functionality will
+eventually be integrated into the main SDK.</p>
+
+<p>It’s worth mentioning that on Windows and Linux,
+you can’t combine a custom title bar with a menu bar.
+When you create a custom title bar,
+you’re replacing the native one completely,
+which means you also lose the integrated native menu bar.</p>
+
+<p>If you need both a custom title bar and a menu bar,
+you can achieve that by implementing it in Flutter,
+similar to a custom context menu.</p>
+
+<h4 id="drag-and-drop">
+<a class="anchor" href="#drag-and-drop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Drag and drop</h4>
+
+<p>One of the core interactions for both touch-based and
+pointer-based inputs is drag and drop. Although this
+interaction is expected for both types of input,
+there are important differences to think about when
+it comes to scrolling lists of draggable items.</p>
+
+<p>Generally speaking, touch users expect to see drag handles
+to differentiate draggable areas from scrollable ones,
+or alternatively, to initiate a drag by using a long
+press gesture. This is because scrolling and dragging
+are both sharing a single finger for input.</p>
+
+<p>Mouse users have more input options. They can use a wheel
+or scrollbar to scroll, which generally eliminates the need
+for dedicated drag handles. If you look at the macOS
+Finder or Windows Explorer, you’ll see that they work
+this way: you just select an item and start dragging.</p>
+
+<p>In Flutter, you can implement drag and drop in many
+ways. Discussing specific implementations is outside
+the scope of this article, but some high level options
+are:</p>
+
+<ul>
+  <li>
+    <p>Use the <a href="https://api.flutter.dev/flutter/widgets/Draggable-class.html"><code class="language-plaintext highlighter-rouge">Draggable</code></a> and <a href="https://api.flutter.dev/flutter/widgets/DragTarget-class.html"><code class="language-plaintext highlighter-rouge">DragTarget</code></a> APIs
+directly for a custom look and feel.</p>
+  </li>
+  <li>
+    <p>Hook into <code class="language-plaintext highlighter-rouge">onPan</code> gesture events,
+and move an object yourself within a parent <code class="language-plaintext highlighter-rouge">Stack</code>.</p>
+  </li>
+  <li>
+    <p>Use one of the <a href="https://pub.dev/packages?q=reorderable+list">pre-made list packages</a> on pub.dev.</p>
+  </li>
+</ul>
+
+<h3 id="educate-yourself-on-basic-usability-principles">
+<a class="anchor" href="#educate-yourself-on-basic-usability-principles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Educate yourself on basic usability principles</h3>
+
+<p>Of course, this page doesn’t constitute an exhaustive list
+of the things you might consider. The more operating systems,
+form factors, and input devices you support,
+the more difficult it becomes to spec out every permutation in design.</p>
+
+<p>Taking time to learn basic usability principles as a
+developer empowers you to make better decisions,
+reduces back-and-forth iterations with design during production,
+and results in improved productivity with better outcomes.</p>
+
+<p>Here are some resources to get you started:</p>
+
+<ul>
+  <li><a href="https://material.io/archive/guidelines/layout/responsive-ui.html">Material guidelines on responsive UI layout</a></li>
+  <li><a href="https://material.io/blog/material-design-for-large-screens">Material design for large screens</a></li>
+  <li><a href="https://developer.android.com/quality">Build high quality apps (Android)</a></li>
+  <li><a href="https://developer.apple.com/design/tips/">UI design do’s and don’ts (Apple)</a></li>
+  <li><a href="https://developer.apple.com/design/human-interface-guidelines/">Human interface guidelines (Apple)</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/windows/uwp/design/layout/responsive-design">Responsive design techniques (Microsoft)</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/windows/uwp/design/layout/screen-sizes-and-breakpoints-for-responsive-design">Machine sizes and breakpoints (Microsoft)</a></li>
+</ul>
+
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    
+
+  </body>
+</html>

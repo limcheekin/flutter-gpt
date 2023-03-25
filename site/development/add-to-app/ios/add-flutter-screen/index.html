@@ -1,0 +1,3142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adding a Flutter screen to an iOS app | Flutter</title>
+    <link rel="icon" href="/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.1/js/all.js" as="script">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <meta name="description" content="Learn how to add a single Flutter screen to your existing iOS app.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Adding a Flutter screen to an iOS app">
+    <meta property="og:url" content="http://0.0.0.0:4002/development/add-to-app/ios/add-flutter-screen">
+    <meta property="og:description" content="Learn how to add a single Flutter screen to your existing iOS app.">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/images/flutter-logo-sharing.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-replace-svg="nest">
+    </script>
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css?v=1679552870">
+    </head>
+  <body>
+
+    <section id="cookie-notice">
+  <div class="container">
+    <p>Google uses cookies to deliver its services, to personalize ads, and to 
+      analyze traffic. You can adjust your privacy controls anytime in your 
+      <a href="https://myaccount.google.com/data-and-personalization" target="_blank" rel="noopener">Google settings</a>. 
+      <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+    <button id="cookie-consent" class="btn btn-primary">Okay</button>
+  </div>
+</section>
+
+  
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-toggle="collapse" 
+      data-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="http://0.0.0.0:4002">
+      <img 
+        src='/assets/images/shared/brand/flutter/logo/flutter-lockup.png' 
+        alt='Flutter logo' 
+        height="37" 
+        width="129" 
+        class="align-middle">
+    </a>
+
+    <div 
+      id="navbarSupportedContent"
+      class="collapse navbar-collapse flex-grow-0">
+      <div 
+        class="site-header__sheet-bg" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="platform-navbar-dropdown"
+               href="https://flutter.dev/multi-platform" 
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="platform-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dev-navbar-dropdown"
+               href="https://flutter.dev/development"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dev-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="ecosystem-navbar-dropdown"
+               href="https://flutter.dev/ecosystem"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="ecosystem-navbar-dropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle"
+               id="docs-navbar-dropdown"
+               href="/"
+               role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="docs-navbar-dropdown">
+              <a class="dropdown-item "
+                 href="/whats-new">What's new</a>
+              <a class="dropdown-item "
+                 href="/get-started/editor">Editor support</a>
+              <a class="dropdown-item "
+                 href="/development/tools/hot-reload">Hot reload</a>
+              <a class="dropdown-item "
+                 href="/perf/ui-performance">Profiling</a>
+              <a class="dropdown-item "
+                 href="/get-started/install">Install Flutter</a>
+              <a class="dropdown-item "
+                 href="/development/tools/devtools/overview">DevTools</a>
+              <a class="dropdown-item "
+                 href="/cookbook">Cookbook</a>
+              <a class="dropdown-item "
+                 href="/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="/search/" class="site-header__search form-inline">
+          <input 
+            class="site-header__searchfield form-control" 
+            type="search" name="q" id="q" autocomplete="off" 
+            placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a 
+        class="nav-item nav-link" 
+        href="https://twitter.com/FlutterDev" 
+        aria-label="Twitter">
+        <i class="fab fa-twitter fa-lg"></i>
+      </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://www.youtube.com/@flutterdev" 
+        aria-label="YouTube">
+        <i class="fab fa-youtube fa-lg"></i>
+    </a>
+      <a 
+        class="nav-item nav-link" 
+        href="https://github.com/flutter" 
+        aria-label="GitHub">
+        <i class="fab fa-github fa-lg"></i>
+    </a>
+    </div>
+    <a 
+        class="site-header__cta btn btn-primary" 
+        href="/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+
+    <div class="site-banner site-banner--default" role="alert">
+  We want your thoughts on implementing deep links in Flutter.<br>
+  By taking part in this study, you'll directly impact Flutter’s
+  deep linking support.<br>
+  <a href= https://goo.gle/3KVF8bq">Sign up for a chance to be included.</a>
+  </div>
+
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column>
+      
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button"
+        aria-expanded="false" aria-controls="sidenav-1"
+      >Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/get-started/install">1. Install</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/editor">2. Set up an editor</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/test-drive">3. Test drive</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/codelab">4. Write your first app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/learn-more">5. Learn more</a>
+  </li>
+
+<div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-1-7"
+      href="#sidenav-1-7" role="button"
+      aria-expanded="false" aria-controls="sidenav-1-7"
+    >From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/swiftui-devs">Flutter for SwiftUI devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/uikit-devs">Flutter for UIKit devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button"
+        aria-expanded="false" aria-controls="sidenav-2"
+      >Samples & tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/cookbook">Cookbook</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/codelabs">Codelabs</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/tutorials">Tutorials</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button"
+        aria-expanded="true" aria-controls="sidenav-3"
+      >Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1"
+      href="/development/ui" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1"
+    >User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets-intro">Introduction to widgets</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-2"
+      href="/development/ui/layout" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-2"
+    >Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/interactive">Adding interactivity</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/assets-and-images">Assets and images</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/ui/material">Material Design</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-6"
+      href="/development/ui/navigation" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-6"
+    >Navigation & routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-7"
+      href="/development/ui/animations" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-7"
+    >Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-1-8"
+      href="/development/ui/advanced" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-1-8"
+    >Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/actions_and_shortcuts">Actions & shortcuts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/typography">Fonts & typography</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/focus">Keyboard focus system</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/shaders">Shaders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/ui/widgets">Widget catalog</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2"
+      href="/development/data-and-backend" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2"
+    >Data & backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-2-1"
+      href="/development/data-and-backend/state-mgmt" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-2-1"
+    >State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/networking">Networking & http</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/json">JSON and serialization</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/data-and-backend/firebase">Firebase</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-3"
+      href="/development/accessibility-and-localization" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-3"
+    >Accessibility & internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4"
+      href="/development/platform-integration" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4"
+    >Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/desktop">Building desktop apps with Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-4"
+      href="/development/platform-integration/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-4"
+    >Android
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/platform-views">Hosting native Android views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/androidx-migration">AndroidX migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/splash-screen-migration">Deprecated Splash Screen API Migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/android/chromeos">Targeting ChromeOS with Android</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-5"
+      href="/development/platform-integration/ios" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-5"
+    >iOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/apple-frameworks">Leveraging Apple's system libraries</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/splash-screen">Adding a splash screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-app-clip">Adding iOS App Clip support</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/app-extensions">Adding iOS app extensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/c-interop">C interop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/platform-views">Hosting native iOS views</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/ios/ios-debugging">iOS debugging</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-6"
+      href="/development/platform-integration/linux" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-6"
+    >Linux
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/linux/building">Building Linux apps</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-7"
+      href="/development/platform-integration/macos" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-7"
+    >macOS
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/building">Building macOS apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/macos/c-interop">C interop</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-8"
+      href="/development/platform-integration/web" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-8"
+    >Web
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/building">Building web apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/faq">Web FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/renderers">Web renderers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/initialization">Custom app initialization</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/web/web-images">Displaying images on the web</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-4-9"
+      href="/development/platform-integration/windows" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-4-9"
+    >Windows
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/building">Building Windows apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/run-loop-migration">Run loop migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/version-migration">Version information migration</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/platform-integration/windows/dark-mode-migration">Dark mode migration</a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-5"
+      href="/development/packages-and-plugins" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-5"
+    >Packages & plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/background-processes">Background processes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/developing-packages">Developing packages & plugins</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths">Happy paths project</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/happy-paths/recommended">Happy paths recommendations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/plugins-in-tests">Plugins in Flutter tests</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/packages-and-plugins/using-packages">Using packages</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-6"
+      href="/development/add-to-app" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-6"
+    >Add Flutter to an existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app">Introduction</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-6-2"
+      href="/development/add-to-app/android" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-6-2"
+    >Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable"
+      data-toggle="collapse" data-target="#sidenav-3-6-3"
+      href="/development/add-to-app/ios" role="button"
+      aria-expanded="true" aria-controls="sidenav-3-6-3"
+    >Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/debugging">Debugging & hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/performance">Loading sequence and performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7"
+      href="/development/tools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7"
+    >Tools & features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/android-studio">Android Studio & IntelliJ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/vs-code">Visual Studio Code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-3"
+      href="/development/tools/devtools" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-3"
+    >DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/android-studio">Install from Android Studio & IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed"
+      data-toggle="collapse" data-target="#sidenav-3-7-4"
+      href="/development/tools/sdk" role="button"
+      aria-expanded="false" aria-controls="sidenav-3-7-4"
+    >Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/hot-reload">Hot reload</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/flutter-fix">Flutter Fix</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/development/tools/formatting">Code formatting</a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button"
+        aria-expanded="false" aria-controls="sidenav-4"
+      >Testing & debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/testing/debugging">Debugging tools</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/testing-plugins">Testing plugins **NEW**</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/code-debugging">Debugging apps programmatically</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/oem-debuggers">Using an OEM debugger</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/build-modes">Flutter's build modes</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/common-errors">Common Flutter errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/errors">Handling errors</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing">Testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests">Integration testing</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button"
+        aria-expanded="false" aria-controls="sidenav-5"
+      >Performance & optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/perf">Overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/best-practices">Performance best practices</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/app-size">App size</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/deferred-components">Deferred components</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/rendering-performance">Rendering performance</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/ui-performance">Performance profiling</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/shader">Shader compilation jank</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/metrics">Performance metrics</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/faq">Performance FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/perf/appendix">Appendix</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button"
+        aria-expanded="false" aria-controls="sidenav-6"
+      >Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/deployment/obfuscate">Obfuscating Dart code</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/flavors">Creating flavors for Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/android">Build and release an Android app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/ios">Build and release an iOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/macos">Build and release a macOS app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/linux">Build and release a Linux app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/windows">Build and release a Windows app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/web">Build and release a web app</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/deployment/cd">Continuous deployment</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-7" role="button"
+        aria-expanded="false" aria-controls="sidenav-7"
+      >Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/resources/architectural-overview">Architectural overview</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">Books</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/compatibility">Compatibility policy</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bug-reports">Creating useful bug reports</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/bootstrap-into-dart">Dart resources</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/design-docs">Design documents</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">FAQ</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/games-toolkit">Casual Games Toolkit</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/inside-flutter">Inside Flutter</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-swift-concurrency">Flutter vs. Swift Concurrency</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev/brand" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/platform-adaptations">Platform adaptations</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">Videos and online courses</a>
+  </li>
+
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-8" role="button"
+        aria-expanded="true" aria-controls="sidenav-8"
+      >Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="/dash">Who is Dash?</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/widgets">Widget index</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/flutter-cli">flutter CLI reference</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/reference/security-false-positives">Security false positives</a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+
+
+</ul>
+    </li></ul>
+
+    </div>
+
+    
+  
+  
+  
+  <div
+    id="site-toc--side"
+    class="site-toc site-toc--side fixed-col col-xl-2 order-3 "
+    data-fixed-column
+  >
+    <header class="site-toc__title">
+      Contents
+      </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#start-a-flutterengine-and-flutterviewcontroller">Start a FlutterEngine and FlutterViewController</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#create-a-flutterengine">Create a FlutterEngine</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#show-a-flutterviewcontroller-with-your-flutterengine">Show a FlutterViewController with your FlutterEngine</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine">Alternatively - Create a FlutterViewController with an implicit FlutterEngine</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#using-the-flutterappdelegate">Using the FlutterAppDelegate</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#creating-a-flutterappdelegate-subclass">Creating a FlutterAppDelegate subclass</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#if-you-cant-directly-make-flutterappdelegate-a-subclass">If you can’t directly make FlutterAppDelegate a subclass</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#launch-options">Launch options</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#dart-entrypoint">Dart entrypoint</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#dart-library">Dart library</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#route">Route</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#other">Other</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2">
+      <div class="container">
+
+        
+
+        
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/development/add-to-app/ios/add-flutter-screen.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&title=[PAGE ISSUE]: 'Adding a Flutter screen to an iOS app'&page-url=http://0.0.0.0:4002/development/add-to-app/ios/add-flutter-screen/&page-source=https://github.com/flutter/website/tree/main/src/development/add-to-app/ios/add-flutter-screen.md" class="btn no-automatic-external" title="Report an issue with this page"
+    target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1>Adding a Flutter screen to an iOS app</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/add-to-app" property="item" typeof="WebPage"><span property="name">Add Flutter to existing app</span>
+      </a>
+      <meta property="position" content="1" />
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/development/add-to-app/ios" property="item" typeof="WebPage"><span property="name">Adding Flutter to iOS</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/development/add-to-app/ios/add-flutter-screen" property="item" typeof="WebPage"><span property="name">Add a Flutter screen</span>
+      </a>
+      <meta property="position" content="3" />
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div
+    id="site-toc--inline"
+    class="site-toc site-toc--inline "
+  >
+    <header class="site-toc__title">
+      Contents
+    </header>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#start-a-flutterengine-and-flutterviewcontroller">Start a FlutterEngine and FlutterViewController</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#create-a-flutterengine">Create a FlutterEngine</a></li>
+<li class="toc-entry toc-h3"><a href="#show-a-flutterviewcontroller-with-your-flutterengine">Show a FlutterViewController with your FlutterEngine</a></li>
+<li class="toc-entry toc-h3"><a href="#alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine">Alternatively - Create a FlutterViewController with an implicit FlutterEngine</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#using-the-flutterappdelegate">Using the FlutterAppDelegate</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#creating-a-flutterappdelegate-subclass">Creating a FlutterAppDelegate subclass</a></li>
+<li class="toc-entry toc-h3"><a href="#if-you-cant-directly-make-flutterappdelegate-a-subclass">If you can’t directly make FlutterAppDelegate a subclass</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#launch-options">Launch options</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dart-entrypoint">Dart entrypoint</a></li>
+<li class="toc-entry toc-h3"><a href="#dart-library">Dart library</a></li>
+<li class="toc-entry toc-h3"><a href="#route">Route</a></li>
+<li class="toc-entry toc-h3"><a href="#other">Other</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+<p>This guide describes how to add a single Flutter screen to an existing iOS app.</p>
+
+<h2 id="start-a-flutterengine-and-flutterviewcontroller">
+<a class="anchor" href="#start-a-flutterengine-and-flutterviewcontroller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start a FlutterEngine and FlutterViewController</h2>
+
+<p>To launch a Flutter screen from an existing iOS, you start a
+<a href="https://api.flutter.dev/objcdoc/Classes/FlutterEngine.html"><code class="language-plaintext highlighter-rouge">FlutterEngine</code></a> and a <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html"><code class="language-plaintext highlighter-rouge">FlutterViewController</code></a>.</p>
+
+<aside class="alert alert-secondary" role="alert">
+  <p>The <code class="language-plaintext highlighter-rouge">FlutterEngine</code> serves as a host to the Dart VM and your Flutter runtime,
+  and the <code class="language-plaintext highlighter-rouge">FlutterViewController</code> attaches to a <code class="language-plaintext highlighter-rouge">FlutterEngine</code> to pass 
+  input events into Flutter and to display frames rendered by the
+  <code class="language-plaintext highlighter-rouge">FlutterEngine</code>.</p>
+</aside>
+
+<p>The <code class="language-plaintext highlighter-rouge">FlutterEngine</code> may have the same lifespan as your
+<code class="language-plaintext highlighter-rouge">FlutterViewController</code> or outlive your <code class="language-plaintext highlighter-rouge">FlutterViewController</code>.</p>
+
+<aside class="alert alert-success" role="alert">
+  <p><i class="far fa-lightbulb"></i> <strong>Tip:</strong>
+  It’s generally recommended to pre-warm a long-lived
+  <code class="language-plaintext highlighter-rouge">FlutterEngine</code> for your application because:</p>
+
+  <ul>
+    <li>The first frame appears faster when showing the <code class="language-plaintext highlighter-rouge">FlutterViewController</code>.</li>
+    <li>Your Flutter and Dart state will outlive one <code class="language-plaintext highlighter-rouge">FlutterViewController</code>.</li>
+    <li>Your application and your plugins can interact with Flutter and your Dart
+logic before showing the UI.</li>
+  </ul>
+</aside>
+
+<p>See <a href="http://0.0.0.0:4002/development/add-to-app/performance">Loading sequence and performance</a>
+for more analysis on the latency and memory
+trade-offs of pre-warming an engine.</p>
+
+<h3 id="create-a-flutterengine">
+<a class="anchor" href="#create-a-flutterengine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a FlutterEngine</h3>
+
+<p>Where you create a <code class="language-plaintext highlighter-rouge">FlutterEngine</code> depends on your host app.</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="engine-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="engine-swiftui" href="#engine-swiftui-tab" role="tab" aria-controls="engine-swiftui" aria-selected="true">SwiftUI</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="engine-uikit-swift" href="#engine-uikit-swift-tab" role="tab" aria-controls="engine-uikit-swift" aria-selected="true">UIKit-Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="engine-uikit-objc" href="#engine-uikit-objc-tab" role="tab" aria-controls="engine-uikit-objc" aria-selected="true">UIKit-ObjC</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="engine-swiftui-tab" role="tabpanel" aria-labelledby="engine-swiftui-tab">
+
+    <p>In this example, we create a <code class="language-plaintext highlighter-rouge">FlutterEngine</code> object inside a SwiftUI <code class="language-plaintext highlighter-rouge">ObservableObject</code>. 
+We then pass this <code class="language-plaintext highlighter-rouge">FlutterEngine</code> into a <code class="language-plaintext highlighter-rouge">ContentView</code> using the 
+ <code class="language-plaintext highlighter-rouge">environmentObject()</code> property.</p>
+
+    <p><strong>In <code class="language-plaintext highlighter-rouge">MyApp.swift</code>:</strong>
+ <!--code-excerpt "MyApp.swift" title--></p>
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">SwiftUI</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+<span class="c1">// The following library connects plugins with iOS platform code to this app.</span>
+<span class="kd">import</span> <span class="kt">FlutterPluginRegistrant</span>
+
+<span class="kd">class</span> <span class="kt">FlutterDependencies</span><span class="p">:</span> <span class="kt">ObservableObject</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="kt">FlutterEngine</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"my flutter engine"</span><span class="p">)</span>
+  <span class="nf">init</span><span class="p">(){</span>
+    <span class="c1">// Runs the default Dart entrypoint with a default Flutter route.</span>
+    <span class="n">flutterEngine</span><span class="o">.</span><span class="nf">run</span><span class="p">()</span>
+    <span class="c1">// Connects plugins with iOS platform code to this app.</span>
+    <span class="kt">GeneratedPluginRegistrant</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">flutterEngine</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">@main</span>
+<span class="kd">struct</span> <span class="kt">MyApp</span><span class="p">:</span> <span class="kt">App</span> <span class="p">{</span>
+  <span class="c1">// flutterDependencies will be injected using EnvironmentObject.</span>
+  <span class="kd">@StateObject</span> <span class="k">var</span> <span class="nv">flutterDependencies</span> <span class="o">=</span> <span class="kt">FlutterDependencies</span><span class="p">()</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">Scene</span> <span class="p">{</span>
+      <span class="kt">WindowGroup</span> <span class="p">{</span>
+        <span class="kt">ContentView</span><span class="p">()</span><span class="o">.</span><span class="nf">environmentObject</span><span class="p">(</span><span class="n">flutterDependencies</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="engine-uikit-swift-tab" role="tabpanel" aria-labelledby="engine-uikit-swift-tab">
+
+    <p>As an example, we demonstrate creating a
+<code class="language-plaintext highlighter-rouge">FlutterEngine</code>, exposed as a property, on app startup in
+the app delegate.</p>
+
+    <p><strong>In <code class="language-plaintext highlighter-rouge">AppDelegate.swift</code>:</strong></p>
+
+    <!--code-excerpt "AppDelegate.swift" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+<span class="c1">// The following library connects plugins with iOS platform code to this app.</span>
+<span class="kd">import</span> <span class="kt">FlutterPluginRegistrant</span>
+
+<span class="kd">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">FlutterAppDelegate</span> <span class="p">{</span> <span class="c1">// More on the FlutterAppDelegate.</span>
+  <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="kt">FlutterEngine</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"my flutter engine"</span><span class="p">)</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="c1">// Runs the default Dart entrypoint with a default Flutter route.</span>
+    <span class="n">flutterEngine</span><span class="o">.</span><span class="nf">run</span><span class="p">();</span>
+    <span class="c1">// Connects plugins with iOS platform code to this app.</span>
+    <span class="kt">GeneratedPluginRegistrant</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">flutterEngine</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">super</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didFinishLaunchingWithOptions</span><span class="p">:</span> <span class="n">launchOptions</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="engine-uikit-objc-tab" role="tabpanel" aria-labelledby="engine-uikit-objc-tab">
+
+    <p>In this example, we create a <code class="language-plaintext highlighter-rouge">FlutterEngine</code> 
+object inside a SwiftUI <code class="language-plaintext highlighter-rouge">ObservableObject</code>. 
+We then pass this <code class="language-plaintext highlighter-rouge">FlutterEngine</code> into a 
+<code class="language-plaintext highlighter-rouge">ContentView</code> using the <code class="language-plaintext highlighter-rouge">environmentObject()</code> property.</p>
+
+    <p><strong>In <code class="language-plaintext highlighter-rouge">AppDelegate.h</code>:</strong></p>
+
+    <!--code-excerpt "AppDelegate.h" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="n">UIKit</span><span class="p">;</span>
+<span class="k">@import</span> <span class="n">Flutter</span><span class="p">;</span>
+
+<span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">:</span> <span class="nc">FlutterAppDelegate</span> <span class="c1">// More on the FlutterAppDelegate below.</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">FlutterEngine</span> <span class="o">*</span><span class="n">flutterEngine</span><span class="p">;</span>
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+    <p><strong>In <code class="language-plaintext highlighter-rouge">AppDelegate.m</code>:</strong></p>
+
+    <!--code-excerpt "AppDelegate.m" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1">// The following library connects plugins with iOS platform code to this app.</span>
+<span class="cp">#import &lt;FlutterPluginRegistrant/GeneratedPluginRegistrant.h&gt;
+</span>
+<span class="cp">#import "AppDelegate.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+    <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">UIApplicationLaunchOptionsKey</span><span class="p">,</span> <span class="n">id</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+  <span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FlutterEngine</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span><span class="s">@"my flutter engine"</span><span class="p">];</span>
+  <span class="c1">// Runs the default Dart entrypoint with a default Flutter route.</span>
+  <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span> <span class="nf">run</span><span class="p">];</span>
+  <span class="c1">// Connects plugins with iOS platform code to this app.</span>
+  <span class="p">[</span><span class="n">GeneratedPluginRegistrant</span> <span class="nf">registerWithRegistry</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span><span class="p">];</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">super</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:</span><span class="n">launchOptions</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<h3 id="show-a-flutterviewcontroller-with-your-flutterengine">
+<a class="anchor" href="#show-a-flutterviewcontroller-with-your-flutterengine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show a FlutterViewController with your FlutterEngine</h3>
+
+<ul class="nav nav-tabs sample-code-tabs" id="vc-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="vc-swiftui" href="#vc-swiftui-tab" role="tab" aria-controls="vc-swiftui" aria-selected="true">SwiftUI</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="vc-uikit-swift" href="#vc-uikit-swift-tab" role="tab" aria-controls="vc-uikit-swift" aria-selected="true">UIKit-Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="vc-uikit-objc" href="#vc-uikit-objc-tab" role="tab" aria-controls="vc-uikit-objc" aria-selected="true">UIKit-ObjC</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="vc-swiftui-tab" role="tabpanel" aria-labelledby="vc-swiftui-tab">
+
+    <p>The following example shows a generic <code class="language-plaintext highlighter-rouge">ContentView</code> with a
+<code class="language-plaintext highlighter-rouge">Button</code> hooked to present a <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html"><code class="language-plaintext highlighter-rouge">FlutterViewController</code></a>.
+The <code class="language-plaintext highlighter-rouge">FlutterViewController</code> constructor takes the pre-warmed 
+<code class="language-plaintext highlighter-rouge">FlutterEngine</code> as an argument. <code class="language-plaintext highlighter-rouge">FlutterEngine</code> is passed in 
+as an <code class="language-plaintext highlighter-rouge">EnvironmentObject</code> via <code class="language-plaintext highlighter-rouge">flutterDependencies</code>.</p>
+
+    <!--code-excerpt "ContentView.swift" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">SwiftUI</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+
+<span class="kd">struct</span> <span class="kt">ContentView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+  <span class="c1">// Flutter dependencies are passed in an EnvironmentObject.</span>
+  <span class="kd">@EnvironmentObject</span> <span class="k">var</span> <span class="nv">flutterDependencies</span><span class="p">:</span> <span class="kt">FlutterDependencies</span>
+
+  <span class="c1">// Button is created to call the showFlutter function when pressed.</span>
+  <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kt">Button</span><span class="p">(</span><span class="s">"Show Flutter!"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">showFlutter</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">showFlutter</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Get the RootViewController.</span>
+    <span class="k">guard</span>
+      <span class="k">let</span> <span class="nv">windowScene</span> <span class="o">=</span> <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">connectedScenes</span>
+        <span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">activationState</span> <span class="o">==</span> <span class="o">.</span><span class="n">foregroundActive</span> <span class="o">&amp;&amp;</span> <span class="nv">$0</span> <span class="k">is</span> <span class="kt">UIWindowScene</span> <span class="p">})</span> <span class="k">as?</span> <span class="kt">UIWindowScene</span><span class="p">,</span>
+      <span class="k">let</span> <span class="nv">window</span> <span class="o">=</span> <span class="n">windowScene</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">isKeyWindow</span><span class="p">),</span>
+      <span class="k">let</span> <span class="nv">rootViewController</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">rootViewController</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+
+    <span class="c1">// Create the FlutterViewController.</span>
+    <span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span> <span class="kt">FlutterViewController</span><span class="p">(</span>
+      <span class="nv">engine</span><span class="p">:</span> <span class="n">flutterDependencies</span><span class="o">.</span><span class="n">flutterEngine</span><span class="p">,</span>
+      <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
+      <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">modalPresentationStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">overCurrentContext</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">isViewOpaque</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="n">rootViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">flutterViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="vc-uikit-swift-tab" role="tabpanel" aria-labelledby="vc-uikit-swift-tab">
+
+    <p>The following example shows a generic <code class="language-plaintext highlighter-rouge">ViewController</code> with a
+<code class="language-plaintext highlighter-rouge">UIButton</code> hooked to present a <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html"><code class="language-plaintext highlighter-rouge">FlutterViewController</code></a>.
+The <code class="language-plaintext highlighter-rouge">FlutterViewController</code> uses the <code class="language-plaintext highlighter-rouge">FlutterEngine</code> instance
+created in the <code class="language-plaintext highlighter-rouge">AppDelegate</code>.
+<!--code-excerpt "ViewController.swift" title--></p>
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+    <span class="c1">// Make a button to call the showFlutter function when pressed.</span>
+    <span class="k">let</span> <span class="nv">button</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span><span class="kt">UIButton</span><span class="o">.</span><span class="kt">ButtonType</span><span class="o">.</span><span class="n">custom</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">showFlutter</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="nf">setTitle</span><span class="p">(</span><span class="s">"Show Flutter!"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="kt">UIControl</span><span class="o">.</span><span class="kt">State</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">210.0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mf">160.0</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mf">40.0</span><span class="p">)</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">@objc</span> <span class="kd">func</span> <span class="nf">showFlutter</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="p">(</span><span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">delegate</span> <span class="k">as!</span> <span class="kt">AppDelegate</span><span class="p">)</span><span class="o">.</span><span class="n">flutterEngine</span>
+    <span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span>
+        <span class="kt">FlutterViewController</span><span class="p">(</span><span class="nv">engine</span><span class="p">:</span> <span class="n">flutterEngine</span><span class="p">,</span> <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nf">present</span><span class="p">(</span><span class="n">flutterViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="vc-uikit-objc-tab" role="tabpanel" aria-labelledby="vc-uikit-objc-tab">
+
+    <p>The following example shows a generic <code class="language-plaintext highlighter-rouge">ViewController</code> with a
+<code class="language-plaintext highlighter-rouge">UIButton</code> hooked to present a <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html"><code class="language-plaintext highlighter-rouge">FlutterViewController</code></a>.
+The <code class="language-plaintext highlighter-rouge">FlutterViewController</code> uses the <code class="language-plaintext highlighter-rouge">FlutterEngine</code> instance
+created in the <code class="language-plaintext highlighter-rouge">AppDelegate</code>.
+<!--code-excerpt "ViewController.m" title--></p>
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="n">Flutter</span><span class="p">;</span>
+<span class="cp">#import "AppDelegate.h"
+#import "ViewController.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">ViewController</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+
+    <span class="c1">// Make a button to call the showFlutter function when pressed.</span>
+    <span class="n">UIButton</span> <span class="o">*</span><span class="n">button</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIButton</span> <span class="nf">buttonWithType</span><span class="p">:</span><span class="n">UIButtonTypeCustom</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">button</span> <span class="nf">addTarget</span><span class="p">:</span><span class="n">self</span>
+               <span class="nl">action:</span><span class="k">@selector</span><span class="p">(</span><span class="n">showFlutter</span><span class="p">)</span>
+     <span class="nl">forControlEvents:</span><span class="n">UIControlEventTouchUpInside</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">button</span> <span class="nf">setTitle</span><span class="p">:</span><span class="s">@"Show Flutter!"</span> <span class="nf">forState</span><span class="p">:</span><span class="n">UIControlStateNormal</span><span class="p">];</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">UIColor</span><span class="p">.</span><span class="n">blueColor</span><span class="p">;</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">80</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">210</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">160</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">button</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showFlutter</span> <span class="p">{</span>
+    <span class="n">FlutterEngine</span> <span class="o">*</span><span class="n">flutterEngine</span> <span class="o">=</span>
+        <span class="p">((</span><span class="n">AppDelegate</span> <span class="o">*</span><span class="p">)</span><span class="n">UIApplication</span><span class="p">.</span><span class="n">sharedApplication</span><span class="p">.</span><span class="n">delegate</span><span class="p">).</span><span class="n">flutterEngine</span><span class="p">;</span>
+    <span class="n">FlutterViewController</span> <span class="o">*</span><span class="n">flutterViewController</span> <span class="o">=</span>
+        <span class="p">[[</span><span class="n">FlutterViewController</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithEngine</span><span class="p">:</span><span class="n">flutterEngine</span> <span class="nf">nibName</span><span class="p">:</span><span class="nb">nil</span> <span class="n">bundle</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">presentViewController</span><span class="p">:</span><span class="n">flutterViewController</span> <span class="nf">animated</span><span class="p">:</span><span class="nb">YES</span> <span class="n">completion</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<p>Now, you have a Flutter screen embedded in your iOS app.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  Using the previous example, the default <code class="language-plaintext highlighter-rouge">main()</code>
+  entrypoint function of your default Dart library
+  would run when calling <code class="language-plaintext highlighter-rouge">run</code> on the
+  <code class="language-plaintext highlighter-rouge">FlutterEngine</code> created in the <code class="language-plaintext highlighter-rouge">AppDelegate</code>.</p>
+</aside>
+
+<h3 id="alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine">
+<a class="anchor" href="#alternatively---create-a-flutterviewcontroller-with-an-implicit-flutterengine" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Alternatively</em> - Create a FlutterViewController with an implicit FlutterEngine</h3>
+
+<p>As an alternative to the previous example, you can let the
+<code class="language-plaintext highlighter-rouge">FlutterViewController</code> implicitly create its own <code class="language-plaintext highlighter-rouge">FlutterEngine</code> without
+pre-warming one ahead of time.</p>
+
+<p>This is not usually recommended because creating a
+<code class="language-plaintext highlighter-rouge">FlutterEngine</code> on-demand could introduce a noticeable
+latency between when the <code class="language-plaintext highlighter-rouge">FlutterViewController</code> is
+presented and when it renders its first frame. This could, however, be
+useful if the Flutter screen is rarely shown, when there are no good
+heuristics to determine when the Dart VM should be started, and when Flutter
+doesn’t need to persist state between view controllers.</p>
+
+<p>To let the <code class="language-plaintext highlighter-rouge">FlutterViewController</code> present without an existing
+<code class="language-plaintext highlighter-rouge">FlutterEngine</code>, omit the <code class="language-plaintext highlighter-rouge">FlutterEngine</code> construction, and create the
+<code class="language-plaintext highlighter-rouge">FlutterViewController</code> without an engine reference.</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="no-engine-vc-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="no-engine-vc-swiftui" href="#no-engine-vc-swiftui-tab" role="tab" aria-controls="no-engine-vc-swiftui" aria-selected="true">SwiftUI</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="no-engine-vc-uikit-swift" href="#no-engine-vc-uikit-swift-tab" role="tab" aria-controls="no-engine-vc-uikit-swift" aria-selected="true">UIKit-Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="no-engine-vc-uikit-objc" href="#no-engine-vc-uikit-objc-tab" role="tab" aria-controls="no-engine-vc-uikit-objc" aria-selected="true">UIKit-ObjC</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="no-engine-vc-swiftui-tab" role="tabpanel" aria-labelledby="no-engine-vc-swiftui-tab">
+
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">SwiftUI</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+
+<span class="kd">struct</span> <span class="kt">ContentView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kt">Button</span><span class="p">(</span><span class="s">"Show Flutter!"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">openFlutterApp</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">openFlutterApp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Get the RootViewController.</span>
+    <span class="k">guard</span>
+      <span class="k">let</span> <span class="nv">windowScene</span> <span class="o">=</span> <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">connectedScenes</span>
+        <span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">activationState</span> <span class="o">==</span> <span class="o">.</span><span class="n">foregroundActive</span> <span class="o">&amp;&amp;</span> <span class="nv">$0</span> <span class="k">is</span> <span class="kt">UIWindowScene</span> <span class="p">})</span> <span class="k">as?</span> <span class="kt">UIWindowScene</span><span class="p">,</span>
+      <span class="k">let</span> <span class="nv">window</span> <span class="o">=</span> <span class="n">windowScene</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">isKeyWindow</span><span class="p">),</span>
+      <span class="k">let</span> <span class="nv">rootViewController</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">rootViewController</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+
+    <span class="c1">// Create the FlutterViewController without an existing FlutterEngine.</span>
+    <span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span> <span class="kt">FlutterViewController</span><span class="p">(</span>
+      <span class="nv">project</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
+      <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
+      <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">modalPresentationStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">overCurrentContext</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">isViewOpaque</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="n">rootViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">flutterViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="no-engine-vc-uikit-swift-tab" role="tabpanel" aria-labelledby="no-engine-vc-uikit-swift-tab">
+
+    <!--code-excerpt "ViewController.swift" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1">// Existing code omitted.</span>
+<span class="kd">func</span> <span class="nf">showFlutter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span> <span class="kt">FlutterViewController</span><span class="p">(</span><span class="nv">project</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+  <span class="nf">present</span><span class="p">(</span><span class="n">flutterViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="no-engine-vc-uikit-objc-tab" role="tabpanel" aria-labelledby="no-engine-vc-uikit-objc-tab">
+
+    <!--code-excerpt "ViewController.m" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="c1">// Existing code omitted.</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showFlutter</span> <span class="p">{</span>
+  <span class="n">FlutterViewController</span> <span class="o">*</span><span class="n">flutterViewController</span> <span class="o">=</span>
+      <span class="p">[[</span><span class="n">FlutterViewController</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProject</span><span class="p">:</span><span class="nb">nil</span> <span class="nf">nibName</span><span class="p">:</span><span class="nb">nil</span> <span class="n">bundle</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+  <span class="p">[</span><span class="n">self</span> <span class="nf">presentViewController</span><span class="p">:</span><span class="n">flutterViewController</span> <span class="nf">animated</span><span class="p">:</span><span class="nb">YES</span> <span class="n">completion</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<p>See <a href="http://0.0.0.0:4002/development/add-to-app/performance">Loading sequence and performance</a>
+for more explorations on latency and memory usage.</p>
+
+<h2 id="using-the-flutterappdelegate">
+<a class="anchor" href="#using-the-flutterappdelegate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the FlutterAppDelegate</h2>
+
+<p>Letting your application’s <code class="language-plaintext highlighter-rouge">UIApplicationDelegate</code> subclass
+<code class="language-plaintext highlighter-rouge">FlutterAppDelegate</code> is recommended but not required.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">FlutterAppDelegate</code> performs functions such as:</p>
+
+<ul>
+  <li>Forwarding application callbacks such as <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623112-application"><code class="language-plaintext highlighter-rouge">openURL</code></a>
+to plugins such as <a href="https://pub.dev/packages/local_auth">local_auth</a>.</li>
+  <li>Keeping the Flutter connection open 
+in debug mode when the phone screen locks.</li>
+</ul>
+
+<h3 id="creating-a-flutterappdelegate-subclass">
+<a class="anchor" href="#creating-a-flutterappdelegate-subclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a FlutterAppDelegate subclass</h3>
+<p>Creating a subclass of the the <code class="language-plaintext highlighter-rouge">FlutterAppDelegate</code> in UIKit apps was shown 
+in the <a href="http://0.0.0.0:4002/development/add-to-app/ios/add-flutter-screen/#start-a-flutterengine-and-flutterviewcontroller">Start a FlutterEngine and FlutterViewController section</a>. 
+In a SwiftUI app, you can create a subclass of the 
+<code class="language-plaintext highlighter-rouge">FlutterAppDelegate</code> that conforms to the <code class="language-plaintext highlighter-rouge">ObservableObject</code> protocol as follows:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">SwiftUI</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+<span class="kd">import</span> <span class="kt">FlutterPluginRegistrant</span>
+
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">FlutterAppDelegate</span><span class="p">,</span> <span class="kt">ObservableObject</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="kt">FlutterEngine</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"my flutter engine"</span><span class="p">)</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
+    <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+      <span class="c1">// Runs the default Dart entrypoint with a default Flutter route.</span>
+      <span class="n">flutterEngine</span><span class="o">.</span><span class="nf">run</span><span class="p">();</span>
+      <span class="c1">// Used to connect plugins (only if you have plugins with iOS platform code).</span>
+      <span class="kt">GeneratedPluginRegistrant</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">flutterEngine</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">@main</span>
+<span class="kd">struct</span> <span class="kt">MyApp</span><span class="p">:</span> <span class="kt">App</span> <span class="p">{</span>
+<span class="c1">//  Use this property wrapper to tell SwiftUI</span>
+<span class="c1">//  it should use the AppDelegate class for the application delegate</span>
+  <span class="kd">@UIApplicationDelegateAdaptor</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">var</span> <span class="nv">appDelegate</span>
+
+  <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">Scene</span> <span class="p">{</span>
+      <span class="kt">WindowGroup</span> <span class="p">{</span>
+        <span class="kt">ContentView</span><span class="p">()</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then, in your view, the <code class="language-plaintext highlighter-rouge">AppDelegate</code>is accessible as an <code class="language-plaintext highlighter-rouge">EnvironmentObject</code>.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">SwiftUI</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+
+<span class="kd">struct</span> <span class="kt">ContentView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+  <span class="c1">// Access the AppDelegate using an EnvironmentObject.</span>
+  <span class="kd">@EnvironmentObject</span> <span class="k">var</span> <span class="nv">appDelegate</span><span class="p">:</span> <span class="kt">AppDelegate</span>
+
+  <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kt">Button</span><span class="p">(</span><span class="s">"Show Flutter!"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">openFlutterApp</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">openFlutterApp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Get the RootViewController.</span>
+    <span class="k">guard</span>
+      <span class="k">let</span> <span class="nv">windowScene</span> <span class="o">=</span> <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">connectedScenes</span>
+        <span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">activationState</span> <span class="o">==</span> <span class="o">.</span><span class="n">foregroundActive</span> <span class="o">&amp;&amp;</span> <span class="nv">$0</span> <span class="k">is</span> <span class="kt">UIWindowScene</span> <span class="p">})</span> <span class="k">as?</span> <span class="kt">UIWindowScene</span><span class="p">,</span>
+      <span class="k">let</span> <span class="nv">window</span> <span class="o">=</span> <span class="n">windowScene</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="nf">first</span><span class="p">(</span><span class="nv">where</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">isKeyWindow</span><span class="p">),</span>
+      <span class="k">let</span> <span class="nv">rootViewController</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">rootViewController</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+
+    <span class="c1">// Create the FlutterViewController.</span>
+    <span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span> <span class="kt">FlutterViewController</span><span class="p">(</span>
+      <span class="c1">// Access the Flutter Engine via AppDelegate.</span>
+      <span class="nv">engine</span><span class="p">:</span> <span class="n">appDelegate</span><span class="o">.</span><span class="n">flutterEngine</span><span class="p">,</span>
+      <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
+      <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">modalPresentationStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">overCurrentContext</span>
+    <span class="n">flutterViewController</span><span class="o">.</span><span class="n">isViewOpaque</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="n">rootViewController</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="n">flutterViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="if-you-cant-directly-make-flutterappdelegate-a-subclass">
+<a class="anchor" href="#if-you-cant-directly-make-flutterappdelegate-a-subclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you can’t directly make FlutterAppDelegate a subclass</h3>
+<p>If your app delegate can’t directly make <code class="language-plaintext highlighter-rouge">FlutterAppDelegate</code> a subclass,
+make your app delegate implement the <code class="language-plaintext highlighter-rouge">FlutterAppLifeCycleProvider</code>
+protocol in order to make sure your plugins receive the necessary callbacks.
+Otherwise, plugins that depend on these events may have undefined behavior.</p>
+
+<p>For instance:</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="app-delegate-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="app-delegate-swift" href="#app-delegate-swift-tab" role="tab" aria-controls="app-delegate-swift" aria-selected="true">Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="app-delegate-objective-c" href="#app-delegate-objective-c-tab" role="tab" aria-controls="app-delegate-objective-c" aria-selected="true">Objective-C</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="app-delegate-swift-tab" role="tabpanel" aria-labelledby="app-delegate-swift-tab">
+
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">Flutter</span>
+
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span><span class="p">,</span> <span class="kt">FlutterAppLifeCycleProvider</span><span class="p">,</span> <span class="kt">ObservableObject</span> <span class="p">{</span>
+
+  <span class="kd">private</span> <span class="k">let</span> <span class="nv">lifecycleDelegate</span> <span class="o">=</span> <span class="kt">FlutterPluginAppLifeCycleDelegate</span><span class="p">()</span>
+
+  <span class="k">let</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="kt">FlutterEngine</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"flutter_nps_engine"</span><span class="p">)</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="n">flutterEngine</span><span class="o">.</span><span class="nf">run</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didFinishLaunchingWithOptions</span><span class="p">:</span> <span class="n">launchOptions</span> <span class="p">??</span> <span class="p">[:])</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didRegisterForRemoteNotificationsWithDeviceToken</span> <span class="nv">deviceToken</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didRegisterForRemoteNotificationsWithDeviceToken</span><span class="p">:</span> <span class="n">deviceToken</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFailToRegisterForRemoteNotificationsWithError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didFailToRegisterForRemoteNotificationsWithError</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didReceiveRemoteNotification</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="n">fetchCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIBackgroundFetchResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didReceiveRemoteNotification</span><span class="p">:</span> <span class="n">userInfo</span><span class="p">,</span> <span class="nv">fetchCompletionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">OpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="nv">open</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="n">options</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">handleOpen</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">handleOpen</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">sourceApplication</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">annotation</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">open</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">sourceApplication</span><span class="p">:</span> <span class="n">sourceApplication</span> <span class="p">??</span> <span class="s">""</span><span class="p">,</span> <span class="nv">annotation</span><span class="p">:</span> <span class="n">annotation</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">performActionFor</span> <span class="nv">shortcutItem</span><span class="p">:</span> <span class="kt">UIApplicationShortcutItem</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">performActionFor</span><span class="p">:</span> <span class="n">shortcutItem</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">handleEventsForBackgroundURLSession</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">handleEventsForBackgroundURLSession</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">performFetchWithCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UIBackgroundFetchResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">performFetchWithCompletionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="n">_</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">FlutterApplicationLifeCycleDelegate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lifecycleDelegate</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">delegate</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="app-delegate-objective-c-tab" role="tabpanel" aria-labelledby="app-delegate-objective-c-tab">
+
+    <!--code-excerpt "AppDelegate.h" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="n">Flutter</span><span class="p">;</span>
+<span class="k">@import</span> <span class="n">UIKit</span><span class="p">;</span>
+<span class="k">@import</span> <span class="n">FlutterPluginRegistrant</span><span class="p">;</span>
+
+<span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">:</span> <span class="nc">UIResponder</span> <span class="o">&lt;</span><span class="n">UIApplicationDelegate</span><span class="p">,</span> <span class="n">FlutterAppLifeCycleProvider</span><span class="o">&gt;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">UIWindow</span> <span class="o">*</span><span class="n">window</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">FlutterEngine</span> <span class="o">*</span><span class="n">flutterEngine</span><span class="p">;</span>
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+    <p>The implementation should delegate mostly to a
+<code class="language-plaintext highlighter-rouge">FlutterPluginAppLifeCycleDelegate</code>:</p>
+
+    <!--code-excerpt "AppDelegate.m" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">()</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">FlutterPluginAppLifeCycleDelegate</span><span class="o">*</span> <span class="n">lifeCycleDelegate</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span> <span class="o">=</span> <span class="p">[</span><span class="n">super</span> <span class="nf">init</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">_lifeCycleDelegate</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FlutterPluginAppLifeCycleDelegate</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">UIApplicationLaunchOptionsKey</span><span class="p">,</span> <span class="n">id</span><span class="o">&gt;*</span><span class="p">))</span><span class="nv">launchOptions</span> <span class="p">{</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FlutterEngine</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span><span class="s">@"io.flutter"</span> <span class="nf">project</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span> <span class="nf">runWithEntrypoint</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">GeneratedPluginRegistrant</span> <span class="nf">registerWithRegistry</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">flutterEngine</span><span class="p">];</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:</span><span class="n">launchOptions</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// Returns the key window's rootViewController, if it's a FlutterViewController.</span>
+<span class="c1">// Otherwise, returns nil.</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">FlutterViewController</span><span class="o">*</span><span class="p">)</span><span class="n">rootFlutterViewController</span> <span class="p">{</span>
+    <span class="n">UIViewController</span><span class="o">*</span> <span class="n">viewController</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIApplication</span> <span class="nf">sharedApplication</span><span class="p">].</span><span class="n">keyWindow</span><span class="p">.</span><span class="n">rootViewController</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">viewController</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">FlutterViewController</span> <span class="nf">class</span><span class="p">]])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">FlutterViewController</span><span class="o">*</span><span class="p">)</span><span class="n">viewController</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">didRegisterUserNotificationSettings</span><span class="p">:(</span><span class="n">UIUserNotificationSettings</span><span class="o">*</span><span class="p">)</span><span class="nv">notificationSettings</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+<span class="nl">didRegisterUserNotificationSettings:</span><span class="n">notificationSettings</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">didRegisterForRemoteNotificationsWithDeviceToken</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">deviceToken</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+<span class="nl">didRegisterForRemoteNotificationsWithDeviceToken:</span><span class="n">deviceToken</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">didReceiveRemoteNotification</span><span class="p">:(</span><span class="n">NSDictionary</span><span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span>
+<span class="nf">fetchCompletionHandler</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">UIBackgroundFetchResult</span> <span class="n">result</span><span class="p">))</span><span class="nv">completionHandler</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+       <span class="nl">didReceiveRemoteNotification:</span><span class="n">userInfo</span>
+             <span class="nl">fetchCompletionHandler:</span><span class="n">completionHandler</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+            <span class="nf">openURL</span><span class="p">:(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+            <span class="nf">options</span><span class="p">:(</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">UIApplicationOpenURLOptionsKey</span><span class="p">,</span> <span class="n">id</span><span class="o">&gt;*</span><span class="p">)</span><span class="nv">options</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">openURL</span><span class="p">:</span><span class="n">url</span> <span class="n">options</span><span class="o">:</span><span class="n">options</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">handleOpenURL</span><span class="p">:(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">handleOpenURL</span><span class="p">:</span><span class="n">url</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+            <span class="nf">openURL</span><span class="p">:(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+  <span class="nf">sourceApplication</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">sourceApplication</span>
+         <span class="nf">annotation</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">annotation</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+                                   <span class="nl">openURL:</span><span class="n">url</span>
+                         <span class="nl">sourceApplication:</span><span class="n">sourceApplication</span>
+                                <span class="nl">annotation:</span><span class="n">annotation</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">performActionForShortcutItem</span><span class="p">:(</span><span class="n">UIApplicationShortcutItem</span><span class="o">*</span><span class="p">)</span><span class="nv">shortcutItem</span>
+  <span class="nf">completionHandler</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">BOOL</span> <span class="n">succeeded</span><span class="p">))</span><span class="nv">completionHandler</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+       <span class="nl">performActionForShortcutItem:</span><span class="n">shortcutItem</span>
+                  <span class="nl">completionHandler:</span><span class="n">completionHandler</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">handleEventsForBackgroundURLSession</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span>
+  <span class="nf">completionHandler</span><span class="p">:(</span><span class="n">nonnull</span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span><span class="nv">completionHandler</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span>
+<span class="nl">handleEventsForBackgroundURLSession:</span><span class="n">identifier</span>
+                  <span class="nl">completionHandler:</span><span class="n">completionHandler</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span>
+<span class="nf">performFetchWithCompletionHandler</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">UIBackgroundFetchResult</span> <span class="n">result</span><span class="p">))</span><span class="nv">completionHandler</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">performFetchWithCompletionHandler</span><span class="p">:</span><span class="n">completionHandler</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addApplicationLifeCycleDelegate</span><span class="p">:(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">FlutterPlugin</span><span class="o">&gt;*</span><span class="p">)</span><span class="nv">delegate</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">_lifeCycleDelegate</span> <span class="nf">addDelegate</span><span class="p">:</span><span class="n">delegate</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+<h2 id="launch-options">
+<a class="anchor" href="#launch-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launch options</h2>
+
+<p>The examples demonstrate running Flutter using the default launch settings.</p>
+
+<p>In order to customize your Flutter runtime,
+you can also specify the Dart entrypoint, library, and route.</p>
+
+<h3 id="dart-entrypoint">
+<a class="anchor" href="#dart-entrypoint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dart entrypoint</h3>
+
+<p>Calling <code class="language-plaintext highlighter-rouge">run</code> on a <code class="language-plaintext highlighter-rouge">FlutterEngine</code>, by default,
+runs the <code class="language-plaintext highlighter-rouge">main()</code> Dart function
+of your <code class="language-plaintext highlighter-rouge">lib/main.dart</code> file.</p>
+
+<p>You can also run a different entrypoint function by using
+<a href="https://api.flutter.dev/objcdoc/Classes/FlutterEngine.html#/c:objc(cs)FlutterEngine(im)runWithEntrypoint:"><code class="language-plaintext highlighter-rouge">runWithEntrypoint</code></a> with an <code class="language-plaintext highlighter-rouge">NSString</code> specifying
+a different Dart function.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>Note:</strong>
+  Dart entrypoint functions other than <code class="language-plaintext highlighter-rouge">main()</code>
+  must be annotated with the following in order to
+  not be <a href="https://en.wikipedia.org/wiki/Tree_shaking">tree-shaken</a> away when compiling:</p>
+
+  <div class="language-dart highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="nd">@pragma</span><span class="p">(</span><span class="s">'vm:entry-point'</span><span class="p">)</span>
+  <span class="kt">void</span> <span class="n">myOtherEntrypoint</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+</code></pre></div>  </div>
+</aside>
+
+<h3 id="dart-library">
+<a class="anchor" href="#dart-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dart library</h3>
+
+<p>In addition to specifying a Dart function, you can specify an entrypoint
+function in a specific file.</p>
+
+<p>For instance the following runs <code class="language-plaintext highlighter-rouge">myOtherEntrypoint()</code>
+in <code class="language-plaintext highlighter-rouge">lib/other_file.dart</code> instead of <code class="language-plaintext highlighter-rouge">main()</code> in <code class="language-plaintext highlighter-rouge">lib/main.dart</code>:</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="entrypoint-library-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="entrypoint-library-swift" href="#entrypoint-library-swift-tab" role="tab" aria-controls="entrypoint-library-swift" aria-selected="true">Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="entrypoint-library-objective-c" href="#entrypoint-library-objective-c-tab" role="tab" aria-controls="entrypoint-library-objective-c" aria-selected="true">Objective-C</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="entrypoint-library-swift-tab" role="tabpanel" aria-labelledby="entrypoint-library-swift-tab">
+
+    <!--code-excerpt "Swift" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">flutterEngine</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="nv">withEntrypoint</span><span class="p">:</span> <span class="s">"myOtherEntrypoint"</span><span class="p">,</span> <span class="nv">libraryURI</span><span class="p">:</span> <span class="s">"other_file.dart"</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="entrypoint-library-objective-c-tab" role="tabpanel" aria-labelledby="entrypoint-library-objective-c-tab">
+
+    <!--code-excerpt "Objective-C" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">flutterEngine</span> <span class="nf">runWithEntrypoint</span><span class="p">:</span><span class="s">@"myOtherEntrypoint"</span> <span class="nf">libraryURI</span><span class="p">:</span><span class="s">@"other_file.dart"</span><span class="p">];</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<h3 id="route">
+<a class="anchor" href="#route" aria-hidden="true"><span class="octicon octicon-link"></span></a>Route</h3>
+
+<p>Starting in Flutter version 1.22, an initial route can be set for your Flutter
+<a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html"><code class="language-plaintext highlighter-rouge">WidgetsApp</code></a> when constructing the FlutterEngine or the
+FlutterViewController.</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="initial-route-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="initial-route-swift" href="#initial-route-swift-tab" role="tab" aria-controls="initial-route-swift" aria-selected="true">Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="initial-route-objective-c" href="#initial-route-objective-c-tab" role="tab" aria-controls="initial-route-objective-c" aria-selected="true">Objective-C</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="initial-route-swift-tab" role="tabpanel" aria-labelledby="initial-route-swift-tab">
+
+    <!--code-excerpt "Creating engine" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">flutterEngine</span> <span class="o">=</span> <span class="kt">FlutterEngine</span><span class="p">()</span>
+<span class="c1">// FlutterDefaultDartEntrypoint is the same as nil, which will run main().</span>
+<span class="n">engine</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span>
+  <span class="nv">withEntrypoint</span><span class="p">:</span> <span class="kt">FlutterDefaultDartEntrypoint</span><span class="p">,</span> <span class="nv">initialRoute</span><span class="p">:</span> <span class="s">"/onboarding"</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="initial-route-objective-c-tab" role="tabpanel" aria-labelledby="initial-route-objective-c-tab">
+
+    <!--code-excerpt "Creating engine" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">FlutterEngine</span> <span class="o">*</span><span class="n">flutterEngine</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FlutterEngine</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="c1">// FlutterDefaultDartEntrypoint is the same as nil, which will run main().</span>
+<span class="p">[</span><span class="n">flutterEngine</span> <span class="nf">runWithEntrypoint</span><span class="p">:</span><span class="n">FlutterDefaultDartEntrypoint</span>
+                    <span class="nl">initialRoute:</span><span class="s">@"/onboarding"</span><span class="p">];</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<p>This code sets your <code class="language-plaintext highlighter-rouge">dart:ui</code>’s <a href="https://api.flutter.dev/flutter/dart-ui/SingletonFlutterWindow/defaultRouteName.html"><code class="language-plaintext highlighter-rouge">window.defaultRouteName</code></a>
+to <code class="language-plaintext highlighter-rouge">"/onboarding"</code> instead of <code class="language-plaintext highlighter-rouge">"/"</code>.</p>
+
+<p>Alternatively, to construct a FlutterViewController directly without pre-warming
+a FlutterEngine:</p>
+
+<ul class="nav nav-tabs sample-code-tabs" id="initial-route-without-pre-warming-language" role="tablist">
+<li class="nav-item">
+  <a class="nav-link active" id="initial-route-without-pre-warming-swift" href="#initial-route-without-pre-warming-swift-tab" role="tab" aria-controls="initial-route-without-pre-warming-swift" aria-selected="true">Swift</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " id="initial-route-without-pre-warming-objective-c" href="#initial-route-without-pre-warming-objective-c-tab" role="tab" aria-controls="initial-route-without-pre-warming-objective-c" aria-selected="true">Objective-C</a>
+</li>
+</ul>
+<div class="tab-content">
+
+<div class="tab-pane active" id="initial-route-without-pre-warming-swift-tab" role="tabpanel" aria-labelledby="initial-route-without-pre-warming-swift-tab">
+
+    <!--code-excerpt "Creating view controller" title-->
+    <div class="language-swift highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">flutterViewController</span> <span class="o">=</span> <span class="kt">FlutterViewController</span><span class="p">(</span>
+      <span class="nv">project</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">initialRoute</span><span class="p">:</span> <span class="s">"/onboarding"</span><span class="p">,</span> <span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+
+
+<div class="tab-pane " id="initial-route-without-pre-warming-objective-c-tab" role="tabpanel" aria-labelledby="initial-route-without-pre-warming-objective-c-tab">
+
+    <!--code-excerpt "Creating view controller" title-->
+    <div class="language-objectivec highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">FlutterViewController</span><span class="o">*</span> <span class="n">flutterViewController</span> <span class="o">=</span>
+      <span class="p">[[</span><span class="n">FlutterViewController</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProject</span><span class="p">:</span><span class="nb">nil</span>
+                                        <span class="nl">initialRoute:</span><span class="s">@"/onboarding"</span>
+                                             <span class="nl">nibName:</span><span class="nb">nil</span>
+                                              <span class="nl">bundle:</span><span class="nb">nil</span><span class="p">];</span>
+</code></pre></div>    </div>
+
+  </div>
+
+</div>
+
+<aside class="alert alert-success" role="alert">
+  <p><i class="far fa-lightbulb"></i> <strong>Tip:</strong>
+  In order to imperatively change your current Flutter
+  route from the platform side after the <code class="language-plaintext highlighter-rouge">FlutterEngine</code>
+  is already running, use <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html#/c:objc(cs)FlutterViewController(im)pushRoute:"><code class="language-plaintext highlighter-rouge">pushRoute()</code></a>
+  or <a href="https://api.flutter.dev/objcdoc/Classes/FlutterViewController.html#/c:objc(cs)FlutterViewController(im)popRoute"><code class="language-plaintext highlighter-rouge">popRoute()</code></a> on the <code class="language-plaintext highlighter-rouge">FlutterViewController</code>.</p>
+
+  <p>To pop the iOS route from the Flutter side,
+  call <a href="https://api.flutter.dev/flutter/services/SystemNavigator/pop.html"><code class="language-plaintext highlighter-rouge">SystemNavigator.pop()</code></a>.</p>
+</aside>
+
+<p>See <a href="http://0.0.0.0:4002/development/ui/navigation">Navigation and routing</a> for more about Flutter’s routes.</p>
+
+<h3 id="other">
+<a class="anchor" href="#other" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other</h3>
+
+<p>The previous example only illustrates a few ways to customize
+how a Flutter instance is initiated. Using <a href="http://0.0.0.0:4002/development/platform-integration/platform-channels">platform channels</a>,
+you’re free to push data or prepare your Flutter environment
+in any way you’d like, before presenting the Flutter UI using a
+<code class="language-plaintext highlighter-rouge">FlutterViewController</code>.</p>
+
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/assets/images/shared/brand/flutter/logo/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/brand">brand usage</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/assets/js/vendor/code-prettify/prettify.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-css.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-dart.js?v=1679552870"></script>
+    <script src="/assets/js/vendor/code-prettify/lang-yaml.js?v=1679552870"></script>
+    <script src="/assets/js/tabs.js?v=1679552870"></script>
+    <script src="/assets/js/archive.js?v=1679552870"></script>
+    <script src="/assets/js/main.js?v=1679552870"></script>
+    
+    
+
+  </body>
+</html>
