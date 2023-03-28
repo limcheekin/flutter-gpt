@@ -1,8 +1,8 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import UnstructuredHTMLLoader
-from langchain.vectorstores.faiss import FAISS
+from langchain.vectorstores import Qdrant
 from langchain.embeddings import OpenAIEmbeddings
-import pickle
+import os 
 
 def ingest_data():
     file_paths = None
@@ -20,13 +20,12 @@ def ingest_data():
         docs.extend(splits)
         print(f"{i+1})Split {file_path} into {len(splits)} chunks")
 
-    print("Load data to FAISS store")
-    store = FAISS.from_documents(docs, OpenAIEmbeddings())
+    print("Load data to QDRANT")
+    url = os.environ.get("QDRANT_URL")
+    api_key = os.environ.get("QDRANT_API_KEY")
+    qdrant = Qdrant.from_documents(docs, OpenAIEmbeddings(), url=url, api_key=api_key, 
+                                   collection_name="docs_flutter_dev", prefer_grpc=True)
 
-    print("Save faiss_store.pkl")
-    with open("faiss_store.pkl", "wb") as f:
-        pickle.dump(store, f)
-        
 if __name__ == "__main__":
     ingest_data()
 
