@@ -1,7 +1,7 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.vectorstores.faiss import FAISS
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import HuggingFaceHubEmbeddings
 import pickle
 
 def ingest_data():
@@ -21,7 +21,7 @@ def ingest_data():
         print(f"{i+1})Split {file_path} into {len(splits)} chunks")
 
     print("Load data to FAISS store")
-    store = FAISS.from_documents(docs, OpenAIEmbeddings())
+    store = FAISS.from_documents(docs, HuggingFaceHubEmbeddings())
 
     print("Save faiss_store.pkl")
     with open("faiss_store.pkl", "wb") as f:

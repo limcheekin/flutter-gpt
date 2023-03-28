@@ -3,7 +3,7 @@ import faiss
 import os
 import pickle
 
-from langchain import OpenAI
+from langchain.llms import HuggingFaceHub
 from langchain.chains import VectorDBQAWithSourcesChain
 
 parser = argparse.ArgumentParser(description='FlutterGPT Q&A')
@@ -12,9 +12,8 @@ args = parser.parse_args()
 
 with open("faiss_store.pkl", "rb") as f:
     store = pickle.load(f)
-
-chain = VectorDBQAWithSourcesChain.from_llm(
-        llm=OpenAI(temperature=0, verbose=True), vectorstore=store, verbose=True)
+llm = HuggingFaceHub(repo_id="google/flan-t5-large", model_kwargs={"temperature":0})
+chain = VectorDBQAWithSourcesChain.from_llm(llm=llm, vectorstore=store, verbose=True)
 result = chain({"question": args.question})
 
 print(f"Answer: {result['answer']}")
