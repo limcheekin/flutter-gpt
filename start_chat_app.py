@@ -5,40 +5,38 @@ from langchain.prompts.chat import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-from langchain.chains import RetrievalQAWithSourcesChain
+from langchain.chains.qa_with_sources import load_qa_with_sources_chain
+from langchain.chains import ConversationalRetrievalChain, LLMChain
 
-system_template="""Use the following pieces of context to answer the users question. 
+system_template = """Given the following conversation and a follow up question, 
+rephrase the follow up question to be a standalone question.
+Use the standalone question to answer the user's question. 
 If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
-ALWAYS return a "Sources" part in your answer.
-The "Sources" part should be a reference to the source of the document from which you got your answer.
+Don't return a "SOURCES" part in your answer.
 
-Example of your response should be:
+Chat history:
+{chat_history}
 
-```
-The answer is foo
+Follow up question: {question}
 
-Sources:
-1. abc
-2. xyz
-```
-Begin!
-----------------
-{summaries}
-"""
+Standalone question:"""
+
 messages = [
     SystemMessagePromptTemplate.from_template(system_template),
     HumanMessagePromptTemplate.from_template("{question}")
 ]
 prompt = ChatPromptTemplate.from_messages(messages)
 
+
 def get_chain(store):
-    chain_type_kwargs = {"prompt": prompt}
-    chain = RetrievalQAWithSourcesChain.from_chain_type(
-        llm=ChatOpenAI(temperature=0),
-        chain_type="stuff",
+    llm = ChatOpenAI(temperature=0)
+    question_generator = LLMChain(llm=llm, prompt=prompt)
+    doc_chain = load_qa_with_sources_chain(llm, chain_type="map_reduce")
+
+    chain = ConversationalRetrievalChain(
         retriever=store.as_retriever(),
-        chain_type_kwargs=chain_type_kwargs,
-        reduce_k_below_max_tokens=True
+        question_generator=question_generator,
+        combine_docs_chain=doc_chain
     )
     return chain
 
@@ -55,3 +53,4 @@ if __name__ == "__main__":
         result = qa_chain({"question": question, "chat_history": chat_history})
         print(f"Answer: {result['answer']}")
         chat_history.append((question, result["answer"]))
+        print(f"Result: {result}")
