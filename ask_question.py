@@ -2,7 +2,7 @@ import argparse
 import pickle
 
 from langchain.llms import HuggingFacePipeline
-from transformers import GPT2Tokenizer, GPT2Model, pipeline, set_seed
+from transformers import GPT2TokenizerFast, pipeline, set_seed
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
@@ -34,12 +34,12 @@ prompt = ChatPromptTemplate.from_messages(messages)
 
 def get_llm():
     model_id = "gpt2"
-    # tokenizer = GPT2Tokenizer.from_pretrained(model_id)
-    # model = GPT2Model.from_pretrained(model_id)
+    tokenizer = GPT2TokenizerFast.from_pretrained(model_id)
 
     pipe = pipeline(
         "text-generation",
         model=model_id,
+        tokenizer=tokenizer,
         max_length=1024
     )
     set_seed(55)
@@ -54,7 +54,8 @@ def get_chain(store):
         chain_type="stuff",
         retriever=store.as_retriever(),
         chain_type_kwargs=chain_type_kwargs,
-        reduce_k_below_max_tokens=True
+        reduce_k_below_max_tokens=True,
+        max_tokens_limit=512
     )
     return chain
 
