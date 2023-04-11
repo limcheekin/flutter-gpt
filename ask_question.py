@@ -2,13 +2,21 @@ import argparse
 import pickle
 
 from langchain.llms import HuggingFacePipeline
-from transformers import GPT2TokenizerFast, pipeline, set_seed
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline, set_seed
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
 from langchain.chains import RetrievalQAWithSourcesChain
+
+print('loading model...')
+
+try:
+    model = AutoModelForSeq2SeqLM.from_pretrained("flan-t5-small/")
+    tokenizer = AutoTokenizer.from_pretrained("flan-t5-small/")
+except:
+    print("An exception occurred on loading model.")
 
 system_template = """Use the following pieces of context to answer the users question. 
 If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
@@ -33,14 +41,13 @@ prompt = ChatPromptTemplate.from_messages(messages)
 
 
 def get_llm():
-    model_id = "gpt2"
-    tokenizer = GPT2TokenizerFast.from_pretrained(model_id)
-
     pipe = pipeline(
-        "text-generation",
-        model=model_id,
+        "text2text-generation",
+        model=model,
         tokenizer=tokenizer,
-        max_length=1024
+        max_length=256,
+        temperature=0.0,
+        use_fast=True,
     )
     set_seed(55)
     llm = HuggingFacePipeline(pipeline=pipe)
