@@ -15,12 +15,12 @@ md5 = hashlib.md5()
 def get_doc_id(doc):
     md5.update(doc.metadata['source'].encode('utf-8'))
     uid = md5.hexdigest()[:12]
-    print(uid)
+    # print(doc.metadata['source'])
     return uid
 
 
 def token_len(text):  # token length function
-    tokens = tokenizer.encode(text)
+    tokens = tokenizer.encode(text, max_length=512, truncation=True)
     return len(tokens)
 
 
@@ -60,8 +60,8 @@ def split_documents(docs):
                 'source': doc.metadata['source']
             })
 
-            print(f"len(documents) {len(documents)}")
-            return documents
+    print(f"len(documents) {len(documents)}")
+    return documents
 
 
 def ingest_data():
