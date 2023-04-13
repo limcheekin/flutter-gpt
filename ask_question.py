@@ -73,4 +73,4 @@ chain = get_chain(faiss_db)
 result = chain({"question": args.question})
 
 print(f"Answer: {result['answer']}")
-print(f"Sources: {result['sources']}")
+print(f"Sources: {result['source_documents']}")
