@@ -5,10 +5,8 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from transformers import AutoTokenizer
 from tqdm.auto import tqdm
 import hashlib
-import pickle
 
-tokenizer = AutoTokenizer.from_pretrained(
-    "flan-t5-small/", use_fast=True)
+tokenizer = AutoTokenizer.from_pretrained("bart-lfqa/")
 md5 = hashlib.md5()
 
 
@@ -20,7 +18,7 @@ def get_doc_id(doc):
 
 
 def token_len(text):  # token length function
-    tokens = tokenizer.encode(text, max_length=512, truncation=True)
+    tokens = tokenizer.encode(text, max_length=1024, truncation=True)
     return len(tokens)
 
 
@@ -45,7 +43,7 @@ def load_documents():
 def split_documents(docs):
     documents = []
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=400,
+        chunk_size=250,
         chunk_overlap=20,  # number of tokens overlap between chunks
         length_function=token_len,
         separators=['\n\n', '\n', ' ', '']
@@ -71,12 +69,11 @@ def ingest_data():
     texts = [doc.pop('text') for doc in docs]
 
     print("Load data to FAISS store")
-    model_name = "all-mpnet-base-v2/"
-    store = FAISS.from_texts(
-        texts, HuggingFaceEmbeddings(model_name=model_name), metadatas=docs)
-    print("Save faiss_store.pkl")
-    with open("faiss_store.pkl", "wb") as f:
-        pickle.dump(store, f)
+    embeddings = HuggingFaceEmbeddings(
+        model_name="flax-sentence-embeddings/all_datasets_v3_mpnet-base")
+    faiss_db = FAISS.from_texts(texts, embeddings, metadatas=docs)
+    print("Saving faiss.db")
+    faiss_db.save_local("faiss.db")
 
 
 if __name__ == "__main__":
