@@ -1,60 +1,64 @@
 import pickle
-from langchain.chains import VectorDBQAWithSourcesChain
-from langchain.chat_models import ChatOpenAI
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    AIMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
-from langchain.schema import (
-    AIMessage,
-    HumanMessage,
-    SystemMessage
-)
+from langchain.llms import HuggingFacePipeline
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline, set_seed
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from dotenv import load_dotenv
+load_dotenv()
 
-system_template="""Use the following pieces of context to answer the users question. 
-If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
-ALWAYS return a "Sources" part in your answer.
-The "Sources" part should be a reference to the source of the document from which you got your answer.
+model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-base")
+tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
 
-Example of your response should be:
 
-```
-The answer is foo
-
-Sources: xyz
-```
-
-Begin!
-----------------
-{summaries}"""
-messages = [
-    SystemMessagePromptTemplate.from_template(system_template),
-    HumanMessagePromptTemplate.from_template("{question}")
-]
-prompt = ChatPromptTemplate.from_messages(messages)
-
-def get_chain(vectorstore, prompt):
-    chain_type_kwargs = {"prompt": prompt}
-    chain = VectorDBQAWithSourcesChain.from_chain_type(
-    ChatOpenAI(temperature=0), 
-        chain_type="stuff", 
-        vectorstore=vectorstore,
-        chain_type_kwargs=chain_type_kwargs
+def get_llm(
+    min_length: int = 20,
+    max_length: int = 200,
+    temperature: float = 0.0,
+    top_p: float = 1.0,
+    top_k: int = 50
+):
+    hf_pipeline = pipeline(
+        "text2text-generation",
+        model=model,
+        tokenizer=tokenizer,
+        min_length=min_length,
+        max_length=max_length,
+        temperature=temperature,
+        top_k=top_k,
+        top_p=top_p
     )
+    llm = HuggingFacePipeline(pipeline=hf_pipeline)
+    return llm
+
+
+def get_retriever(k: int = 3):
+    with open("faiss_store.pkl", "rb") as f:
+        vector_store = pickle.load(f)
+
+    retriever = vector_store.as_retriever(search_kwargs={"k": k})
+    return retriever
+
+
+def get_chat_history(history) -> str:
+    print(f"CHAT HISTORY:\n{history}")
+    return history
+
+
+def get_chain():
+    memory = ConversationBufferMemory(memory_key="chat_history")
+    chain = ConversationalRetrievalChain.from_llm(
+        get_llm(), get_retriever(k=1), memory=memory,
+        get_chat_history=get_chat_history, verbose=True)
     return chain
 
 
 if __name__ == "__main__":
-    with open("faiss_store.pkl", "rb") as f:
-        vectorstore = pickle.load(f)
-    qa_chain = get_chain(vectorstore, prompt)
+    qa_chain = get_chain()
     print("Chat with the FlutterGPT bot:")
     while True:
         print("Your question:")
         question = input()
-        result = qa_chain({"question": question}, return_only_outputs=True)
+        result = qa_chain({"question": question})
         print(f"Answer: {result['answer']}")
-        print("\n\n")
-        print(result)
+        print(f"\nResult: {result}")
+        print("-" * 80)
