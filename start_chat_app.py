@@ -2,12 +2,38 @@ import pickle
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline, set_seed
 from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
+from langchain.chains import ConversationalRetrievalChain, LLMChain
+from langchain.chains.qa_with_sources import load_qa_with_sources_chain
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 from dotenv import load_dotenv
 load_dotenv()
 
 model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-base")
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
+system_template = """Given the following conversation and a follow up question, 
+rephrase the follow up question to be a standalone question.
+Use the standalone question to answer the user's question. 
+If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
+Conversation:
+{chat_history}
+Follow up question: {question}
+Standalone question:"""
+
+messages = [
+    SystemMessagePromptTemplate.from_template(system_template),
+    HumanMessagePromptTemplate.from_template("{question}")
+]
+
+prompt = ChatPromptTemplate.from_messages(messages)
+
+
+def get_question_generator(llm):
+    question_generator = LLMChain(llm=llm, prompt=prompt, verbose=True)
+    return question_generator
 
 
 def get_llm(
@@ -45,10 +71,19 @@ def get_chat_history(history) -> str:
 
 
 def get_chain():
-    memory = ConversationBufferMemory(memory_key="chat_history")
-    chain = ConversationalRetrievalChain.from_llm(
-        get_llm(), get_retriever(k=1), memory=memory,
-        get_chat_history=get_chat_history, verbose=True)
+    llm = get_llm()
+    memory = ConversationBufferMemory(
+        memory_key="chat_history", output_key="answer")
+    doc_chain = load_qa_with_sources_chain(
+        llm, chain_type="stuff", verbose=True)
+    chain = ConversationalRetrievalChain(
+        question_generator=get_question_generator(llm),
+        combine_docs_chain=doc_chain,
+        retriever=get_retriever(k=1),
+        memory=memory,
+        get_chat_history=get_chat_history,
+        max_tokens_limit=250,
+        return_source_documents=True)
     return chain
 
 
