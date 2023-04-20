@@ -28,30 +28,30 @@ DROP TABLE models CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255),
-  email VARCHAR(255) UNIQUE, 
-  password VARCHAR(255),
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL, 
+  password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE models (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) UNIQUE,
-  max_tokens INTEGER,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  max_tokens INTEGER NOT NULL,
   cmetadata JSON 
 );
 
 CREATE TABLE channels (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) UNIQUE,
+  name VARCHAR(255) UNIQUE NOT NULL,
   cmetadata JSON 
 );
 
 CREATE TABLE conversations (
   id BIGSERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
-  channel_id INTEGER REFERENCES channels(id),
-  context TEXT,
+  user_id INTEGER REFERENCES users(id) NOT NULL,
+  channel_id INTEGER REFERENCES channels(id) NOT NULL,
+  context TEXT NOT NULL,
   cmetadata JSON,
   created_at TIMESTAMP DEFAULT NOW()
 );
@@ -60,19 +60,19 @@ CREATE INDEX conversation_channel_id_idx ON conversations(channel_id);
 
 CREATE TABLE down_vote_reasons (
   id SERIAL PRIMARY KEY,
-  description VARCHAR(255) UNIQUE 
+  description VARCHAR(255) UNIQUE NOT NULL 
 );
 
 CREATE TABLE messages (
   id BIGSERIAL PRIMARY KEY,
-  conversation_id BIGINT REFERENCES conversations(id),
-  user_id INTEGER REFERENCES users(id), 
-  user_message TEXT,
-  bot_message TEXT,
-  vote SMALLINT, -- 0: neutral, 1: thumb_up, -1: thumb_down
+  conversation_id BIGINT REFERENCES conversations(id) NOT NULL,
+  user_id INTEGER REFERENCES users(id) NOT NULL, 
+  user_message TEXT NOT NULL,
+  bot_message TEXT NOT NULL,
+  vote SMALLINT DEFAULT 0, -- 0: neutral, 1: thumb_up, -1: thumb_down
   down_vote_reason_id INTEGER REFERENCES down_vote_reasons(id), 
   user_feedback TEXT,
-  model_id INTEGER REFERENCES models(id), 
+  model_id INTEGER REFERENCES models(id) NOT NULL, 
   cmetadata JSON,
   created_at TIMESTAMP DEFAULT NOW() 
 );
