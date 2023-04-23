@@ -8,7 +8,7 @@ import hashlib
 import pickle
 
 tokenizer = AutoTokenizer.from_pretrained(
-    "flan-t5-small/", use_fast=True)
+    "google/flan-t5-base", use_fast=True)
 md5 = hashlib.md5()
 
 
@@ -17,11 +17,6 @@ def get_doc_id(doc):
     uid = md5.hexdigest()[:12]
     # print(doc.metadata['source'])
     return uid
-
-
-def token_len(text):  # token length function
-    tokens = tokenizer.encode(text, max_length=512, truncation=True)
-    return len(tokens)
 
 
 def load_documents():
@@ -44,10 +39,10 @@ def load_documents():
 
 def split_documents(docs):
     documents = []
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=400,
+    text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
+        chunk_size=460,
         chunk_overlap=20,  # number of tokens overlap between chunks
-        length_function=token_len,
+        tokenizer=tokenizer,
         separators=['\n\n', '\n', ' ', '']
     )
     for doc in tqdm(docs):
@@ -71,9 +66,8 @@ def ingest_data():
     texts = [doc.pop('text') for doc in docs]
 
     print("Load data to FAISS store")
-    model_name = "all-mpnet-base-v2/"
     store = FAISS.from_texts(
-        texts, HuggingFaceEmbeddings(model_name=model_name), metadatas=docs)
+        texts, HuggingFaceEmbeddings(), metadatas=docs)
     print("Save faiss_store.pkl")
     with open("faiss_store.pkl", "wb") as f:
         pickle.dump(store, f)
