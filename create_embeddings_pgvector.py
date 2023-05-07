@@ -9,7 +9,7 @@ from tqdm.auto import tqdm
 import hashlib
 from typing import List, Tuple
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(dotenv_path=".env_supabase")
 
 # PGVector needs the connection string to the database.
 # We will load it from the environment variables.
@@ -33,11 +33,6 @@ def get_doc_id(doc):
     return uid
 
 
-def token_len(text):  # token length function
-    tokens = tokenizer.encode(text, max_length=512, truncation=True)
-    return len(tokens)
-
-
 def load_documents():
     file_paths = None
     with open('html_files_index.txt', 'r') as file:
@@ -58,10 +53,10 @@ def load_documents():
 
 def split_documents(docs):
     documents = []
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=400,
+    text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
+        chunk_size=460,
         chunk_overlap=20,  # number of tokens overlap between chunks
-        length_function=token_len,
+        tokenizer=tokenizer,
         separators=['\n\n', '\n', ' ', '']
     )
     for doc in tqdm(docs):
@@ -89,7 +84,7 @@ def ingest_data():
     print("Load data to PGVector store")
     embedding = HuggingFaceEmbeddings()
     db = PGVector.from_texts(texts, embedding, metadatas=metadatas, ids=ids,
-                             collection_name="flutter_gpt",
+                             collection_name="flutty_flan-t5-base",
                              connection_string=CONNECTION_STRING,
                              pre_delete_collection=True)
     query = "What is Flutter?"
