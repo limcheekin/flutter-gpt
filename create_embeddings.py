@@ -1,14 +1,11 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.vectorstores.faiss import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from transformers import AutoTokenizer
+from langchain.embeddings import LlamaCppEmbeddings
 from tqdm.auto import tqdm
 import hashlib
 import pickle
 
-tokenizer = AutoTokenizer.from_pretrained(
-    "google/flan-t5-base", use_fast=True)
 md5 = hashlib.md5()
 
 
@@ -39,10 +36,9 @@ def load_documents():
 
 def split_documents(docs):
     documents = []
-    text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
+    text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=460,
         chunk_overlap=20,  # number of tokens overlap between chunks
-        tokenizer=tokenizer,
         separators=['\n\n', '\n', ' ', '']
     )
     for doc in tqdm(docs):
@@ -66,10 +62,12 @@ def ingest_data():
     texts = [doc.pop('text') for doc in docs]
 
     print("Load data to FAISS store")
+    embeddings = LlamaCppEmbeddings(
+        model_path="./open-llama/ggml-model-q4_0.bin")
     store = FAISS.from_texts(
-        texts, HuggingFaceEmbeddings(), metadatas=docs)
-    print("Save faiss_store.pkl")
-    with open("faiss_store.pkl", "wb") as f:
+        texts, embeddings, metadatas=docs)
+    print("Save faiss_store_ol.pkl")
+    with open("faiss_store_ol.pkl", "wb") as f:
         pickle.dump(store, f)
 
 
