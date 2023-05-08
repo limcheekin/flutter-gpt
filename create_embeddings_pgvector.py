@@ -4,12 +4,11 @@ from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores.pgvector import PGVector
 from langchain.docstore.document import Document
-from transformers import AutoTokenizer
 from tqdm.auto import tqdm
 import hashlib
 from typing import List, Tuple
 from dotenv import load_dotenv
-load_dotenv(dotenv_path=".env_supabase")
+load_dotenv(dotenv_path=".env")
 
 # PGVector needs the connection string to the database.
 # We will load it from the environment variables.
@@ -22,7 +21,11 @@ CONNECTION_STRING = PGVector.connection_string_from_db_params(
     password=os.environ.get("DB_PASSWORD", "postgres"),
 )
 
-tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-base")
+embedding = HuggingFaceEmbeddings()
+pgvector = PGVector(embedding_function=embedding,
+                    collection_name="flutty_open-llama",
+                    connection_string=CONNECTION_STRING,
+                    pre_delete_collection=True)
 md5 = hashlib.md5()
 
 
@@ -52,44 +55,43 @@ def load_documents():
 
 
 def split_documents(docs):
-    documents = []
-    text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
+    count = 0
+    text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=460,
-        chunk_overlap=20,  # number of tokens overlap between chunks
-        tokenizer=tokenizer,
+        chunk_overlap=20,  # number of tokens overlap between chunk
         separators=['\n\n', '\n', ' ', '']
     )
     for doc in tqdm(docs):
         id = get_doc_id(doc)
         chunks = text_splitter.split_text(doc.page_content)
         for i, chunk in enumerate(chunks):
-            documents.append({
-                'id': f'{id}-{i}',
-                'text': chunk,
-                'source': doc.metadata['source']
-            })
-
-    print(f"len(documents) {len(documents)}")
-    return documents
+            # documents.append({
+            #    'id': f'{id}-{i}',
+            #    'text': chunk,
+            #    'source': doc.metadata['source']
+            # })
+            pgvector.add_texts(texts=[chunk], metadatas=[
+                               {'source': doc.metadata['source']}], ids=[f'{id}-{i}'])
+            count += 1
+    print(f"count {count}")
 
 
 def ingest_data():
     docs = load_documents()
     docs = split_documents(docs)
     # extract text from docs and id, source become metadata
-    texts = [doc.pop('text') for doc in docs]
-    ids = [doc.pop('id') for doc in docs]
-    metadatas = docs
+    # texts = [doc.pop('text') for doc in docs]
+    # ids = [doc.pop('id') for doc in docs]
+    # metadatas = docs
 
-    print("Load data to PGVector store")
-    embedding = HuggingFaceEmbeddings()
-    db = PGVector.from_texts(texts, embedding, metadatas=metadatas, ids=ids,
-                             collection_name="flutty_flan-t5-base",
-                             connection_string=CONNECTION_STRING,
-                             pre_delete_collection=True)
+    # print("Load data to PGVector store")
+    # embedding = HuggingFaceEmbeddings()
+    # db = PGVector.from_texts(texts, embedding, metadatas=metadatas, ids=ids,
+    #                         collection_name="flutty_open-llama",
+    #                         connection_string=CONNECTION_STRING)
     query = "What is Flutter?"
     docs_with_score: List[Tuple[Document, float]
-                          ] = db.similarity_search_with_score(query)
+                          ] = pgvector.similarity_search_with_score(query)
 
     for doc, score in docs_with_score:
         print("-" * 80)
