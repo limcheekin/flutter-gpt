@@ -21,14 +21,10 @@ from langchain.llms.base import LLM
 import os
 import requests
 import json
-from dotenv import load_dotenv
-
-load_dotenv()  # take environment variables from .env.
-
 # %%
 
 
-class GPT4AllJ(LLM):
+class GPT4AllJApi(LLM):
     seed: int = -1
     n_threads: int = -1
     n_predict: int = 200

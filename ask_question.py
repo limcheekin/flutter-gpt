@@ -1,27 +1,20 @@
-import argparse
-import pickle
-
+from llms import GPT4AllJApi
+from langchain.chains import RetrievalQA
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-from langchain.chains import RetrievalQAWithSourcesChain
-from llms import GPT4AllJ
+import argparse
+import pickle
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
 system_template = """Use the following pieces of context to answer the users question. 
 If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
-ALWAYS return a "Sources" part in your answer.
-The "Sources" part should be a reference to the source of the document from which you got your answer.
-Example of your response should be:
-```
-The answer is foo
-Sources:
-1. abc
-2. xyz
-```
-Begin!
 ----------------
-{summaries}
+{context}
 """
 messages = [
     SystemMessagePromptTemplate.from_template(system_template),
@@ -31,19 +24,18 @@ prompt = ChatPromptTemplate.from_messages(messages)
 
 
 def get_llm():
-    llm = GPT4AllJ()
+    llm = GPT4AllJApi()
     return llm
 
 
 def get_chain(store):
     chain_type_kwargs = {"prompt": prompt}
-    chain = RetrievalQAWithSourcesChain.from_chain_type(
+    chain = RetrievalQA.from_chain_type(
         get_llm(),
         chain_type="stuff",
-        retriever=store.as_retriever(),
+        retriever=store.as_retriever(search_kwargs={"k": 3}),
         chain_type_kwargs=chain_type_kwargs,
-        reduce_k_below_max_tokens=True,
-        max_tokens_limit=512
+        return_source_documents=True
     )
     return chain
 
@@ -55,7 +47,9 @@ args = parser.parse_args()
 with open("faiss_store.pkl", "rb") as f:
     store = pickle.load(f)
 chain = get_chain(store)
-result = chain({"question": args.question})
+response = chain({"query": args.question})
 
-print(f"Answer: {result['answer']}")
-print(f"Sources: {result['sources']}")
+print(f"Answer: {response['result']}")
+print('\nSources:')
+for source in response["source_documents"]:
+    print(source.metadata['source'])

@@ -7,12 +7,12 @@ import pickle
 
 def ingest_data():
     file_paths = None
-    with open('html_files_index.txt', 'r') as file:
+    with open('test_files_index.txt', 'r') as file:
         file_paths = file.readlines()
 
     docs = []
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=450, chunk_overlap=0)
+        chunk_size=450, chunk_overlap=20)
 
     print("Load HTML files locally...")
     for i, file_path in enumerate(file_paths):
