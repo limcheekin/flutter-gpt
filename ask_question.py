@@ -1,15 +1,13 @@
 import argparse
 import pickle
 
-from langchain.llms import HuggingFacePipeline
-from transformers import GPT2TokenizerFast, pipeline, set_seed
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
 from langchain.chains import RetrievalQAWithSourcesChain
-
+from llms import GPT4AllJ
 system_template = """Use the following pieces of context to answer the users question. 
 If you don't know the answer, just say "Hmm..., I'm not sure.", don't try to make up an answer.
 ALWAYS return a "Sources" part in your answer.
@@ -33,17 +31,7 @@ prompt = ChatPromptTemplate.from_messages(messages)
 
 
 def get_llm():
-    model_id = "gpt2"
-    tokenizer = GPT2TokenizerFast.from_pretrained(model_id)
-
-    pipe = pipeline(
-        "text-generation",
-        model=model_id,
-        tokenizer=tokenizer,
-        max_length=1024
-    )
-    set_seed(55)
-    llm = HuggingFacePipeline(pipeline=pipe)
+    llm = GPT4AllJ()
     return llm
 
 
