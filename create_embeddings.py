@@ -7,7 +7,7 @@ import pickle
 
 def ingest_data():
     file_paths = None
-    with open('test_files_index.txt', 'r') as file:
+    with open('html_files_index.txt', 'r') as file:
         file_paths = file.readlines()
 
     docs = []
